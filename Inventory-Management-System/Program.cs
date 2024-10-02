@@ -1,4 +1,6 @@
 
+using Inventory_Management_System.Repository;
+using Inventory_Management_System.Repository.repo;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System
@@ -12,6 +14,13 @@ namespace Inventory_Management_System
             // Add services to the container.
             builder.Services.AddControllersWithViews();
 
+            builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
+            builder.Services.AddScoped<IAlertRepository, AlertRepository>();
+            builder.Services.AddScoped<IEmployeeRepository, EmployeeRepository>();
+            builder.Services.AddScoped<ICategoryRepository, CategoryRepository>();
+            builder.Services.AddScoped<IProductRepository, ProductRepository>();
+            builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
+            builder.Services.AddScoped<IEmployeeSupplierRepository, EmployeeSupplierRepository>();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
