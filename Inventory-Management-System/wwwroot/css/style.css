@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Arial', sans-serif;
+}
+
+body {
+    display: flex;
+    min-height: 100vh;
+    background-color: #f4f4f9;
+}
+
+/* Header styling */
+.header {
+    width: 100%;
+    height: 60px;
+    background-color: #354F52;
+    position: fixed;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+    color: #fff;
+    z-index: 1000;
+}
+
+.logo-header {
+    display: flex;
+    align-items: center;
+}
+
+/* Profile section styling */
+.profile {
+    display: flex;
+    align-items: center;
+    margin-left: auto; /* Pushes profile section to the right */
+}
+
+.profile-img {
+    width: 40px; /* Adjust as needed */
+    height: 40px; /* Adjust as needed */
+    border-radius: 50%; /* Circular profile image */
+    margin-left: 15px; /* Space between the image and name */
+    margin-right: 12px;
+}
+
+.profile-name {
+    font-size: 14px; /* Adjust font size as needed */
+    color: #fff; /* Make the name white for visibility */
+    margin-left: 5px; /* Space between image and name */
+}
+
+
+/* ---------------------- logo ------------------------- */
+
+.logo-header {
+    display: flex;
+    align-items: center;
+}
+
+.logo-text {
+    font-size: 24px;
+    font-weight: bold;
+    margin-right: 15px;
+    margin-left: 23px;
+}
+
+#menu-toggle {
+    font-size: 24px;
+    cursor: pointer;
+}
+
+/* Sidebar styling */
+.sidebar {
+    width: 260px;
+    height: 100%;
+    background-color: #2F3E46;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    position: fixed;
+    top: 60px;
+    left: 0;
+    transition: width 0.3s ease;
+}
+
+.sidebar.collapsed {
+    width: 80px;
+}
+
+.logo-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.logo img {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    border: 3px solid #ffffff; /* White border */
+    margin-bottom: 15px;
+    display: none;
+}
+
+.logo-name {
+    font-size: 18px;
+    font-weight: bold;
+    color: #fff;
+    display: block;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .logo-name {
+    opacity: 0;
+}
+
+.nav-links {
+    list-style: none;
+    padding: 0;
+    flex-grow: 1; /* Take up remaining space */
+}
+
+.nav-links li {
+    margin: 15px 0;
+}
+
+.nav-links a {
+    text-decoration: none;
+    color: #fff;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    padding: 10px 15px;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+}
+
+.nav-links a:hover {
+    background-color: #52616B;
+}
+
+.nav-links a i {
+    font-size: 20px;
+    margin-right: 15px;
+    color: #fff;
+    transition: margin 0.3s ease;
+}
+
+.sidebar.collapsed .nav-links a i {
+    margin-right: 0;
+}
+
+.link-name {
+    font-size: 16px;
+    color: #fff;
+    transition: opacity 0.3s ease;
+}
+
+.sidebar.collapsed .link-name {
+    opacity: 0;
+}
+
+/* Log out button styling */
+.logout {
+    margin-bottom: 56px;
+}
+
+.logout a {
+    text-decoration: none;
+    color: #fff;
+    padding: 10px 15px;
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    transition: background 0.3s ease;
+    margin-top: 30px; /* Optional spacing above the logout */
+}
+
+.logout a:hover {
+    background-color: #52616B;
+}
+
+.logout a i {
+    font-size: 20px;
+    margin-right: 15px;
+}
+
+.sidebar.collapsed .logout a i {
+    margin-right: 0;
+}
+
+/* Hide photo when sidebar is collapsed */
+.sidebar.collapsed .logo img {
+    display: none;
+}
+
+.sidebar:not(.collapsed) .logo img {
+    display: block;
+}
