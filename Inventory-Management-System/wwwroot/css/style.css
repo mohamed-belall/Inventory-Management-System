@@ -9,6 +9,7 @@ body {
     display: flex;
     min-height: 100vh;
     background-color: #f4f4f9;
+    padding:100px
 }
 
 /* Header styling */
