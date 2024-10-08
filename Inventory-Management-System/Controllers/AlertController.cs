@@ -5,16 +5,17 @@ namespace Inventory_Management_System.Controllers
 {
     public class AlertController : Controller
     {
-        private readonly IAlertRepository alertRepository;
+        private readonly IAlertRepository _alertRepo;
 
-        public AlertController(IAlertRepository alertRepository) 
+        public AlertController(IAlertRepository alertRepo) 
         {
-            this.alertRepository = alertRepository;
+            this._alertRepo = alertRepo;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<StartAlert> startAlerts =  _alertRepo.GetAlertWithAllData();
+            return View("index" , startAlerts);
         }
     }
 }
