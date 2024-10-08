@@ -1,4 +1,7 @@
 ﻿
+using Inventory_Management_System.Models;
+using Microsoft.AspNetCore.Mvc;
+
 namespace Inventory_Management_System.Repository.repo
 {
     public class SupplierRepository : ISupplierRepository
@@ -12,32 +15,35 @@ namespace Inventory_Management_System.Repository.repo
 
         public void Add(Supplier entity)
         {
-            throw new NotImplementedException();
-        }
-
-        public void Delete(Supplier entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        public List<Supplier> GetAll()
-        {
-            throw new NotImplementedException();
-        }
-
-        public Supplier GetById(int id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public void Save()
-        {
-            throw new NotImplementedException();
+            applicationDbContext.Add(entity);
         }
 
         public void Update(Supplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Update(entity);
+        }
+        public void Delete(Supplier entity)
+        {
+            applicationDbContext.Remove(entity);
+        }
+        public List<Supplier> GetAll()
+        {
+            return applicationDbContext.Suppliers.ToList();
+        }
+
+        public Supplier GetById(int id)
+        {
+            return applicationDbContext.Suppliers.FirstOrDefault(s => s.ID == id)   ;
+        }
+
+        public List<Supplier> SearchByName(string name)
+        {
+            return applicationDbContext.Suppliers.Where(i => i.Name.Contains(name)).ToList();
+        }
+
+        public void Save()
+        {
+            applicationDbContext.SaveChanges();
         }
     }
 }
