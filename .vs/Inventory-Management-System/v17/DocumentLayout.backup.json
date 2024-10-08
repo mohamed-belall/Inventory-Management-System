@@ -1,61 +1,133 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\",
+  "WorkspaceRootPath": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\migrations\\20241002152334_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\migrations\\20241002152334_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\controllers\\transactioncontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\startalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\startalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\controllers\\alertcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\controllers\\alertcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\itransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\itransactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\employeesupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\transactionrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\productrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\employeesupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\employeesupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\categoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repo\\alertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\alertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\isupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\isupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\iproductrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\iemployeesupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\iemployeesupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\iemployeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\icategoryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\interface\\ialertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\ialertrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\data\\applicationdbcontext.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\irepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\employeesupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\employeesupplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\employee.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\errorviewmodel.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\inventory-management-system\\inventory-management-system\\inventory-management-system.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\category.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\migrations\\20241002152334_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\migrations\\20241002152334_init.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\startalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\startalert.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\transaction.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\appsettings.json||{90A6B3A7-C1A3-4009-A288-E2FF89E96FA0}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|d:\\01_dotnet\\depi\\gp\\repo2\\inventory-management-system\\inventory-management-system\\inventory-management-system.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\inventory-management-system.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -66,7 +138,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 2,
+          "SelectedChildIndex": 4,
           "Children": [
             {
               "$type": "Bookmark",
@@ -77,186 +149,393 @@
               "Name": "ST:0:0:{aa2115a1-9712-457b-9047-dbb71ca2cdd2}"
             },
             {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "20241002152334_init.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Migrations\\20241002152334_init.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Migrations\\20241002152334_init.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Migrations\\20241002152334_init.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Migrations\\20241002152334_init.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T15:23:35.598Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 4,
-              "Title": "EmployeeSupplier.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\EmployeeSupplier.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\EmployeeSupplier.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\EmployeeSupplier.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\EmployeeSupplier.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAYAAAABAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:33:36.285Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 11,
-              "Title": "GlobalUsing.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\GlobalUsing.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs",
-              "RelativeToolTip": "Inventory-Management-System\\GlobalUsing.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAtAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:00:30.158Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 7,
-              "Title": "Category.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Category.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Category.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Category.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\Category.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAzAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:51.623Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 9,
-              "Title": "Supplier.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Supplier.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\Supplier.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:51.11Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 5,
-              "Title": "Product.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Product.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Product.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Product.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\Product.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:50.59Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 8,
-              "Title": "Transaction.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Transaction.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Transaction.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Transaction.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\Transaction.cs",
-              "ViewState": "AgIAAA8AAAAAAAAAAAA5wBgAAAAAAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:50.154Z",
-              "EditorCaption": ""
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{1c4feeaa-4718-4aa9-859d-94ce25d182ba}"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "StartAlert.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\StartAlert.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\StartAlert.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\StartAlert.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\StartAlert.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAATAAAAAAAAAA==",
+              "Title": "AlertController.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\AlertController.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Controllers\\AlertController.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\AlertController.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Controllers\\AlertController.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:49.7Z",
+              "WhenOpened": "2024-10-02T18:48:46.55Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "TransactionController.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\TransactionController.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Controllers\\TransactionController.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\TransactionController.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Controllers\\TransactionController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:40:20.247Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 6,
-              "Title": "Employee.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Employee.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Employee.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\Employee.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\Employee.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAJAAAAAAAAAA==",
+              "Title": "ProductRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\ProductRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\ProductRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\ProductRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\ProductRepository.cs",
+              "ViewState": "AQIAAAMAAAAAAAAAAAAAABoAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T13:02:49.128Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T15:36:37.68Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "ApplicationDbContext.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Data\\ApplicationDbContext.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Data\\ApplicationDbContext.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Data\\ApplicationDbContext.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Data\\ApplicationDbContext.cs",
-              "ViewState": "AgIAAA0AAAAAAAAAAAA6wB8AAAAzAAAAAAAAAA==",
+              "DocumentIndex": 5,
+              "Title": "SupplierRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T12:49:51.049Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T18:32:26.457Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Program.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Program.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Program.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Program.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Program.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Program.cs",
               "RelativeToolTip": "Inventory-Management-System\\Program.cs",
-              "ViewState": "AgIAAAMAAAAAAAAAAAAAABEAAABTAAAAAAAAAA==",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA8AAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T12:47:20.227Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T12:47:20.227Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ITransactionRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ITransactionRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\ITransactionRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ITransactionRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\ITransactionRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:21:31.851Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "EmployeeSupplierRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\EmployeeSupplierRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\EmployeeSupplierRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\EmployeeSupplierRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\EmployeeSupplierRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:32:10.873Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\EmployeeRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\EmployeeRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\EmployeeRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:31:44.756Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "TransactionRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\TransactionRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\TransactionRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\TransactionRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\TransactionRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:32:41.651Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "CategoryRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\CategoryRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\CategoryRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\CategoryRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\CategoryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:31:28.833Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 10,
-              "Title": "appsettings.json",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\appsettings.json",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\appsettings.json",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\appsettings.json",
-              "RelativeToolTip": "Inventory-Management-System\\appsettings.json",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
-              "WhenOpened": "2024-10-02T12:47:33.294Z",
-              "EditorCaption": ""
+              "Title": "AlertRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\AlertRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\AlertRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\AlertRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\repo\\AlertRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAsAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:31:14.524Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "ISupplierRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAEAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:23:38.216Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 12,
-              "Title": "ErrorViewModel.cs",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\ErrorViewModel.cs",
-              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\ErrorViewModel.cs",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Models\\ErrorViewModel.cs",
-              "RelativeToolTip": "Inventory-Management-System\\Models\\ErrorViewModel.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Title": "IProductRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IProductRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\IProductRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IProductRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\IProductRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAcAAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-02T14:45:44.069Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T15:36:55.593Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 13,
+              "Title": "IEmployeeSupplierRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IEmployeeSupplierRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\IEmployeeSupplierRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IEmployeeSupplierRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\IEmployeeSupplierRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAzAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:27:51.173Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "IEmployeeRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IEmployeeRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\IEmployeeRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IEmployeeRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\IEmployeeRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:20:03.014Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "ICategoryRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ICategoryRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\ICategoryRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ICategoryRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\ICategoryRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:22:36.968Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "IAlertRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IAlertRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\IAlertRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\IAlertRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\IAlertRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAAAFAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T18:20:51.641Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Employee.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Employee.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Employee.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Employee.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\Employee.cs",
+              "ViewState": "AQIAAAsAAAAAAAAAAAAwwBkAAAABAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:49.128Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "Repository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\Repository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\Repository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\Repository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\Repository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAIAAAAfAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T15:34:47.163Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "IRepository.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\IRepository.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\IRepository.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Repository\\IRepository.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Repository\\IRepository.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T15:28:00.089Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "ApplicationDbContext.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Data\\ApplicationDbContext.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Data\\ApplicationDbContext.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Data\\ApplicationDbContext.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Data\\ApplicationDbContext.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAA0AAABGAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T12:49:51.049Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "EmployeeSupplier.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\EmployeeSupplier.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\EmployeeSupplier.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\EmployeeSupplier.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\EmployeeSupplier.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAwAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:33:36.285Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "ErrorViewModel.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\ErrorViewModel.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\ErrorViewModel.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\ErrorViewModel.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\ErrorViewModel.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:45:44.069Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "Category.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Category.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Category.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Category.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\Category.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:51.623Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "20241002152334_init.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Migrations\\20241002152334_init.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Migrations\\20241002152334_init.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Migrations\\20241002152334_init.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Migrations\\20241002152334_init.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T15:23:35.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "Supplier.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Supplier.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\Supplier.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAAqAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:51.11Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Product.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Product.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\Product.cs",
+              "ViewState": "AgIAAAMAAAAAAAAAAAAAAA4AAAAHAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:50.59Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "GlobalUsing.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\GlobalUsing.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs",
+              "RelativeToolTip": "Inventory-Management-System\\GlobalUsing.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T14:00:30.158Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "Transaction.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Transaction.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Transaction.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\Transaction.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\Transaction.cs",
+              "ViewState": "AgIAAA8AAAAAAAAAAAA5wBgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:50.154Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "StartAlert.cs",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\StartAlert.cs",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\StartAlert.cs",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Models\\StartAlert.cs",
+              "RelativeToolTip": "Inventory-Management-System\\Models\\StartAlert.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAQAAAATAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-10-02T13:02:49.7Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "appsettings.json",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\appsettings.json",
+              "RelativeDocumentMoniker": "Inventory-Management-System\\appsettings.json",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\appsettings.json",
+              "RelativeToolTip": "Inventory-Management-System\\appsettings.json",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001642|",
+              "WhenOpened": "2024-10-02T12:47:33.294Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
               "Title": "Inventory-Management-System.csproj",
-              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
+              "DocumentMoniker": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Inventory-Management-System.csproj",
-              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
+              "ToolTip": "D:\\01_DotNET\\DEPI\\GP\\repo2\\Inventory-Management-System\\Inventory-Management-System\\Inventory-Management-System.csproj",
               "RelativeToolTip": "Inventory-Management-System\\Inventory-Management-System.csproj",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABgAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
-              "WhenOpened": "2024-10-02T12:43:02.56Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-02T12:43:02.56Z"
             }
           ]
         }

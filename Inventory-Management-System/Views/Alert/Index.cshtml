@@ -1,0 +1,64 @@
+﻿@model List<StartAlert>
+
+@{
+    ViewData["Title"] = "Start Alerts";
+}
+
+<h2>Start Alerts</h2>
+
+<div class="d-flex justify-content-between mb-3">
+    <div>
+        <input type="text" class="form-control" placeholder="Search alert ID" aria-label="Search">
+    </div>
+    <div>
+        <button class="btn btn-primary">Export to Excel</button>
+        <button class="btn btn-secondary">Import Alerts</button>
+        <a href="@Url.Action("Create", "StartAlerts")" class="btn btn-success">+ New Alert</a>
+    </div>
+</div>
+
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th scope="col">
+                <input type="checkbox" />
+            </th>
+            <th scope="col">Alert ID</th>
+            <th scope="col">Date</th>
+            <th scope="col">Employee</th>
+            <th scope="col">Product</th>
+            <th scope="col">Alert Quantity Level</th>
+            <th scope="col">Status</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var alert in Model)
+        {
+            <tr>
+                <td>
+                    <input type="checkbox" />
+                </td>
+                <td>@alert.ID</td>
+                <td>@alert.AlertDate.ToString("MM/dd/yyyy")</td>
+                <td>@(alert.employee.FName +" " + alert.employee.LName)</td>
+                <td>@alert.product.Name</td>
+                <td>@alert.AlertQuantityLevel</td>
+                <td>
+                    @if (alert.IsResolved)
+                    {
+                        <span class="badge bg-success">Completed</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning">Pending</span>
+                    }
+                </td>
+                <td>
+                    <a href="@Url.Action("Edit", "StartAlerts", new { id = alert.ID })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="@Url.Action("Delete", "StartAlerts", new { id = alert.ID })" class="btn btn-danger btn-sm">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
