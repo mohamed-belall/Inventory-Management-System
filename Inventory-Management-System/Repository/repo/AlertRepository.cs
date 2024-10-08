@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Inventory_Management_System.Repository.repo
 {
     public class AlertRepository : IAlertRepository
@@ -12,32 +14,40 @@ namespace Inventory_Management_System.Repository.repo
 
         public void Add(StartAlert entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.StartAlerts.Add(entity);
         }
 
         public void Delete(StartAlert entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.StartAlerts.Remove(entity);
         }
 
         public List<StartAlert> GetAll()
         {
-            throw new NotImplementedException();
+           return applicationDbContext.StartAlerts.ToList();
+        }
+
+        public List<StartAlert> GetAlertWithAllData()
+        {
+            return applicationDbContext.StartAlerts
+                .Include(a => a.employee)
+                .Include(a => a.product)
+                .ToList();
         }
 
         public StartAlert GetById(int id)
         {
-            throw new NotImplementedException();
+           return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ID == id)!;
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            applicationDbContext.SaveChanges();
         }
 
         public void Update(StartAlert entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.StartAlerts.Update(entity);
         }
     }
 }

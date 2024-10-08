@@ -2,6 +2,6 @@
 {
     public interface IAlertRepository:IRepository<StartAlert>
     {
-
+        public List<StartAlert> GetAlertWithAllData();
     }
 }
