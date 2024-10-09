@@ -100,23 +100,30 @@ namespace Inventory_Management_System.Controllers
         {
             if (ModelState.IsValid)
             {
-                Product product = new Product();
+                Product? product = productRepository.GetById(ProductWithCategoriesViewModel.ID??0);
 
-                product.ID = ProductWithCategoriesViewModel.ID??0;
-                product.Name = ProductWithCategoriesViewModel.Name;
-                product.UnitPrice = ProductWithCategoriesViewModel.UnitPrice;
-                product.StockQuantity = ProductWithCategoriesViewModel.Quantity;
-                product.Description = ProductWithCategoriesViewModel.Description;
-                product.CategoryId = ProductWithCategoriesViewModel.CategoryId;
-                product.SupplierId = ProductWithCategoriesViewModel.SupplierId;
-                product.CreatedDate = ProductWithCategoriesViewModel.CreatedDate??DateTime.Now;
-                product.ModifiedDate = DateTime.Now;
-                product.ReorderLevel = threshold;
+                if(product !=null)
+                {
+                    product.Name = ProductWithCategoriesViewModel.Name;
+                    product.UnitPrice = ProductWithCategoriesViewModel.UnitPrice;
+                    product.StockQuantity = ProductWithCategoriesViewModel.Quantity;
+                    product.Description = ProductWithCategoriesViewModel.Description;
+                    product.CategoryId = ProductWithCategoriesViewModel.CategoryId;
+                    product.SupplierId = ProductWithCategoriesViewModel.SupplierId;
+                    product.CreatedDate = ProductWithCategoriesViewModel.CreatedDate??DateTime.Now;
+                    product.ModifiedDate = DateTime.Now;
+                    product.ReorderLevel = threshold;
 
-                productRepository.Update(product);
-                productRepository.Save();
+                    productRepository.Update(product);
+                    productRepository.Save();
 
-                return RedirectToAction("Index");
+
+                    return RedirectToAction("Index");
+                }
+                else
+                {
+                    ModelState.AddModelError("", "Product not found");
+                }
             }
             return View("Edit",ProductWithCategoriesViewModel);
         }
