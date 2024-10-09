@@ -42,19 +42,28 @@ namespace Inventory_Management_System.Controllers
             var supplier = supplierRepository.GetById(id);
             if (supplier != null)
             {
-                return View("Edit");
+                return View("Edit" , supplier);
             }
             return Content("This Id Not Found");
         }
 
         [HttpPost]
-        public IActionResult SaveEdit(Supplier supplier)
+        public IActionResult SaveEdit(Supplier supplier , int id)
         {
             if (ModelState.IsValid)
             {
-                supplierRepository.Update(supplier);
-                supplierRepository.Save();
-                return RedirectToAction("GetAll");
+                var existingSupplier = supplierRepository.GetById(id);
+                if (existingSupplier != null)
+                {
+                    // Update the properties of the existing supplier with the new values
+                    existingSupplier.Name = supplier.Name;
+                    existingSupplier.Email = supplier.Email;
+                    existingSupplier.Address = supplier.Address;
+                    existingSupplier.Phone = supplier.Phone;
+                    supplierRepository.Update(existingSupplier);
+                    supplierRepository.Save();
+                    return RedirectToAction("GetAll");
+                }
             }
             return View("Edit", supplier);
         }
@@ -71,6 +80,24 @@ namespace Inventory_Management_System.Controllers
             return Content("This Id Not found");
         }
 
+        public IActionResult SearchByName(string name)
+        {
+            ViewBag.SearchItem = name;
+            if (string.IsNullOrWhiteSpace(name))
+            {
+                return BadRequest("Please enter a valid name to search.");
+            }
+
+            var Supplier = supplierRepository.SearchByName(name);
+            if (Supplier != null)
+            {
+                return View("GetAll", Supplier);
+            }
+            else
+            {
+                return NotFound("Instructor with the given name not found.");
+            }
+        }
 
     }
 }
