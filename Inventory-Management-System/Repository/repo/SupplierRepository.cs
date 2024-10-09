@@ -22,7 +22,7 @@ namespace Inventory_Management_System.Repository.repo
 
         public List<Supplier> GetAll()
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Suppliers.ToList();
         }
 
         public Supplier GetById(int id)

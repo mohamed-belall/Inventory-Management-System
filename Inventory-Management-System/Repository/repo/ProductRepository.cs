@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Inventory_Management_System.Repository.repo
 {
     public class ProductRepository : IProductRepository
@@ -22,7 +24,7 @@ namespace Inventory_Management_System.Repository.repo
 
         public List<Product> GetAll()
         {
-            return _applicationDbContext.Products.ToList();
+            return _applicationDbContext.Products.Include(p=>p.category).Include(p=>p.supplier).ToList();
         }
 
         public List<Product> GetFilteredByCategory(int? id)
@@ -30,12 +32,12 @@ namespace Inventory_Management_System.Repository.repo
             if (id == null)
                 return GetAll();
             else
-                return _applicationDbContext.Products.Where(p=>p.CategoryId==id).ToList();
+                return _applicationDbContext.Products.Where(p=>p.CategoryId==id).Include(p=>p.supplier).ToList();
         }
 
         public List<Product> GetFilteredByName(string name)//helper method
         {
-            return _applicationDbContext.Products.Where(p => p.Name.Contains(name) ).ToList();
+            return _applicationDbContext.Products.Where(p => p.Name.Contains(name) ).Include(p => p.supplier).ToList();
         }
 
         public List<Product> GetFilteredByNameWithCategory(string name,int? id)
@@ -43,7 +45,7 @@ namespace Inventory_Management_System.Repository.repo
             if (id == null)
                 return GetFilteredByName(name);
             else
-                return _applicationDbContext.Products.Where(p => p.Name.Contains(name)&& p.CategoryId==id ).ToList();
+                return _applicationDbContext.Products.Where(p => p.Name.Contains(name)&& p.CategoryId==id ).Include(p => p.supplier).ToList();
         }
 
         public Product GetById(int id)

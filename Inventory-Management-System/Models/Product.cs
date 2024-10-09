@@ -8,7 +8,7 @@
         public DateTime CreatedDate { get; set; }
         public DateTime? ModifiedDate { get; set; }
         public int StockQuantity { get; set; }
-        public int ReorderLevel { get; set; }
+        public int ReorderLevel { get; set; }//threshold
         public string? Description { get; set; }
 
 
