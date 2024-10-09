@@ -7,7 +7,7 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Inventory_Management_System.styles.css" asp-append-version="true" />
-
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
 
     <!-- Add this to the <head> section of your _Layout.cshtml -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -42,6 +42,11 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-area="" asp-controller="Employee" asp-action="index">hazem</a>
                         </li>
+
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Alert" asp-action="index">Alert</a>
+                        </li>
+
                     </ul>
                 </div>
             </div>
@@ -64,3 +69,5 @@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
+
+   

@@ -2,6 +2,6 @@
 {
     public interface ISupplierRepository:IRepository<Supplier>
     {
-
+        List<Supplier> SearchByName(string name);
     }
 }

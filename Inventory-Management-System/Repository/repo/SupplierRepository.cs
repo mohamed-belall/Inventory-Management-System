@@ -12,12 +12,12 @@ namespace Inventory_Management_System.Repository.repo
 
         public void Add(Supplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Add(entity);
         }
 
         public void Delete(Supplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Remove(entity);
         }
 
         public List<Supplier> GetAll()
@@ -27,17 +27,21 @@ namespace Inventory_Management_System.Repository.repo
 
         public Supplier GetById(int id)
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Suppliers.FirstOrDefault(s => s.ID == id);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            applicationDbContext.SaveChanges();
         }
 
         public void Update(Supplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Update(entity);
+        }
+        public List<Supplier> SearchByName(string name)
+        {
+            return applicationDbContext.Suppliers.Where(e => e.Name.Contains(name)).ToList();
         }
     }
 }
