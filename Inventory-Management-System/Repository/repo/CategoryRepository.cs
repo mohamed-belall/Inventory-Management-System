@@ -23,7 +23,7 @@ namespace Inventory_Management_System.Repository.repo
 
         public List<Category> GetAll()
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Categories.ToList();
         }
 
         public Category GetById(int id)

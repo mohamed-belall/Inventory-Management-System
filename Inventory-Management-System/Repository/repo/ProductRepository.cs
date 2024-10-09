@@ -25,6 +25,27 @@ namespace Inventory_Management_System.Repository.repo
             return _applicationDbContext.Products.ToList();
         }
 
+        public List<Product> GetFilteredByCategory(int? id)
+        {
+            if (id == null)
+                return GetAll();
+            else
+                return _applicationDbContext.Products.Where(p=>p.CategoryId==id).ToList();
+        }
+
+        public List<Product> GetFilteredByName(string name)//helper method
+        {
+            return _applicationDbContext.Products.Where(p => p.Name.Contains(name) ).ToList();
+        }
+
+        public List<Product> GetFilteredByNameWithCategory(string name,int? id)
+        {
+            if (id == null)
+                return GetFilteredByName(name);
+            else
+                return _applicationDbContext.Products.Where(p => p.Name.Contains(name)&& p.CategoryId==id ).ToList();
+        }
+
         public Product GetById(int id)
         {
             return _applicationDbContext.Products.FirstOrDefault(p => p.ID == id)!;
