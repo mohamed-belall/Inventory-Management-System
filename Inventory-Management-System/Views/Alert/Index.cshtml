@@ -4,6 +4,8 @@
     ViewData["Title"] = "Start Alerts";
 }
 
+<div style="    margin: 30px -184px;">
+
 <h2>Start Alerts</h2>
 
 <div class="d-flex justify-content-between mb-3">
@@ -13,21 +15,23 @@
     <div>
         <button class="btn btn-primary">Export to Excel</button>
         <button class="btn btn-secondary">Import Alerts</button>
-        <a href="@Url.Action("Create", "StartAlerts")" class="btn btn-success">+ New Alert</a>
+        <a href="@Url.Action("Add", "Alert")" class="btn btn-success">+ New Alert</a>
     </div>
 </div>
 
-<table class="table table-bordered">
+<table class="table table-bordered text-center">
     <thead>
         <tr>
             <th scope="col">
                 <input type="checkbox" />
             </th>
             <th scope="col">Alert ID</th>
-            <th scope="col">Date</th>
+            <th scope="col">Date Created</th>
             <th scope="col">Employee</th>
             <th scope="col">Product</th>
-            <th scope="col">Alert Quantity Level</th>
+            <th scope="col">Stock Quantity</th>
+            <th scope="col">Quantity Level</th>
+            <th scope="col">Date Solved</th>
             <th scope="col">Status</th>
             <th scope="col">Actions</th>
         </tr>
@@ -40,10 +44,12 @@
                     <input type="checkbox" />
                 </td>
                 <td>@alert.ID</td>
-                <td>@alert.AlertDate.ToString("MM/dd/yyyy")</td>
+                <td>@alert.AlertDate.ToString("dd/MM/yyyy")</td>
                 <td>@(alert.employee.FName +" " + alert.employee.LName)</td>
                 <td>@alert.product.Name</td>
+                <td>@alert.product.StockQuantity</td>
                 <td>@alert.AlertQuantityLevel</td>
+                    <td>@(alert.IsResolved ? alert.ResolveDate.GetValueOrDefault().ToString("dd/MM/yyyy hh:mm tt") : "not Resolved!")</td>
                 <td>
                     @if (alert.IsResolved)
                     {
@@ -55,10 +61,12 @@
                     }
                 </td>
                 <td>
-                    <a href="@Url.Action("Edit", "StartAlerts", new { id = alert.ID })" class="btn btn-warning btn-sm">Edit</a>
+                    <a href="Alert/Update?id=@alert.ID" class="btn btn-warning btn-sm">Update</a>
                     <a href="@Url.Action("Delete", "StartAlerts", new { id = alert.ID })" class="btn btn-danger btn-sm">Delete</a>
                 </td>
             </tr>
         }
     </tbody>
 </table>
+
+</div>

@@ -10,10 +10,10 @@
 
         
         public int EmployeeId { get; set; }
-        public Employee employee { get; set; }
+        public Employee? employee { get; set; }
 
 
         public int ProductId { get; set; }
-        public Product product { get; set; }
+        public Product? product { get; set; }
     }
 }
