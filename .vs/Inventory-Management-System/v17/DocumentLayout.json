@@ -3,44 +3,44 @@
   "WorkspaceRootPath": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Shared\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Views\\Shared\\_Layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\views\\supplier\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\views\\supplier\\edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Employee\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Views\\Employee\\Index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\views\\supplier\\getall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\views\\supplier\\getall.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\SupplierController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Controllers\\SupplierController.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\controllers\\suppliercontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Models\\Supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\repository\\repo\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\repo\\supplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\GetAll.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Views\\Supplier\\GetAll.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\repository\\interface\\isupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\repository\\interface\\isupplierrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\Add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Views\\Supplier\\Add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\views\\employee\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\views\\employee\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\globalusing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Views\\Supplier\\Edit.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\views\\supplier\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\views\\supplier\\add.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|e:\\.net web developer\\depi data\\graduation project\\inventory-management-system\\inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{350B8C70-B532-494C-85EF-F4C3644B2EA1}|Inventory-Management-System\\Inventory-Management-System.csproj|solutionrelative:inventory-management-system\\models\\supplier.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{A2FE74E1-B743-11D0-AE1A-00A0C90FFFC3}|\u003CMiscFiles\u003E|solutionrelative:Inventory-Management-System\\GlobalUsing.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -54,7 +54,7 @@
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 1,
               "Title": "Index.cshtml",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Employee\\Index.cshtml",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Views\\Employee\\Index.cshtml",
@@ -67,7 +67,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 2,
               "Title": "SupplierController.cs",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Controllers\\SupplierController.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Controllers\\SupplierController.cs",
@@ -76,12 +76,11 @@
               "ViewState": "AQIAAAwAAAAAAAAAAAApwBwAAAA3AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T14:14:11.161Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 3,
               "Title": "Supplier.cs",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Models\\Supplier.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Models\\Supplier.cs",
@@ -94,7 +93,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 4,
               "Title": "GetAll.cshtml",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\GetAll.cshtml",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Views\\Supplier\\GetAll.cshtml",
@@ -103,12 +102,11 @@
               "ViewState": "AQIAAFAAAAAAAAAAAAAqwGgAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-09T14:28:06.077Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 5,
               "Title": "Add.cshtml",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\Add.cshtml",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Views\\Supplier\\Add.cshtml",
@@ -121,7 +119,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "SupplierRepository.cs",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\repo\\SupplierRepository.cs",
@@ -130,12 +128,11 @@
               "ViewState": "AQIAABwAAAAAAAAAAAAcwC4AAAABAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-09T14:32:33.326Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 7,
               "Title": "Edit.cshtml",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Supplier\\Edit.cshtml",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Views\\Supplier\\Edit.cshtml",
@@ -144,12 +141,11 @@
               "ViewState": "AQIAADoAAAAAAAAAAAAswE8AAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-09T18:22:29.73Z",
-              "IsPinned": true,
-              "EditorCaption": ""
+              "IsPinned": true
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 8,
               "Title": "ISupplierRepository.cs",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
@@ -157,12 +153,11 @@
               "RelativeToolTip": "Inventory-Management-System\\Repository\\interface\\ISupplierRepository.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAIAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-09T19:23:27.674Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-09T19:23:27.674Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 9,
               "Title": "GlobalUsing.cs",
               "DocumentMoniker": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\GlobalUsing.cs",
               "RelativeDocumentMoniker": "Inventory-Management-System\\GlobalUsing.cs",
@@ -180,7 +175,7 @@
               "RelativeDocumentMoniker": "Inventory-Management-System\\Views\\Shared\\_Layout.cshtml",
               "ToolTip": "E:\\.NET Web Developer\\DEPI Data\\Graduation Project\\Inventory-Management-System\\Inventory-Management-System\\Views\\Shared\\_Layout.cshtml",
               "RelativeToolTip": "Inventory-Management-System\\Views\\Shared\\_Layout.cshtml",
-              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAoAAAAAAAAA",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAUAAABDAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
               "WhenOpened": "2024-10-09T18:14:16.58Z",
               "EditorCaption": ""
