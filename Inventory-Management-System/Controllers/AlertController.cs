@@ -19,6 +19,10 @@ namespace Inventory_Management_System.Controllers
         public IActionResult Index()
         {
             List<StartAlert> startAlerts =  _alertRepo.GetAlertWithAllData();
+
+          
+            ViewBag.status = "";
+
             return View("index" , startAlerts);
         }
     
@@ -109,6 +113,22 @@ namespace Inventory_Management_System.Controllers
             }
             return View("Add", updatedAlertFReq);
 
+        }
+
+
+        public IActionResult Search(string name , string status)
+        {
+            List<StartAlert> startAlerts = _alertRepo.GetSearchAndStatusResult( name , status);
+
+
+            if (status == "Pending")
+                ViewBag.status = "Pending";
+            else if (status == "Completed")
+                ViewBag.status = "Completed";
+            else
+                ViewBag.status = "";
+
+            return View("index", startAlerts);
         }
 
     }
