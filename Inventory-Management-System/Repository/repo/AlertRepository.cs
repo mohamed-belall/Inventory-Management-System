@@ -1,4 +1,5 @@
 ﻿
+using Inventory_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System.Repository.repo
@@ -49,5 +50,116 @@ namespace Inventory_Management_System.Repository.repo
         {
             applicationDbContext.StartAlerts.Update(entity);
         }
+
+
+
+
+
+        public List<StartAlert> GetFilterByName(string name)
+        {
+
+            if (name == string.Empty || name == null)
+                return GetAlertWithAllData();
+            else
+               return applicationDbContext.StartAlerts
+                    .Include(a => a.product)
+                    .Include(a => a.employee)
+                    .Where(p => p.product.Name.Contains(name))
+                    .ToList();
+        }
+
+
+        public List<StartAlert> GetStatus(string status)
+        {
+            if(status == "Pending")
+            {
+                return applicationDbContext.StartAlerts
+                 .Include(a => a.product)
+                 .Include(a => a.employee)
+                 .Where(p => p.IsResolved == false)
+                 .ToList();
+
+
+            }
+            else if(status == "Completed")
+            {
+                return applicationDbContext.StartAlerts
+                 .Include(a => a.product)
+                 .Include(a => a.employee)
+                 .Where(p => p.IsResolved == true)
+                 .ToList();
+            }
+            return GetAlertWithAllData();
+        }
+
+        public List<StartAlert> GetSearchAndStatusResult(string name, string status)
+        {
+            if (name == string.Empty || name == null)
+            {
+                if (status == "Pending")
+                {
+                    return applicationDbContext.StartAlerts
+                     .Include(a => a.product)
+                     .Include(a => a.employee)
+                     .Where(p => p.IsResolved == false)
+                     .ToList();
+
+
+                }
+                else if (status == "Completed")
+                {
+                    return applicationDbContext.StartAlerts
+                     .Include(a => a.product)
+                     .Include(a => a.employee)
+                     .Where(p => p.IsResolved == true)
+                     .ToList();
+                }
+                return GetAlertWithAllData();
+
+            }
+            else
+            {
+
+          
+
+
+                if (status == "Pending")
+                {
+                    return applicationDbContext.StartAlerts
+                     .Include(a => a.product)
+                     .Include(a => a.employee)
+                     .Where(p => p.IsResolved == false && p.product!.Name.Contains(name))
+                     .ToList();
+
+
+                }
+                else if (status == "Completed")
+                {
+                    return applicationDbContext.StartAlerts
+                     .Include(a => a.product)
+                     .Include(a => a.employee)
+                     .Where(p => p.IsResolved == true && p.product!.Name.Contains(name))
+                     .ToList();
+                }
+                else
+                {
+                    return applicationDbContext.StartAlerts
+                         .Include(a => a.product)
+                         .Include(a => a.employee)
+                         .Where(p => p.product!.Name.Contains(name))
+                         .ToList();
+                }
+
+
+            }
+
+
+
+          
+        }
+
+
+
+
     }
 }
