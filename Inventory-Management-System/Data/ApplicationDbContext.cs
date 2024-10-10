@@ -22,10 +22,10 @@ namespace Inventory_Management_System.Data
         {
             // Configuring composite key for EmployeeSupplier
             modelBuilder.Entity<EmployeeSupplier>()
-                .HasKey(es => new { es.EmployeeID, es.SupplierID }); // Composite primary key
+                .HasKey(es => es.Id); // Id is now the primary key
 
             modelBuilder.Entity<EmployeeSupplier>()
-                .HasOne(es => es.employee)
+                .HasOne(es => es.Employee)
                 .WithMany(e => e.employeeSuppliers) // Assuming Employee has a collection of EmployeeSuppliers
                 .HasForeignKey(es => es.EmployeeID);
 
