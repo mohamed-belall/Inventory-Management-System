@@ -8,16 +8,70 @@
 
 <h2>Start Alerts</h2>
 
-<div class="d-flex justify-content-between mb-3">
+
+<div class="d-flex justify-content-center mb-3">
+    @*
+
     <div>
         <input type="text" class="form-control" placeholder="Search alert ID" aria-label="Search">
     </div>
+    *@
     <div>
+        @*
+
         <button class="btn btn-primary">Export to Excel</button>
         <button class="btn btn-secondary">Import Alerts</button>
+        *@
         <a href="@Url.Action("Add", "Alert")" class="btn btn-success">+ New Alert</a>
     </div>
 </div>
+
+    <div class="mb-3 d-flex align-items-center justify-content-between" style="margin-top: 12px;">
+        <form asp-action="Search" asp-controller="Alert" method="get" class="d-flex" id="searchForm">
+            <div class="input-group me-3" style="width: 300px;">
+                <span class="input-group-text bg-white" id="basic-addon1" style="border-right: none; height: 38px; width: 35px; font-size: 20px;">
+                    <i class="bi bi-search"></i> <!-- Bootstrap Icon for search -->
+                </span>
+                                                                
+                <input type="text" name="name" class="form-control" id="searchInput" placeholder="Search By Product Name" aria-label="Quick search" aria-describedby="basic-addon1" style="border-left: none;" />
+            </div>
+           @*
+            <input type="hidden" name="id" value="@ViewBag.SelectedCategoryId" /> <!-- Or provide the value dynamically -->
+           *@
+
+           
+           <button class="btn btn-primary" type="submit">Search</button> <!-- Optional Search Button -->
+           
+           
+           
+           <input type="hidden" name="status" id="statusInput" />
+        </form>
+
+ 
+
+        <div>
+            <select id="statusFilter" class="form-select d-inline" aria-label="Filter by status" onchange="filterByStatus()">
+                @if(ViewBag.status == "")
+                {
+                    <option value="" selected>All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed">Completed</option>
+                }
+                else if (ViewBag.status == "Pending")
+                {
+                    <option value="" >All Status</option>
+                    <option value="Pending" selected>Pending</option>
+                    <option value="Completed">Completed</option>
+                }
+                else if (ViewBag.status == "Completed")
+                {
+                     <option value="" >All Status</option>
+                    <option value="Pending">Pending</option>
+                    <option value="Completed" selected>Completed</option>
+                }
+            </select>
+        </div>
+    </div>
 
 <table class="table table-bordered text-center">
     <thead>
@@ -70,3 +124,13 @@
 </table>
 
 </div>
+
+
+<script>
+    function filterByStatus() {
+        var statusValue = document.getElementById('statusFilter').value;
+        document.getElementById('statusInput').value = statusValue;
+        document.getElementById('searchForm').submit();
+    }
+</script>
+
