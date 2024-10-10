@@ -48,6 +48,16 @@ namespace Inventory_Management_System.Repository.repo
                 return _applicationDbContext.Products.Where(p => p.Name.Contains(name)&& p.CategoryId==id ).Include(p => p.supplier).ToList();
         }
 
+        public List<Product> GetFilteredByStatus(string staus,int? id)
+        {
+            if (staus == "Safe")
+                return _applicationDbContext.Products.Where(p => p.StockQuantity > 5 && (id.HasValue ? p.CategoryId == id.Value : true)).Include(p => p.supplier).ToList();
+            else if (staus == "Low")
+                return _applicationDbContext.Products.Where(p => p.StockQuantity <= 5 && (id.HasValue ? p.CategoryId == id.Value : true)).Include(p => p.supplier).ToList();
+            else
+                return GetFilteredByCategory(id);
+        }
+
         public Product GetById(int id)
         {
             return _applicationDbContext.Products.FirstOrDefault(p => p.ID == id)!;

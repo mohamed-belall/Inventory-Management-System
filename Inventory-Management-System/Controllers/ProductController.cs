@@ -5,7 +5,7 @@ namespace Inventory_Management_System.Controllers
 {
     public class ProductController : Controller
     {
-        const int threshold = 5;
+        public const int threshold = 5;
         private readonly IProductRepository productRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly ISupplierRepository supplierRepository;
@@ -26,13 +26,22 @@ namespace Inventory_Management_System.Controllers
             return View(products);
         }
 
-        public IActionResult Search(string name,int? id)
+        public IActionResult Search(string? name,int? id)
         {
             var products = productRepository.GetFilteredByNameWithCategory(name,id).ToList();
 
             ViewBag.categories = categoryRepository.GetAll().ToList();
             ViewBag.selectedCategoryId = id;
+            ViewBag.name = name;
             return View("Index",products);
+        }
+        public IActionResult StatusFilter(string status, int? id)
+        {
+            var products = productRepository.GetFilteredByStatus(status, id).ToList();
+
+            ViewBag.categories = categoryRepository.GetAll().ToList();
+            ViewBag.selectedCategoryId = id;
+            return View("Index", products);
         }
 
         public IActionResult Add()//in case of the product will added in first time in my stock
