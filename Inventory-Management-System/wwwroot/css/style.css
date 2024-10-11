@@ -15,7 +15,7 @@ body {
 .header {
     width: 100%;
     height: 60px;
-    background-color: #354F52;
+    background-color: #164b83;
     position: fixed;
     top: 0;
     display: flex;
@@ -43,6 +43,7 @@ body {
     border-radius: 50%;
     margin-left: 15px;
     margin-right: 12px;
+    border: 3px solid #fff; /* Added border */
 }
 
 .profile-name {
@@ -53,7 +54,7 @@ body {
 
 .sidebar {
     width: 260px;
-    background-color: #2F3E46;
+    background-color: #1669c5; /* Updated color */
     position: fixed;
     top: 60px;
     bottom: 0;
@@ -62,7 +63,7 @@ body {
 }
 
     .sidebar.collapsed {
-        width: 80px;
+        width: 60px;
     }
 
 .logo-content {
@@ -73,13 +74,12 @@ body {
     margin-bottom: 30px;
 }
 
-.logo img {
-    width: 80px;
-    height: 80px;
+.profile-img-sidebar {
+    width: 80px; /* Adjust size as needed */
+    height: 80px; /* Adjust size as needed */
     border-radius: 50%;
-    border: 3px solid #fff;
-    margin-bottom: 15px;
-    display: none;
+    border: 3px solid #fff; /* Added border */
+    display: none; /* Initially hidden */
 }
 
 .logo-name {
@@ -87,6 +87,7 @@ body {
     font-weight: bold;
     color: #fff;
     transition: opacity 0.3s ease;
+    margin-top:13px;
 }
 
 .sidebar.collapsed .logo-name {
@@ -97,6 +98,7 @@ body {
     list-style: none;
     padding: 0;
     flex-grow: 1;
+    margin-left:3px;
 }
 
     .nav-links li {

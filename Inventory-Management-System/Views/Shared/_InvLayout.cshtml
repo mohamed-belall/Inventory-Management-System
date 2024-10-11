@@ -6,6 +6,7 @@
     <title>Inventory Management System</title>
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
     <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -15,11 +16,11 @@
     <!-- Header -->
     <header class="header">
         <div class="logo-header">
-            <i class="fas fa-bars" id="menu-toggle"></i>
-            <span class="logo-text">Trainee Management System</span>
+            <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px;"></i>
+            <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
         </div>
         <div class="profile">
-            <img src="/img/unknownperson.png" alt="Profile" class="profile-img">
+            <img src="~/images/1.png" alt="Profile" class="profile-img">
             <span class="profile-name">user name</span>
         </div>
     </header>
@@ -29,13 +30,19 @@
         <!-- Logo and Title -->
         <div class="logo-content">
             <div class="logo">
-                <img src="/img/unknownperson.png" alt="Authorization Image" id="auth-img">
+                <img src="~/images/1.png" alt="Profile Image" id="auth-img" class="profile-img-sidebar">
             </div>
-            <div class="logo-name">user name</div>
+            <div class="logo-name" id="sidebar-name">user name</div>
         </div>
 
         <!-- Navigation links with icons -->
         <ul class="nav-links">
+            <li>
+                <a href="#">
+                    <i class="fas fa-search"></i>
+                    <span class="link-name">Search</span>
+                </a>
+            </li>
             <li>
                 <a href="#">
                     <i class="fas fa-home"></i>
@@ -43,39 +50,33 @@
                 </a>
             </li>
             <li>
-                <a href="/Employee/Index">
-                    <i class="fas fa-user-graduate"></i>
-                    <span class="link-name">User</span>
-                </a>
-            </li>
-            <li>
                 <a href="#">
-                    <i class="fas fa-cube"></i>
-                    <span class="link-name">Product</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-truck"></i>
-                    <span class="link-name">Supplier</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span class="link-name">Transaction</span>
-                </a>
-            </li>
-            <li>
-                <a href="#">
-                    <i class="fas fa-th-list"></i>
-                    <span class="link-name">Category</span>
+                    <i class="fas fa-chart-line"></i>
+                    <span class="link-name">Revenue</span>
                 </a>
             </li>
             <li>
                 <a href="#">
                     <i class="fas fa-bell"></i>
-                    <span class="link-name">Alert</span>
+                    <span class="link-name">Notifications</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-clock"></i>
+                    <span class="link-name">Analytics</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-heart"></i>
+                    <span class="link-name">Likes</span>
+                </a>
+            </li>
+            <li>
+                <a href="#">
+                    <i class="fas fa-wallet"></i>
+                    <span class="link-name">Wallets</span>
                 </a>
             </li>
         </ul>
@@ -100,13 +101,16 @@
         const toggleButton = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
         const authImg = document.getElementById('auth-img');
+        const sidebarName = document.getElementById('sidebar-name');
 
         sidebar.classList.add('collapsed');
         authImg.style.display = 'none';
+        sidebarName.style.display = 'none';
 
         toggleButton.addEventListener('click', function () {
             sidebar.classList.toggle('collapsed');
             authImg.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
+            sidebarName.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
         });
     </script>
 
