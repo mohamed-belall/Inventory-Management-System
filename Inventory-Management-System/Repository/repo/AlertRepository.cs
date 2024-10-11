@@ -31,6 +31,7 @@ namespace Inventory_Management_System.Repository.repo
         public List<StartAlert> GetAlertWithAllData()
         {
             return applicationDbContext.StartAlerts
+                .AsNoTracking()
                 .Include(a => a.employee)
                 .Include(a => a.product)
                 .ToList();
