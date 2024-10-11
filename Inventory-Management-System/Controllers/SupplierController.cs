@@ -1,5 +1,6 @@
 ﻿using Inventory_Management_System.Repository;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System.Controllers
 {
@@ -85,7 +86,7 @@ namespace Inventory_Management_System.Controllers
             ViewBag.SearchItem = name;
             if (string.IsNullOrWhiteSpace(name))
             {
-                return BadRequest("Please enter a valid name to search.");
+                return NotFound("Please enter a valid name to search.");
             }
 
             var Supplier = supplierRepository.SearchByName(name);
@@ -98,6 +99,5 @@ namespace Inventory_Management_System.Controllers
                 return NotFound("Instructor with the given name not found.");
             }
         }
-
     }
 }

@@ -56,8 +56,8 @@ namespace Inventory_Management_System.Controllers
             if ((employeeFromRequest.FName != null) && (employeeFromRequest.LName != null) && (ModelState.IsValid))
             {
                 Employee EmpFromDB = employeeRepository.GetById(id);
-                EmpFromDB.CreatedDate = DateTime.Now;
                 EmpFromDB.Email = employeeFromRequest.Email;
+                EmpFromDB.CreatedDate = DateTime.Now;
                 EmpFromDB.FName = employeeFromRequest.FName;
                 EmpFromDB.LName = employeeFromRequest.LName;
                 EmpFromDB.Phone = employeeFromRequest.Phone;
@@ -86,7 +86,7 @@ namespace Inventory_Management_System.Controllers
             return View("Delete", employeeWithId);
         }
 
-        [HttpPost]
+        //[HttpPost]
         //public IActionResult ddeleteConfirmed(int id)
         //{
         //    Employee employee = new Employee();

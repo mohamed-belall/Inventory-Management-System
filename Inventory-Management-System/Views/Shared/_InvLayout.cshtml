@@ -7,9 +7,11 @@
     <!-- Font Awesome CDN -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="/css/style.css">
-
-    <!-- Add this to the <head> section of your _Layout.cshtml -->
+    <!-- Bootstrap -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
+
 </head>
 <body>
 
@@ -25,12 +27,9 @@
         </div>
     </header>
 
-
-
-
     <!-- Sidebar container -->
     <div class="sidebar collapsed" id="sidebar">
-        <!-- Logo and Title (Initially hidden until sidebar expands) -->
+        <!-- Logo and Title -->
         <div class="logo-content">
             <div class="logo">
                 <img src="/img/unknownperson.png" alt="Authorization Image" id="auth-img">
@@ -40,95 +39,80 @@
 
         <!-- Navigation links with icons -->
         <ul class="nav-links">
-            <!-- Home -->
             <li>
                 <a href="#">
                     <i class="fas fa-home"></i>
                     <span class="link-name">Home</span>
                 </a>
             </li>
-
-            <!-- User -->
             <li>
                 <a href="/Employee/Index">
                     <i class="fas fa-user-graduate"></i>
                     <span class="link-name">User</span>
                 </a>
             </li>
-
-            <!-- Product -->
             <li>
-                <a href="#">
+                <a href="/Product/Index">
                     <i class="fas fa-cube"></i>
                     <span class="link-name">Product</span>
                 </a>
             </li>
-
-            <!-- Supplier -->
             <li>
                 <a href="#">
                     <i class="fas fa-truck"></i>
                     <span class="link-name">Supplier</span>
                 </a>
             </li>
-
-            <!-- Transaction -->
             <li>
                 <a href="#">
                     <i class="fas fa-exchange-alt"></i>
                     <span class="link-name">Transaction</span>
                 </a>
             </li>
-
-            <!-- Category -->
             <li>
                 <a href="#">
                     <i class="fas fa-th-list"></i>
                     <span class="link-name">Category</span>
                 </a>
             </li>
-
-            <!-- Alert -->
             <li>
                 <a href="#">
                     <i class="fas fa-bell"></i>
                     <span class="link-name">Alert</span>
                 </a>
             </li>
-            
-
         </ul>
 
-        <!-- Log out button at the bottom -->
+        <!-- Log out button -->
         <div class="logout">
             <a href="#logout">
-                <i class="fas fa-sign-out-alt"></i> <!-- Log out icon -->
+                <i class="fas fa-sign-out-alt"></i>
                 <span class="link-name">Log out</span>
             </a>
         </div>
     </div>
 
-
-    <div class="content">
-        <!-- Add your main content here -->
-        @RenderBody()
+    <!-- Main content area -->
+    <div class="main-content">
+        <div class="container-fluid">
+            @RenderBody()
+        </div>
     </div>
 
     <script>
-        // Sidebar toggle script
         const toggleButton = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
         const authImg = document.getElementById('auth-img');
 
-        // Sidebar starts collapsed (showing only icons)
         sidebar.classList.add('collapsed');
-        authImg.style.display = 'none'; // Hide the authorization image by default
+        authImg.style.display = 'none';
 
-        toggleButton.addEventListener('click', function() {
+        toggleButton.addEventListener('click', function () {
             sidebar.classList.toggle('collapsed');
-            authImg.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block'; // Show/hide image
+            authImg.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
         });
     </script>
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -5,6 +5,7 @@
         public List<Product> GetFilteredByCategory(int? id);
         public List<Product> GetFilteredByName(string name);
         public List<Product> GetFilteredByNameWithCategory(string name, int? id);
+        public List<Product> GetFilteredByStatus(string staus, int? id);
 
     }
 

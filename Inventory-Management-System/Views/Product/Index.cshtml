@@ -3,6 +3,7 @@
 @{
     var categories = ViewBag.categories as List<Category>;
     var selectedCategoryId = ViewBag.selectedCategoryId as int?;
+    var searchString = ViewBag.name as string;
 }
 
 @* <div class="d-flex justify-content-between align-items-center mb-4">
@@ -75,19 +76,26 @@
                         <span class="input-group-text bg-white" id="basic-addon1" style="border-right: none; height: 38px; width: 35px; font-size: 20px;">
                             <i class="bi bi-search"></i> <!-- Bootstrap Icon for search -->
                         </span>
-                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Quick search" aria-label="Quick search" aria-describedby="basic-addon1" style="border-left: none;" />
+                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Quick search"
+                               value="@searchString" aria-label="Quick search" aria-describedby="basic-addon1"
+                               style="border-left: none;" />
                     </div>
                     <input type="hidden" name="id" value="@ViewBag.SelectedCategoryId" /> <!-- Or provide the value dynamically -->
 
                     <button class="btn btn-primary" type="submit">Search</button> <!-- Optional Search Button -->
                 </form>
 
+
                 <div>
-                    <select id="statusFilter" class="form-select d-inline" aria-label="Filter by status">
-                        <option value="">All Levels</option>
-                        <option value="safe">Safe</option>
-                        <option value="low">Low</option>
-                    </select>
+                    <form asp-action="StatusFilter" asp-controller="Product" method="get" id="filterForm">
+                        <select id="statusFilter" class="form-select d-inline" name="status" aria-label="Filter by status" onchange="submitFilterForm()">
+                            <option value="">All Levels</option>
+                            <option value="Safe">Safe</option>
+                            <option value="Low">Low</option>
+                        </select>
+
+                        <input type="hidden" name="id" value="@ViewBag.selectedCategoryId" />
+                    </form>
                 </div>
             </div>
 
@@ -135,8 +143,8 @@
                                     <td style="border: none;">@product.StockQuantity</td>
                                     <td style="border: none;">
                                         <span class="badge d-inline-block px-3 py-1 rounded-pill text-white"
-                                              style="background-color: @(product.StockQuantity >= 5 ? "#4CAF50" : "#d10f0f"); color: @(product.StockQuantity >= 5 ? "white" : "black");">
-                                            @(product.StockQuantity >= 5 ? "Safe" : "Low")
+                                              style="background-color: @(product.StockQuantity > 5 ? "#4CAF50" : "#d10f0f"); color: @(product.StockQuantity >= 5 ? "white" : "black");">
+                                            @(product.StockQuantity > 5 ? "Safe" : "Low")
                                         </span>
                                     </td>
 
@@ -175,6 +183,10 @@
             </div>
 
             <script>
+                function submitFilterForm() {
+                    document.getElementById("filterForm").submit();
+                }
+
                 function toggleSelectAll(source) {
                     const checkboxes = document.querySelectorAll('.product-checkbox');
                     checkboxes.forEach(checkbox => {

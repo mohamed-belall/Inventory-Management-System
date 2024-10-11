@@ -2,6 +2,7 @@
 
 <head>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <style>
         /* Ensure the body and html take the full height */
@@ -44,6 +45,54 @@
             font-weight: bold;
         }
 
+        .search-box {
+            position: relative;
+            width: 300px;
+            height: 40px;
+            background-color: #838383; /* The blue color */
+            border-radius: 20px;
+            padding: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        /* Input Field */
+        .search-txt {
+            width: 80%;
+            padding: 10px;
+            border: none;
+            outline: none;
+            background: none;
+            color: #ffffff;
+            font-size: 16px;
+            border-radius: 30px;
+        }
+
+        /* Search Icon Button */
+        .search-btn {
+            width: 40px;
+            height: 40px;
+            background: none;
+            border: none;
+            color: #ffffff;
+            font-size: 18px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-decoration: none;
+        }
+
+        /* Font Awesome Icon */
+        .search-btn i {
+            color: rgb(252, 252, 252);
+            cursor: pointer;
+        }
+
+        .search-txt::placeholder {
+            color: #ccc; /* Change this color to whatever you want */
+        }
+
         .btn-primary {
             background-color: #6c63ff;
             border-color: #6c63ff;
@@ -71,7 +120,6 @@
 </head>
 
 <body>
-    <form method="post" asp-action="Delete" asp-controller="Employee">
 
     <div class="mycontainer-fluid">
         <div class="mycontainer mt-4 content">
@@ -81,61 +129,77 @@
                     <h2>Employee</h2>
                 </div>
                 <div class="col-md-6 text-end">
-                    <button id="delete-btn" type="submit" class="btn btn-danger d-none">Delete Selected</button>
+                    <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
                     <button class="btn btn-outline-primary">Export to Excel</button>
                     <button class="btn btn-outline-primary">Import Orders</button>
-                    <button class="btn btn-primary">New Employee</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/Employee/Add'">New Employee</button>
                 </div>
             </div>
 
             <hr />
 
-            <!-- Form that will submit the selected employee IDs -->
-                <div class="row mb-4">
-                    <!-- Second Row: Search and Filters -->
-                    <div class="col-md-6">
-                        <input type="text" class="form-control" placeholder="Search employee">
-                    </div>
-                    <div class="col-md-6 d-flex justify-content-end">
-                        <button class="btn btn-light me-2">
-                            <i class="bi bi-calendar"></i>
+            <!-- Separate Search Form -->
+            <div class="row mb-4">
+                <!-- Second Row: Search and Filters -->
+                <div class="col-md-6">
+                    <form action="/Employee/Search" method="get" class="search-box" id="searchForm">
+                        <input type="text" class="search-txt" placeholder="Search employee" id="StringFromRequest" name="StringFromRequest">
+                        <button type="submit" class="search-btn">
+                            <i class="fa fa-search"></i>
                         </button>
-                        <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown">Sales</button>
-                        <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown">Status</button>
-                        <button class="btn btn-light">Filter</button>
-                    </div>
+                    </form>
                 </div>
+                <div class="col-md-6 d-flex justify-content-end">
+                    <button class="btn btn-light me-2">
+                        <i class="bi bi-calendar"></i>
+                    </button>
+                    <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown">Sales</button>
+                    <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown">Status</button>
+                    <button class="btn btn-light">Filter</button>
+                </div>
+            </div>
 
-                <table class="table table-hover align-middle">
-                    <thead>
+            <!-- Employee Table -->
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th><input type="checkbox" id="select-all"></th>
+                        <th>ID</th>
+                        <th>First Name</th>
+                        <th>Second Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Date Of Creation</th>
+                        <th>Actions</th> <!-- Add this for actions like edit -->
+
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model)
+                    {
                         <tr>
-                            <th><input type="checkbox" id="select-all"></th>
-                            <th>ID</th>
-                            <th>First Name</th>
-                            <th>Second Name</th>
-                            <th>Phone</th>
-                            <th>Email</th>
-                            <th>Date Of Creation</th>
+                            <td><input type="checkbox" name="employeeIds" value="@item?.ID" class="select-item"></td>
+                            <td>@item?.ID</td>
+                            <td>@item?.FName</td>
+                            <td>@item?.LName</td>
+                            <td>@item?.Phone</td>
+                            <td>@item?.Email</td>
+                            <td>@item?.CreatedDate</td>
+                            <td>
+                                <!-- Edit button -->
+                                <a href="/Employee/Edit/@item.ID" class="btn btn-warning btn-sm">Edit</a>
+                            </td>
                         </tr>
-                    </thead>
-                    <tbody>
-                        @foreach (var item in Model)
-                        {
-                            <tr>
-                                <td><input type="checkbox" name="employeeIds" value="@item?.ID" class="select-item"></td>
-                                <td>@item?.ID</td>
-                                <td>@item?.FName</td>
-                                <td>@item?.LName</td>
-                                <td>@item?.Phone</td>
-                                <td>@item?.Email</td>
-                                <td>@item?.CreatedDate</td>
-                            </tr>
-                        }
-                    </tbody>
-                </table>
-            </form>
+                    }
+                </tbody>
+            </table>
         </div>
     </div>
+
+    <!-- Hidden form for delete action -->
+    <form id="deleteForm" method="post" asp-action="Delete" asp-controller="Employee">
+        <input type="hidden" name="employeeIds" id="employeeIds" />
+    </form>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script>
@@ -156,6 +220,19 @@
         $('#select-all').on('change', function () {
             $('.select-item').prop('checked', this.checked);
             toggleDeleteButton();
+        });
+
+        // Handle the delete button click
+        $('#delete-btn').on('click', function () {
+            const selectedIds = $('.select-item:checked').map(function () {
+                return $(this).val();
+            }).get();
+
+            // Set the value of the hidden input to the selected IDs
+            $('#employeeIds').val(selectedIds.join(','));
+
+            // Submit the delete form
+            $('#deleteForm').submit();
         });
 
         // Initial call to ensure the delete button is hidden
