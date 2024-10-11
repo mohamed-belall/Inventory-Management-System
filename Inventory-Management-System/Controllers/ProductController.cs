@@ -5,6 +5,9 @@ namespace Inventory_Management_System.Controllers
 {
     public class ProductController : Controller
     {
+        /// <summary>
+        /// from abohazem to abo allaaaaaa
+        /// </summary>
         public const int threshold = 5;
         private readonly IProductRepository productRepository;
         private readonly ICategoryRepository categoryRepository;
