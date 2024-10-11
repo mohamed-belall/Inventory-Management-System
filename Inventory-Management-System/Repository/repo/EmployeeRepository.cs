@@ -3,7 +3,7 @@ namespace Inventory_Management_System.Repository.repo
 {
     public class EmployeeRepository : IEmployeeRepository
     {
-        ApplicationDbContext context;
+        private readonly ApplicationDbContext context;
         public EmployeeRepository(ApplicationDbContext dbContext)
         {
             context = dbContext;
