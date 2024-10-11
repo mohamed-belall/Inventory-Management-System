@@ -6,7 +6,7 @@ namespace Inventory_Management_System.Controllers
 {
     public class EmployeeController : Controller
     {
-        private readonly IEmployeeRepository employeeRepository;
+        IEmployeeRepository employeeRepository;
         public EmployeeController(IEmployeeRepository employeeRepository)
         {
             this.employeeRepository = employeeRepository;
