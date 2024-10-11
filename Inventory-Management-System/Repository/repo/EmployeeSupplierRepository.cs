@@ -5,40 +5,49 @@ namespace Inventory_Management_System.Repository.repo
     {
         private readonly ApplicationDbContext applicationDbContext;
 
-        public EmployeeSupplierRepository(ApplicationDbContext applicationDbContext) 
+        public EmployeeSupplierRepository(ApplicationDbContext dbContext)
         {
-            this.applicationDbContext = applicationDbContext;
+            applicationDbContext = dbContext;
         }
-
-
         public void Add(EmployeeSupplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Add(entity);
         }
 
         public void Delete(EmployeeSupplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Remove(entity);
+        }
+
+        public void DeleteEmployeeSuppliers(List<int> employeeIds)
+        {
+            foreach (int employeeId in employeeIds)
+            {
+                EmployeeSupplier employee = GetById(employeeId);
+                Delete(employee);
+            }
+            Save();
         }
 
         public List<EmployeeSupplier> GetAll()
         {
-            throw new NotImplementedException();
+            return applicationDbContext.EmployeeSuppliers.ToList();
         }
 
         public EmployeeSupplier GetById(int id)
         {
-            throw new NotImplementedException();
+            return applicationDbContext.EmployeeSuppliers.FirstOrDefault(e => e.Id == id);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            applicationDbContext.SaveChanges();
         }
 
         public void Update(EmployeeSupplier entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Update(entity);
         }
+
     }
 }
