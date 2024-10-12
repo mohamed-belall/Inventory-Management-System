@@ -100,6 +100,7 @@ namespace Inventory_Management_System.Repository.repo
                 if (status == "Pending")
                 {
                     return applicationDbContext.StartAlerts
+                        .AsNoTracking()
                      .Include(a => a.product)
                      .Include(a => a.employee)
                      .Where(p => p.IsResolved == false)
@@ -110,6 +111,7 @@ namespace Inventory_Management_System.Repository.repo
                 else if (status == "Completed")
                 {
                     return applicationDbContext.StartAlerts
+                        .AsNoTracking()
                      .Include(a => a.product)
                      .Include(a => a.employee)
                      .Where(p => p.IsResolved == true)
@@ -127,6 +129,7 @@ namespace Inventory_Management_System.Repository.repo
                 if (status == "Pending")
                 {
                     return applicationDbContext.StartAlerts
+                        .AsNoTracking()
                      .Include(a => a.product)
                      .Include(a => a.employee)
                      .Where(p => p.IsResolved == false && p.product!.Name.Contains(name))
@@ -137,6 +140,7 @@ namespace Inventory_Management_System.Repository.repo
                 else if (status == "Completed")
                 {
                     return applicationDbContext.StartAlerts
+                        .AsNoTracking()
                      .Include(a => a.product)
                      .Include(a => a.employee)
                      .Where(p => p.IsResolved == true && p.product!.Name.Contains(name))
@@ -145,6 +149,7 @@ namespace Inventory_Management_System.Repository.repo
                 else
                 {
                     return applicationDbContext.StartAlerts
+                        .AsNoTracking()
                          .Include(a => a.product)
                          .Include(a => a.employee)
                          .Where(p => p.product!.Name.Contains(name))
@@ -159,6 +164,14 @@ namespace Inventory_Management_System.Repository.repo
           
         }
 
+
+        public List<StartAlert> GetPendingAlert()
+        {
+            return applicationDbContext.StartAlerts
+                .AsNoTracking()
+                .Include(a => a.product)
+                .Where(a => a.IsResolved == false).ToList();
+        }
 
 
 
