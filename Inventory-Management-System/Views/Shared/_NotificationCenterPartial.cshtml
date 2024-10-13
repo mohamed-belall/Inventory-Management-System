@@ -12,21 +12,69 @@
             @Model.Count()
         </span>
     </a>
-    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown">
+    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="notificationDropdown"
+         style="border-radius: 15px;
+            position: absolute;
+            transform: translate3d(-178px, 49px, 0px);
+            top: -22px;
+            left: -21px;
+            will-change: transform;
+            box-shadow: 0px 10px 25px rgba(0, 0, 0, 0.2);
+            background: linear-gradient(145deg, #dfe9f3, #f7f9fc);
+            width: 350px;
+            padding: 20px;">
         @if (Model.Any())
         {
             foreach (var alert in Model)
             {
-                <a class="dropdown-item" href="#">
-                    <strong>Product:</strong> @alert.product!.Name <br />
-                    <strong>Alert Date:</strong> @alert.AlertDate.ToShortDateString() <br />
+                <a class="dropdown-item d-flex align-items-center" href="#"
+                   style="border-radius: 12px;
+                      padding: 12px 18px;
+                      background-color: #f8f9fa;
+                      margin-bottom: 12px;
+ justify-content: space-between;
+                      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+                      transition: background-color 0.3s ease, box-shadow 0.3s ease;">
+                    <div>
+                        <strong class="text-primary" style="color: #007bff;">Product:</strong>
+                        <span class="text-dark">@alert.product!.Name</span> <br />
+
+                        <strong class="text-secondary" style="color: #6c757d;">Alert Date:</strong>
+                        <span style="background-color: #ff5d5d75;
+                                 color: #ffffff;
+                                 border-radius: 20px;
+                                 padding: 2px 10px;
+                                 font-size: 13px;">
+                            @alert.AlertDate.ToShortDateString()
+                        </span>
+                        <br />
+
+                        <strong class="text-secondary" style="color: #6c757d;">Stock Quantity:</strong>
+                        <span style="background-color: #ffc10775;
+                                 color: #000000;
+                                 border-radius: 20px;
+                                 padding: 2px 10px;
+                                 font-size: 13px;">
+                            @alert.product.StockQuantity / @alert.AlertQuantityLevel
+                        </span>
+                    </div>
+                    <div class="ms-auto">
+                        <i class="bi bi-exclamation-circle" style="font-size: 20px; color: #ff4757;"></i>
+                    </div>
                 </a>
                 <div class="dropdown-divider"></div>
             }
         }
         else
         {
-            <p class="dropdown-item">No pending alerts</p>
+            <p class="dropdown-item text-center text-muted"
+               style="background-color: #f1f3f5;
+                  padding: 12px;
+                  border-radius: 12px;
+                  color: #6c757d;
+                  font-size: 0.95rem;">No pending alerts</p>
         }
     </div>
+
+
 </div>
