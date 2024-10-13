@@ -26,7 +26,10 @@
 
         <div>
             <button class="btn btn-primary">Export to Excel</button>
-            <a asp-action="Add" asp-controller="Supplier" class="btn btn-success"><i class="fas fa-plus-circle"></i> New Supplier</a>
+            @if (User.IsInRole("Admin"))
+            {
+                <a asp-action="Add" asp-controller="Supplier" class="btn btn-success"><i class="fas fa-plus-circle"></i> New Supplier</a>
+            }
         </div>
     </div>
 
@@ -41,7 +44,10 @@
                 <th scope="col">Address</th>
                 <th scope="col">Email</th>
                 <th scope="col">Phone</th>
-                <th scope="col">Actions</th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th scope="col">Actions</th>
+                }
             </tr>
         </thead>
         <tbody>
@@ -56,11 +62,15 @@
                     <td>@supplier.Address</td>
                     <td>@supplier.Email</td>
                     <td>@supplier.Phone</td>
-                    <td>
-                        <a asp-action="Edit" asp-controller="Supplier" asp-route-id="@supplier.ID" class="btn btn-warning btn-sm">Update</a>
-                        <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal"
-                           onclick="setDeleteInfo('@Url.Action("Delete", "Supplier", new { id = supplier.ID })', '@supplier.Name')">Delete</a>
-                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <a asp-action="Edit" asp-controller="Supplier" asp-route-id="@supplier.ID" class="btn btn-warning btn-sm">Update</a>
+                            <a href="javascript:void(0);" class="btn btn-danger btn-sm" data-toggle="modal" data-target="#deleteModal"
+                               onclick="setDeleteInfo('@Url.Action("Delete", "Supplier", new { id = supplier.ID })', '@supplier.Name')">Delete</a>
+                        </td>
+                    }
+
                 </tr>
                 ++index;
             }

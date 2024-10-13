@@ -24,7 +24,7 @@
         </div>
         <div class="profile">
             <img src="~/images/1.png" alt="Profile" class="profile-img">
-            <span class="profile-name">user name</span>
+            <span class="profile-name">@User.Identity.Name</span>
         </div>
     </header>
 
@@ -35,58 +35,75 @@
             <div class="logo">
                 <img src="~/images/1.png" alt="Profile Image" id="auth-img" class="profile-img-sidebar">
             </div>
-            <div class="logo-name" id="sidebar-name">user name</div>
+            <div class="logo-name" id="sidebar-name">@User.Identity.Name</div>
         </div>
-
-        <!-- Navigation links with icons -->
-        <ul class="nav-links">
-            <li>
-                <a href="#">
-                    <i class="fas fa-home"></i>
-                    <span class="link-name">Home</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Employee/Index">
-                    <i class="fas fa-user-graduate"></i>
-                    <span class="link-name">User</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Product/Index">
-                    <i class="fas fa-cube"></i>
-                    <span class="link-name">Product</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Supplier/Index">
-                    <i class="fas fa-truck"></i>
-                    <span class="link-name">Supplier</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Transaction/Index">
-                    <i class="fas fa-exchange-alt"></i>
-                    <span class="link-name">Transaction</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Category/Index">
-                    <i class="fas fa-th-list"></i>
-                    <span class="link-name">Category</span>
-                </a>
-            </li>
-            <li>
-                <a href="/Alert/Index">
-                    <i class="fas fa-bell"></i>
-                    <span class="link-name">Alert</span>
-                </a>
-            </li>
-        </ul>
-
+        @if (User.Identity.IsAuthenticated)
+        {
+            <!-- Navigation links with icons -->
+            <ul class="nav-links">
+                <li>
+                    <a href="#">
+                        <i class="fas fa-home"></i>
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Employee/Index">
+                        <i class="fas fa-user-graduate"></i>
+                        <span class="link-name">User</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Product/Index">
+                        <i class="fas fa-cube"></i>
+                        <span class="link-name">Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Supplier/Index">
+                        <i class="fas fa-truck"></i>
+                        <span class="link-name">Supplier</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Transaction/Index">
+                        <i class="fas fa-exchange-alt"></i>
+                        <span class="link-name">Transaction</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Category/Index">
+                        <i class="fas fa-th-list"></i>
+                        <span class="link-name">Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Alert/Index">
+                        <i class="fas fa-bell"></i>
+                        <span class="link-name">Alert</span>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a href="/Account/Register">
+                            <i class="fa-solid fa-user-group"></i>
+                            <span class="link-name">Add Member</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Role/AddRole">
+                            <i class="fa-regular fa-user"></i>
+                            <span class="link-name">Add Role</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+        }
+       
         <!-- Log out button -->
         <div class="logout">
-            <a href="#logout">
+            <a href="/Account/SignOut">
                 <i class="fas fa-sign-out-alt"></i>
                 <span class="link-name">Log out</span>
             </a>

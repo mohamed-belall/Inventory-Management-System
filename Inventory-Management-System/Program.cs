@@ -1,6 +1,7 @@
 
 using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System
@@ -21,6 +22,15 @@ namespace Inventory_Management_System
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IEmployeeSupplierRepository, EmployeeSupplierRepository>();
+
+            // Add services of Application user and its role
+            builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
+            {
+                options.Password.RequiredLength = 6;
+                options.Password.RequireNonAlphanumeric = false;
+                options.Password.RequireUppercase = false;
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {
@@ -47,7 +57,7 @@ namespace Inventory_Management_System
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Home}/{action=Index}/{id?}");
+                pattern: "{controller=Account}/{action=Login}/{id?}");
 
             app.Run();
         }

@@ -15,10 +15,10 @@ namespace Inventory_Management_System.Controllers
             this.supplierRepository = supplierRepository;
         }
 
-        public IActionResult GetAll()
+        public IActionResult Index()
         {
             var suppliers = supplierRepository.GetAll();
-            return View("GetAll", suppliers);
+            return View("Index", suppliers);
         }
 
         public IActionResult Add()
@@ -33,7 +33,7 @@ namespace Inventory_Management_System.Controllers
             {
                 supplierRepository.Add(supplier);
                 supplierRepository.Save();
-                return RedirectToAction("GetAll");
+                return RedirectToAction("Index");
             }
             return View("Add", supplier);
         }
@@ -63,7 +63,7 @@ namespace Inventory_Management_System.Controllers
                     existingSupplier.Phone = supplier.Phone;
                     supplierRepository.Update(existingSupplier);
                     supplierRepository.Save();
-                    return RedirectToAction("GetAll");
+                    return RedirectToAction("Index");
                 }
             }
             return View("Edit", supplier);
@@ -76,7 +76,7 @@ namespace Inventory_Management_System.Controllers
             {
                 supplierRepository.Delete(supplier);
                 supplierRepository.Save();
-                return RedirectToAction("GetAll");
+                return RedirectToAction("Index");
             }
             return Content("This Id Not found");
         }
@@ -92,7 +92,7 @@ namespace Inventory_Management_System.Controllers
             var Supplier = supplierRepository.SearchByName(name);
             if (Supplier != null)
             {
-                return View("GetAll", Supplier);
+                return View("Index", Supplier);
             }
             else
             {
