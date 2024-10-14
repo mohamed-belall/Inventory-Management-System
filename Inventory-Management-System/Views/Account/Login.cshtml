@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_AuthLayout.cshtml";
 }
 
+
 <div class="login-container">
     <form method="post" asp-action="SaveLogin">
         <div asp-validation-summary="All" class="text-danger"></div> <!-- Summary of all errors -->
@@ -22,6 +23,7 @@
                 <input type="checkbox" id="remember" asp-for="RememberMe">
                 <p>Remember me</p>
             </label>
+            <a asp-controller="Account" asp-action="VerifyEmail" >Forgot password?</a>
         </div>
         <button type="submit">Log In</button>
 

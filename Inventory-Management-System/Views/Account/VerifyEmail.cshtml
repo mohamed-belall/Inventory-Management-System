@@ -1,0 +1,47 @@
+﻿@model VerifyEmailViewModel;
+@{
+    ViewData["Title"] = "VerifyEmail";
+    Layout = "~/Views/Shared/_AccountLayout.cshtml";
+}
+
+<div class="account-container" style="        
+        background-image: url('../Images/account-bg.jpg');
+        background-size: cover;
+        background-position: center;
+        background-repeat: repeat-y;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+        padding: 2rem 0;">
+
+    <div class="account-box" style="        
+        background-color: white;
+        padding: 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+        max-width: 500px;
+        width: 100%;
+        opacity: .9;">
+        <h2 class="text-center mb-4">Verify Email</h2>
+        <form asp-action="VerifyEmail" asp-controller="Account" method="post">
+            <div asp-validation-summary="All" class="text-danger"></div>
+            <div class="mb-3">
+                <label asp-for="Email" class="form-label"></label>
+                <input asp-for="Email" class="form-control" />
+                <span asp-validation-for="Email" class="text-danger"></span>
+            </div>
+            <input type="submit" value="Verify" class="btn btn-success w-100 p-2" />
+            <div class="text-center mt-2">
+                <a asp-controller="Account" asp-action="Login" class="text-decoration-none mt-3">Back</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial.cshtml");
+    }
+}
+
