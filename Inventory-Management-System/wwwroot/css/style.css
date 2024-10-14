@@ -15,7 +15,7 @@ body {
 .header {
     width: 100%;
     height: 60px;
-    background-color: #164b83;
+    background-color: aqua;
     position: fixed;
     top: 0;
     display: flex;
