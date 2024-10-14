@@ -13,6 +13,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css" rel="stylesheet">
 
+
+
+
+    <!-- Include the required Bootstrap CSS  for  notification center-->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+
+
+    <!-- Full version of jQuery for AJAX -->
+    <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.2/dist/js/bootstrap.bundle.min.js"></script>
+
+
+
+
+
+
 </head>
 <body>
 
@@ -23,6 +40,15 @@
             <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
         </div>
         <div class="profile">
+
+
+            <!-- Add this in the appropriate place in your layout file -->
+            <div id="notificationContainer">
+                @await Html.PartialAsync("_NotificationCenterPartial", new List<StartAlert>())
+            </div>
+
+
+
             <img src="~/images/1.png" alt="Profile" class="profile-img">
             <span class="profile-name">user name</span>
         </div>
@@ -106,6 +132,18 @@
         </div>
     </div>
 
+
+
+
+
+
+
+
+  
+
+
+
+
     <script>
         const toggleButton = document.getElementById('menu-toggle');
         const sidebar = document.getElementById('sidebar');
@@ -121,7 +159,44 @@
             authImg.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
             sidebarName.style.display = sidebar.classList.contains('collapsed') ? 'none' : 'block';
         });
+
+
+
+
+
+        $(document).ready(function () {
+            // Load notifications when the page is loaded
+            loadNotifications();
+
+            // Load notifications when the notification dropdown is clicked
+            $('#notificationDropdown').on('click', function () {
+                loadNotifications();
+            });
+        });
+
+        function loadNotifications() {
+            $.ajax({
+                url: '@Url.Action("GetPendingAlerts", "Alert")', // Adjust the controller name if different
+                type: 'GET',
+                success: function (data) {
+                    $('#notificationContainer').html(data); // Update the container with the new notifications
+                },
+                error: function () {
+                    alert('Error loading notifications.');
+                }
+            });
+        }
+
+       
+      
+
     </script>
+
+       
+
+
+
+
 
     @await RenderSectionAsync("Scripts", required: false)
 </body>
