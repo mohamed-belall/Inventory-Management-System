@@ -131,6 +131,17 @@ namespace Inventory_Management_System.Controllers
             return View("index", startAlerts);
         }
 
+
+        [HttpGet]
+        public IActionResult GetPendingAlerts()
+        {
+            var alert = _alertRepo.GetPendingAlert();
+            var test = Json(alert);
+            return PartialView("_NotificationCenterPartial", alert);
+            //return Json(alert);
+
+        }
+
     }
 
 
