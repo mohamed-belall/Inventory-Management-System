@@ -1,5 +1,6 @@
 ﻿
 using Inventory_Management_System.Data;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System.Repository.repo
@@ -121,10 +122,6 @@ namespace Inventory_Management_System.Repository.repo
             }
             else
             {
-
-          
-
-
                 if (status == "Pending")
                 {
                     return applicationDbContext.StartAlerts
@@ -157,14 +154,21 @@ namespace Inventory_Management_System.Repository.repo
 
 
             }
+        }
 
-
-
-          
+        public StartAlert GetByProductId(int id)
+        {
+            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id);
         }
 
 
 
-
+        public List<StartAlert> GetPendingAlert()
+        {
+            return applicationDbContext.StartAlerts
+                .AsNoTracking()
+                .Include(a => a.product)
+                .Where(a => a.IsResolved == false).ToList();
+        }
     }
 }
