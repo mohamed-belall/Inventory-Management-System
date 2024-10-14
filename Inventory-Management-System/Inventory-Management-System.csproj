@@ -15,7 +15,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="wwwroot\Images\" />
+    <None Include="Views\Role\Add.cshtml" />
   </ItemGroup>
 
   <ItemGroup>

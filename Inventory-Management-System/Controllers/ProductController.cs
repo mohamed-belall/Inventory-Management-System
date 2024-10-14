@@ -5,10 +5,6 @@ namespace Inventory_Management_System.Controllers
 {
     public class ProductController : Controller
     {
-        /// <summary>
-        /// from abohazem to abo allaaaaaa
-        /// </summary>
-        public const int threshold = 5;
         private readonly IProductRepository productRepository;
         private readonly ICategoryRepository categoryRepository;
         private readonly ISupplierRepository supplierRepository;
@@ -65,7 +61,7 @@ namespace Inventory_Management_System.Controllers
                 product.UnitPrice = productWithCategories.UnitPrice;
                 product.CreatedDate = DateTime.Now;
                 product.StockQuantity = productWithCategories.Quantity;
-                product.ReorderLevel = threshold;
+                product.ReorderLevel = GlobalVariables.threshold;
                 product.Description = productWithCategories.Description;
                 product.CategoryId = productWithCategories.CategoryId;
                 product.SupplierId = productWithCategories.SupplierId;
@@ -113,8 +109,7 @@ namespace Inventory_Management_System.Controllers
             if (ModelState.IsValid)
             {
                 Product? product = productRepository.GetById(ProductWithCategoriesViewModel.ID??0);
-
-                if(product !=null)
+                if(product != null)
                 {
                     product.Name = ProductWithCategoriesViewModel.Name;
                     product.UnitPrice = ProductWithCategoriesViewModel.UnitPrice;
@@ -124,7 +119,7 @@ namespace Inventory_Management_System.Controllers
                     product.SupplierId = ProductWithCategoriesViewModel.SupplierId;
                     product.CreatedDate = ProductWithCategoriesViewModel.CreatedDate??DateTime.Now;
                     product.ModifiedDate = DateTime.Now;
-                    product.ReorderLevel = threshold;
+                    product.ReorderLevel = GlobalVariables.threshold;
 
                     productRepository.Update(product);
                     productRepository.Save();

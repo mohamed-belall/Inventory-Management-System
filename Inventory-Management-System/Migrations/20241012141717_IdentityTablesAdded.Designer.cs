@@ -4,6 +4,7 @@ using Inventory_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory_Management_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241012141717_IdentityTablesAdded")]
+    partial class IdentityTablesAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -155,24 +158,6 @@ namespace Inventory_Management_System.Migrations
                     b.ToTable("Products");
                 });
 
-            modelBuilder.Entity("Inventory_Management_System.Models.ProductTransaction", b =>
-                {
-                    b.Property<int>("ProductId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("TransactionId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Quantity")
-                        .HasColumnType("int");
-
-                    b.HasKey("ProductId", "TransactionId");
-
-                    b.HasIndex("TransactionId");
-
-                    b.ToTable("ProductTransactions");
-                });
-
             modelBuilder.Entity("Inventory_Management_System.Models.StartAlert", b =>
                 {
                     b.Property<int>("ID")
@@ -249,11 +234,11 @@ namespace Inventory_Management_System.Migrations
                     b.Property<int>("EmployeeId")
                         .HasColumnType("int");
 
-                    b.Property<int>("Quantity")
+                    b.Property<int>("ProductId")
                         .HasColumnType("int");
 
-                    b.Property<double>("TotalPrice")
-                        .HasColumnType("float");
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
 
                     b.Property<int>("Type")
                         .HasColumnType("int");
@@ -261,6 +246,8 @@ namespace Inventory_Management_System.Migrations
                     b.HasKey("ID");
 
                     b.HasIndex("EmployeeId");
+
+                    b.HasIndex("ProductId");
 
                     b.ToTable("Transactions");
                 });
@@ -501,25 +488,6 @@ namespace Inventory_Management_System.Migrations
                     b.Navigation("supplier");
                 });
 
-            modelBuilder.Entity("Inventory_Management_System.Models.ProductTransaction", b =>
-                {
-                    b.HasOne("Inventory_Management_System.Models.Product", "Product")
-                        .WithMany("ProductTransactions")
-                        .HasForeignKey("ProductId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Inventory_Management_System.Models.Transaction", "Transaction")
-                        .WithMany("ProductTransactions")
-                        .HasForeignKey("TransactionId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Product");
-
-                    b.Navigation("Transaction");
-                });
-
             modelBuilder.Entity("Inventory_Management_System.Models.StartAlert", b =>
                 {
                     b.HasOne("Inventory_Management_System.Models.Employee", "employee")
@@ -547,7 +515,15 @@ namespace Inventory_Management_System.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Inventory_Management_System.Models.Product", "product")
+                        .WithMany("transactions")
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.Navigation("employee");
+
+                    b.Navigation("product");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -617,10 +593,10 @@ namespace Inventory_Management_System.Migrations
 
             modelBuilder.Entity("Inventory_Management_System.Models.Product", b =>
                 {
-                    b.Navigation("ProductTransactions");
-
                     b.Navigation("startAlert")
                         .IsRequired();
+
+                    b.Navigation("transactions");
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Supplier", b =>
@@ -628,11 +604,6 @@ namespace Inventory_Management_System.Migrations
                     b.Navigation("employeeSuppliers");
 
                     b.Navigation("products");
-                });
-
-            modelBuilder.Entity("Inventory_Management_System.Models.Transaction", b =>
-                {
-                    b.Navigation("ProductTransactions");
                 });
 #pragma warning restore 612, 618
         }

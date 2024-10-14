@@ -31,7 +31,6 @@
             <option value="">-- Select Employee --</option> <!-- Optional: Add a default option -->
             @foreach (var item in Model.Employees!)
             {
-
                 if (Model.EmployeeId == item.ID)
                 {
                     <option value="@item.ID" selected>@(item.FName + " " + item.LName)</option>

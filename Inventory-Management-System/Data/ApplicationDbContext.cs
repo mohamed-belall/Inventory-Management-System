@@ -1,8 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext(DbContextOptions options) :base(options)
         {
@@ -21,6 +22,7 @@ namespace Inventory_Management_System.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder); // Make sure Identity configurations are applied
             // Configuring composite key for EmployeeSupplier
             modelBuilder.Entity<EmployeeSupplier>()
                 .HasKey(es => es.Id); // Id is now the primary key
