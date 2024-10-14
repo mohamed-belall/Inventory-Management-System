@@ -11,11 +11,11 @@ namespace Inventory_Management_System.Models
 
         public int EmployeeID { get; set; }
         [ForeignKey("EmployeeID")]
-        public virtual Employee Employee { get; set; }
+        public virtual Employee? Employee { get; set; }
 
         public int SupplierID { get; set; }
         [ForeignKey("SupplierID")]
-        public virtual Supplier Supplier { get; set; }
+        public virtual Supplier? Supplier { get; set; }
 
         // Additional attributes
         public int ProductIdentifier { get; set; }
