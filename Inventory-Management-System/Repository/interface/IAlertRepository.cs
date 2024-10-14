@@ -10,6 +10,7 @@ namespace Inventory_Management_System.Repository
         public List<StartAlert> GetStatus(string status);  
 
         public List<StartAlert> GetSearchAndStatusResult(string name, string status);
+        public StartAlert GetByProductId(int id);
 
         public List<StartAlert> GetPendingAlert();
     }
