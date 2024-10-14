@@ -21,6 +21,7 @@ namespace Inventory_Management_System
             builder.Services.AddScoped<IProductRepository, ProductRepository>();
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IEmployeeSupplierRepository, EmployeeSupplierRepository>();
+            builder.Services.AddScoped<IProductTransactionRepository, ProductTransactionRepository>();
 
             builder.Services.AddDbContext<ApplicationDbContext>(options =>
             {

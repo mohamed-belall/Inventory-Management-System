@@ -1,4 +1,6 @@
-﻿namespace Inventory_Management_System.Models
+﻿using Microsoft.EntityFrameworkCore.Metadata.Internal;
+
+namespace Inventory_Management_System.Models
 {
     public class Product
     {
@@ -12,17 +14,16 @@
         public string? Description { get; set; }
 
 
-       
+
         public StartAlert startAlert { get; set; }
-
-
-        public List<Transaction> transactions { get; set; }
-
         public int CategoryId { get; set; }
         public Category category { get; set; }
 
 
         public int SupplierId { get; set; }
         public Supplier supplier { get; set; }
+
+        public List<ProductTransaction> ProductTransactions { get; set; }
+
     }
 }
