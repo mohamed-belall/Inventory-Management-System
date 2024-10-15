@@ -17,14 +17,15 @@ namespace Inventory_Management_System.Models
         public DateTime Date { get; set; }
         public TransactionType Type { get; set; }
         public int Quantity { get; set; }
+        public double TotalPrice { get; set; }
 
 
-        
+        //need to list of products details
+
         public int EmployeeId { get; set; }
         public Employee employee { get; set; }
 
+        public List<ProductTransaction> ProductTransactions { get; set; }
 
-        public int ProductId { get; set; }
-        public Product product { get; set; }
     }
 }

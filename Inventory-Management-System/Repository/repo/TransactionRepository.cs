@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Inventory_Management_System.Repository.repo
 {
     public class TransactionRepository : ITransactionRepository
@@ -13,32 +15,47 @@ namespace Inventory_Management_System.Repository.repo
 
         public void Add(Transaction entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Transactions.Add(entity);
         }
 
         public void Delete(Transaction entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Transactions.Remove(entity);
         }
 
         public List<Transaction> GetAll()
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Transactions.ToList();
         }
 
         public Transaction GetById(int id)
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Transactions.FirstOrDefault(t => t.ID == id);
         }
 
+        public int GetLastTransactionId()
+        {
+            return applicationDbContext.Transactions.OrderByDescending(t => t.ID).FirstOrDefault().ID;
+        }
+        public List<TopEmployee> GetTopEmployees()
+        {
+            return applicationDbContext.Transactions.Include(t => t.employee).GroupBy(t => t.EmployeeId)
+                .Select(e => new TopEmployee
+                {
+                    EmpId = e.Key,
+                    EmpName = (e.FirstOrDefault().employee.FName + e.FirstOrDefault().employee.LName),
+                    TotalSells = (double)e.Sum(t => (decimal)t.TotalPrice)
+                })
+                .OrderByDescending(e=>e.TotalSells).Take(3).ToList();
+        }
         public void Save()
         {
-            throw new NotImplementedException();
+            applicationDbContext.SaveChanges();
         }
 
         public void Update(Transaction entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Transactions.Update(entity);
         }
     }
 }

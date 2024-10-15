@@ -4,99 +4,76 @@
     var categories = ViewBag.categories as List<Category>;
     var selectedCategoryId = ViewBag.selectedCategoryId as int?;
     var searchString = ViewBag.name as string;
+    int iterator = 1;
 }
 
-@* <div class="d-flex justify-content-between align-items-center mb-4">
-    <h1 class="text-left">Instructors</h1>
-
-    <!-- Search Form -->
-    <div class="form-wrapper" style="max-width: 600px; width: 100%;">
-        <form method="post" action="/Instructor/Search" class="d-flex shadow-sm p-2 bg-light rounded">
-            <select name="DeptId" asp-items="depts" class="form-select me-2" style="max-width: 150px;">
-                <option value="">All Departments</option>
-            </select>
-            <input type="text" name="name" class="form-control me-2" placeholder="Enter instructor name" />
-            <button type="submit" class="btn btn-primary">Search</button>
-        </form>
-    </div>
-</div>
- *@
-<!-- Instructors Table -->
-<main role="main" class="pb-3">
+<main role="main" class="pb-3" style="margin-left:70px">
     <div class="mb-0">
         <ul class="nav nav-tabs" style="margin: 0; padding: 0;">
-            <!-- "All" tab -->
             <li class="nav-item">
                 @{
-                    // Set "All" tab as active if no category is selected
                     var isAllActive = (selectedCategoryId == null) ? "active" : "";
-                    var bgColorAll = (selectedCategoryId == null) ? "#ffb100" : "#ffe86a";  // Gold if active, light color if not
+                    var bgColorAll = (selectedCategoryId == null) ? "#ffb100" : "#ffe86a";
                 }
                 <a class="nav-link @isAllActive"
                    style="background-color: @bgColorAll; color: #000; border-radius: 10px 10px 0 0;
-                      margin-left: 0; padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
-                   href="@Url.Action("Index", new { id = (int?)null })">
-                    All
-                </a>
+                          padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
+                   href="@Url.Action("Index", new { id = (int?)null })">All</a>
             </li>
 
-            <!-- Categories tabs -->
             @foreach (var item in categories)
             {
-                // Check if the current item is the selected category
                 var isActive = (selectedCategoryId == item.ID) ? "active" : "";
-                var bgColor = (selectedCategoryId == item.ID) ? "#ffb100" : "#ffe86a";  // Different color for active tab
-
+                var bgColor = (selectedCategoryId == item.ID) ? "#ffb100" : "#ffe86a";
                 <li class="nav-item">
                     <a class="nav-link @isActive"
                        style="background-color: @bgColor; color: #000; border-radius: 10px 10px 0 0;
-                          margin-left: 0; padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
-                       href="@Url.Action("Index", new { id = item.ID })">
-                        @item.Name
-                    </a>
+                              padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
+                       href="@Url.Action("Index", new { id = item.ID })">@item.Name</a>
                 </li>
             }
         </ul>
     </div>
 
-    <div class="container" style="padding-left: 0; padding-top: 0; padding-bottom: 0;">
-        <div class="card p-3 shadow-sm" style="margin-top: 0;">
-            <div class="d-flex justify-content-between align-items-center mb-3" style="padding: 10px 10px;">
-                <h4 class="text-primary" style="font-size: 30px; font-weight:700;">
-                    In stock
-                </h4>
+    <div class="container p-0" style="margin-right: 0; margin-left: 0;">
+        <div class="card p-3 shadow-sm">
+            <div class="d-flex justify-content-between align-items-center mb-3" style="padding: 25px 13px 0px;">
+                <h4 class="text-primary fw-bold" style="font-size: 30px;">In Stock</h4>
                 <a href="/Product/Add" class="btn btn-primary">+ New Product</a>
             </div>
 
-            <hr class="mb-4" style="margin-bottom: 10px; height: 1px; background-color: #4b6871; border: none;" />
+            <hr class="mb-4" style="background-color: #f9f9f9; height: 1px; margin-top: -2px;" />
 
-            <div class="mb-3 d-flex align-items-center justify-content-between" style="margin-top: 12px;">
+            <div class="d-flex justify-content-between align-items-center mb-3" style="margin: 10px 0px;">
                 <form asp-action="Search" asp-controller="Product" method="get" class="d-flex" id="searchForm">
                     <div class="input-group me-3" style="width: 300px;">
-                        <span class="input-group-text bg-white" id="basic-addon1" style="border-right: none; height: 38px; width: 35px; font-size: 20px;">
-                            <i class="bi bi-search"></i> <!-- Bootstrap Icon for search -->
+                        <span class="input-group-text bg-white border-0">
+                            <i class="bi bi-search"></i>
                         </span>
-                        <input type="text" name="name" class="form-control" id="searchInput" placeholder="Quick search"
-                               value="@searchString" aria-label="Quick search" aria-describedby="basic-addon1"
-                               style="border-left: none;" />
+                        <input type="text" name="name" class="form-control border-start-0" placeholder="Quick search"
+                               value="@searchString" />
                     </div>
-                    <input type="hidden" name="id" value="@ViewBag.SelectedCategoryId" /> <!-- Or provide the value dynamically -->
-
-                    <button class="btn btn-primary" type="submit">Search</button> <!-- Optional Search Button -->
+                    <input type="hidden" name="id" value="@ViewBag.SelectedCategoryId" />
+                    <button class="btn btn-primary" type="submit">Search</button>
                 </form>
 
+                <div class="dropdown">
+                    <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="bi bi-funnel me-1"></i>Status
+                    </button>
 
-                <div>
-                    <form asp-action="StatusFilter" asp-controller="Product" method="get" id="filterForm">
-                        <select id="statusFilter" class="form-select d-inline" name="status" aria-label="Filter by status" onchange="submitFilterForm()">
-                            <option value="">All Levels</option>
-                            <option value="Safe">Safe</option>
-                            <option value="Low">Low</option>
-                        </select>
+                    <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('')">All Levels</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Safe')">Safe</a></li>
+                        <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Low')">Low</a></li>
+                    </ul>
 
+                    <form asp-action="StatusFilter" asp-controller="Product" method="get" id="filterForm" class="d-none">
+                        <input type="hidden" name="status" id="selectedStatus" />
                         <input type="hidden" name="id" value="@ViewBag.selectedCategoryId" />
                     </form>
                 </div>
+
             </div>
 
             <form id="deleteForm" method="post" action="/Product/Delete" onsubmit="return validateSelection()">
@@ -105,75 +82,59 @@
                         Delete Selected
                     </button>
                 </div>
+
                 <div class="table-responsive">
-                    <table class="table table-hover align-middle text-center" style="border-collapse: collapse;">
+                    <table class="table table-hover text-center">
                         <thead>
                             <tr>
-                                <th class="text-center" style="border: none;">
-                                    <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
-                                        <label for="selectAll" style="cursor: pointer; margin: 0;">
-                                            <input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" />
-                                        </label>
-                                    </div>
-                                </th>
-                                <th style="border: none;">ID</th>
-                                <th style="border: none;">Product</th>
-                                <th style="border: none;">Unit Price</th>
-                                <th style="border: none;">Category</th>
-                                <th style="border: none;">Supplier</th>
-                                <th style="border: none;">Stock Quantity</th>
-                                <th style="border: none;">Level</th>
+                                <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" /></th>
+                                <th>ID</th>
+                                <th>Product</th>
+                                <th>Unit Price</th>
+                                <th>Category</th>
+                                <th>Supplier</th>
+                                <th>Stock Quantity</th>
+                                <th>Level</th>
+                                <th>Actions</th>
                             </tr>
                         </thead>
                         <tbody>
-                            @{
-                                int iterator = 1;
-                            }
-                            @foreach (var product in Model) // Assuming Model is populated with a list of products
+                            @foreach (var product in Model)
                             {
                                 <tr onclick="toggleCheckbox(this)">
-                                    <td style="border: none;">
-                                        <input type="checkbox" class="product-checkbox" name="selectedIds" value="@product.ID" onclick="event.stopPropagation();" onchange="toggleDeleteButton()" />
-                                    </td>
-                                    <td style="border: none;">@iterator</td>
-                                    <td style="border: none;">@product.Name</td>
-                                    <td style="border: none;">@product.UnitPrice</td>
-                                    <td style="border: none;">@product.category.Name</td>
-                                    <td style="border: none;">@product.supplier.Name</td>
-                                    <td style="border: none;">@product.StockQuantity</td>
-                                    <td style="border: none;">
-                                        <span class="badge d-inline-block px-3 py-1 rounded-pill text-white"
-                                              style="background-color: @(product.StockQuantity > 5 ? "#4CAF50" : "#d10f0f"); color: @(product.StockQuantity >= 5 ? "white" : "black");">
-                                            @(product.StockQuantity > 5 ? "Safe" : "Low")
+                                    <td><input type="checkbox" class="product-checkbox" name="selectedIds" value="@product.ID" onclick="event.stopPropagation();" /></td>
+                                    <td>@iterator</td>
+                                    <td>@product.Name</td>
+                                    <td>@product.UnitPrice</td>
+                                    <td>@product.category.Name</td>
+                                    <td>@product.supplier.Name</td>
+                                    <td>@product.StockQuantity</td>
+                                    <td>
+                                        <span class="badge @((product.StockQuantity > 5) ? "bg-success" : "bg-danger")" style="color: white;">
+                                            @((product.StockQuantity > 5) ? "Safe" : "Low")
                                         </span>
                                     </td>
-
                                     <td>
-                                        <a href="/Product/Edit/@product.ID" class="btn btn-outline-secondary btn-sm me-2" title="Edit">
-                                            <i class="bi bi-pencil-square"></i> <!-- Bootstrap icon for edit -->
+                                        <a href="/Product/Edit/@product.ID" class="btn btn-outline-secondary btn-sm">
+                                            <i class="bi bi-pencil-square"></i>
                                         </a>
                                     </td>
-                                    @{
-                                        iterator++;
-                                    }
                                 </tr>
+                                iterator++;
                             }
                         </tbody>
                     </table>
                 </div>
             </form>
 
-            <!-- Confirmation Modal -->
-            <div class="modal fade" id="confirmationModal" tabindex="-1" aria-labelledby="confirmationModalLabel" aria-hidden="true">
+            <div class="modal fade" id="confirmationModal" tabindex="-1">
                 <div class="modal-dialog">
                     <div class="modal-content">
                         <div class="modal-header">
-                            <h5 class="modal-title" id="confirmationModalLabel">Confirm Deletion</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            <h5 class="modal-title">Confirm Deletion</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                         </div>
-                        <div class="modal-body">
-                            Are you sure you want to delete the selected products?
-                        </div>
+                        <div class="modal-body">Are you sure you want to delete the selected products?</div>
                         <div class="modal-footer">
                             <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
                             <button type="button" class="btn btn-danger" id="confirmDelete">Delete</button>
@@ -181,137 +142,48 @@
                     </div>
                 </div>
             </div>
-
-            <script>
-                function submitFilterForm() {
-                    document.getElementById("filterForm").submit();
-                }
-
-                function toggleSelectAll(source) {
-                    const checkboxes = document.querySelectorAll('.product-checkbox');
-                    checkboxes.forEach(checkbox => {
-                        checkbox.checked = source.checked;
-                    });
-                    toggleDeleteButton();
-                }
-
-                function toggleCheckbox(row) {
-                    const checkbox = row.querySelector('.product-checkbox');
-                    checkbox.checked = !checkbox.checked;
-                    toggleDeleteButton();
-                }
-
-                function toggleDeleteButton() {
-                    const checkboxes = document.querySelectorAll('.product-checkbox');
-                    const deleteButton = document.getElementById('deleteButton');
-                    const anyChecked = Array.from(checkboxes).some(checkbox => checkbox.checked);
-                    deleteButton.style.display = anyChecked ? 'block' : 'none';
-                }
-
-                function validateSelection() {
-                    const checkboxes = document.querySelectorAll('.product-checkbox:checked');
-                    if (checkboxes.length === 0) {
-                        alert("Please select at least one product to delete.");
-                        return false; // Prevent form submission
-                    }
-                    return true; // Allow form submission
-                }
-
-                document.getElementById('confirmDelete').addEventListener('click', function () {
-                    // Submit the delete form
-                    document.getElementById('deleteForm').submit();
-                });
-            </script>
-
-
         </div>
-
-        <style>
-            /* Card styling */
-            .card {
-                border-radius: 8px; /* Rounded corners */
-                background-color: #fff; /* White background */
-                margin-top: 0; /* Remove top margin to eliminate space */
-            }
-
-            /* Category Tabs */
-            .nav-tabs .nav-link {
-                background-color: #f0f0f0; /* Default tab color */
-                color: #000; /* Text color */
-                margin: 0; /* Remove margin */
-                transition: background-color 0.3s ease, box-shadow 0.3s ease; /* Smooth transition for background and shadow */
-            }
-
-            .nav-tabs .nav-link:hover {
-                background-color: #ffd700; /* Change color on hover */
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Add shadow on hover */
-            }
-
-            .nav-tabs .nav-link.active {
-                background-color: #FFD700; /* Active tab color */
-                color: #000; /* Text color */
-                box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2); /* Shadow for active tab */
-            }
-
-            /* Status badges */
-            .badge.bg-success {
-                background-color: #28a745; /* Green for Safe */
-            }
-
-            .badge.bg-danger {
-                background-color: #dc3545; /* Red for Low */
-            }
-
-            /* Horizontal line style */
-            hr {
-                font-size:100px;
-                border: 1px solid #ccc;
-                margin-top: 0; /* Remove margin */
-                margin-bottom: 1rem; /* Space below the line */
-            }
-
-            /* Maximized "Select All" checkbox */
-            input[type="checkbox"] {
-                transform: scale(1.5); /* Make the checkbox larger */
-                cursor: pointer;
-            }
-
-            /* Table cell borders */
-            th {
-                font-size:18px;
-                border-bottom: 1px solid #ccc; /* Horizontal border for table cells */
-                border-right: none; /* Remove right border */
-                padding: 10px; /* Add some padding for better spacing */
-            }
-
-            td {
-                border-bottom: 1px solid #ccc; /* Horizontal border for table cells */
-                border-right: none; /* Remove right border */
-                padding: 10px; /* Add some padding for better spacing */
-            }
-            /* Add vertical space between rows */
-            tbody tr {
-                border-bottom: 2px solid #ccc; /* Adds a thicker line below each row */
-            }
-
-            tbody tr:last-child {
-                border-bottom: none; /* Remove border for the last row */
-            }
-
-            /* Header styling to add border */
-            thead {
-                border-bottom: 2px solid #000; /* Bold line between header and rows */
-            }
-        </style>
     </div>
+
+    <script>
+        function submitStatusFilter(status) {
+            document.getElementById('selectedStatus').value = status;
+            document.getElementById('filterForm').submit();
+        }
+
+        function toggleSelectAll(source) {
+            const checkboxes = document.querySelectorAll('.product-checkbox');
+            checkboxes.forEach(checkbox => checkbox.checked = source.checked);
+            toggleDeleteButton();
+        }
+
+        function toggleCheckbox(row) {
+            const checkbox = row.querySelector('.product-checkbox');
+            checkbox.checked = !checkbox.checked;
+            toggleDeleteButton();
+        }
+
+        function toggleDeleteButton() {
+            const anyChecked = document.querySelectorAll('.product-checkbox:checked').length > 0;
+            document.getElementById('deleteButton').style.display = anyChecked ? 'block' : 'none';
+        }
+
+        function validateSelection() {
+            if (!document.querySelector('.product-checkbox:checked')) {
+                alert("Please select at least one product to delete.");
+                return false;
+            }
+            return true;
+        }
+
+        document.getElementById('confirmDelete').addEventListener('click', () => {
+            document.getElementById('deleteForm').submit();
+        });
+    </script>
 </main>
 
-
-
-<!-- Add Instructor Button -->
-@* @if (User.IsInRole("Admin"))
-{
-    <a href="/Instructor/Add" class="btn btn-primary rounded-circle shadow-lg" style="position: fixed; bottom: 20px; right: 20px; width: 60px; height: 60px; display: flex; align-items: center; justify-content: center; font-size: 1.5rem; z-index: 1000;">
-        <i class="fas fa-plus"></i>
-    </a>
-} *@
+<style>
+    .card {
+        border-radius: 8px;
+    }
+</style>

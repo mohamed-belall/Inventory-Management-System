@@ -17,6 +17,7 @@ namespace Inventory_Management_System.Data
         public DbSet<StartAlert> StartAlerts { get; set; }
         public DbSet<Supplier> Suppliers { get; set; }
         public DbSet<Transaction> Transactions { get; set; }
+        public DbSet<ProductTransaction> ProductTransactions { get; set; } 
 
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
@@ -35,6 +36,19 @@ namespace Inventory_Management_System.Data
                 .HasOne(es => es.Supplier)
                 .WithMany(s => s.employeeSuppliers) // Assuming Supplier has a collection of EmployeeSuppliers
                 .HasForeignKey(es => es.SupplierID);
+
+            modelBuilder.Entity<ProductTransaction>()
+                .HasKey(pt => new { pt.ProductId, pt.TransactionId });
+
+            modelBuilder.Entity<ProductTransaction>()
+                .HasOne(pt => pt.Product)
+                .WithMany(p => p.ProductTransactions)
+                .HasForeignKey(pt => pt.ProductId);
+
+            modelBuilder.Entity<ProductTransaction>()
+                .HasOne(pt => pt.Transaction)
+                .WithMany(t => t.ProductTransactions)
+                .HasForeignKey(pt => pt.TransactionId);
         }
     }
 }
