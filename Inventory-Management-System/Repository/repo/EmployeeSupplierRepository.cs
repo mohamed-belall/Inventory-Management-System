@@ -51,5 +51,10 @@ namespace Inventory_Management_System.Repository.repo
             applicationDbContext.Update(entity);
         }
 
+        public int GetOrdersCount()
+        {
+            return applicationDbContext.EmployeeSuppliers.Count();
+        }
+
     }
 }

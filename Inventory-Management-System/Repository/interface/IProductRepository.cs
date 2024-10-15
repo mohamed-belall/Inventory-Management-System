@@ -7,6 +7,8 @@
         public List<Product> GetFilteredByNameWithCategory(string name, int? id);
         public List<Product> GetFilteredByStatus(string staus, int? id);
 
+        public int GetProductCount();
+        public int GetItemsCount();
     }
 
 }

@@ -72,5 +72,15 @@ namespace Inventory_Management_System.Repository.repo
         {
             _applicationDbContext.Products.Update(product);
         }
+
+        public int GetProductCount()
+        {
+            return _applicationDbContext.Products.Count();
+        }
+
+        public int GetItemsCount()
+        {
+            return _applicationDbContext.Products.Sum(e => e.StockQuantity);
+        }
     }
 }
