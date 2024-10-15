@@ -4,5 +4,6 @@
     {
         public List<Employee> GetByName(string name);
         public void DeleteEmployees(List<int> employeeIds);
+        public int GetEmpCount();
     }
 }

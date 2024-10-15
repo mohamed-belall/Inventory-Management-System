@@ -43,5 +43,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             return applicationDbContext.Suppliers.Where(e => e.Name.Contains(name)).ToList();
         }
+
+        public int GetSupplierCount()
+        {
+            return applicationDbContext.Suppliers.Count();
+        }
     }
 }

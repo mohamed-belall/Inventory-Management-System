@@ -3,5 +3,6 @@
     public interface IEmployeeSupplierRepository : IRepository<EmployeeSupplier>
     {
         public void DeleteEmployeeSuppliers(List<int> employeeIds);
+        public int GetOrdersCount();
     }
 }

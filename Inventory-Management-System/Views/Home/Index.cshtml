@@ -2,7 +2,71 @@
     ViewData["Title"] = "Home Page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+@model IEnumerable<DashboardCard>
+
+<div class="container custom-container mt-4">
+    <!-- Apply the custom class here -->
+    <div class="row">
+        @foreach (var card in Model)
+        {
+            <div class="col-md-3 mb-4">
+                <div class="custom-card shadow-lg" style="background-color:@card.BackgroundColor; color: white;">
+                    <div class="custom-card-body text-center">
+                        <i class="fas @card.Icon fa-3x mb-3"></i>
+                        <h5 class="custom-card-title">@card.Title</h5>
+                        <h2 class="custom-card-value">@card.Value</h2>
+                        <a href="#" class="btn btn-light btn-sm mt-3">More Info <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
 </div>
+
+<style>
+    /* Custom Container Styles */
+    .custom-container {
+        max-width: 1500px; /* Set max width */
+        margin: 0 auto; /* Center the container */
+    }
+
+    /* Custom Card Styles */
+    .custom-card {
+        width: 350px;
+        border-radius: 10px;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        padding: 20px;
+        margin: 0 auto; /* Center the card */
+    }
+
+        /* Hover effect */
+        .custom-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+
+    /* Adjust the custom card title */
+    .custom-card-title {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        font-weight: 600;
+    }
+
+    /* Adjust the custom card value */
+    .custom-card-value {
+        font-size: 2.5rem;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+    /* Custom button style */
+    .btn-light {
+        font-weight: 500;
+        border-radius: 30px;
+    }
+
+    /* Centered content */
+    .text-center {
+        padding: 20px;
+    }
+</style>

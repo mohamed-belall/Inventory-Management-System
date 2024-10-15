@@ -52,5 +52,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             return context.Employees.Where(d => d.FName == name).ToList();
         }
+
+        public int GetEmpCount()
+        {
+            return context.Employees.Count();
+        }
     }
 }

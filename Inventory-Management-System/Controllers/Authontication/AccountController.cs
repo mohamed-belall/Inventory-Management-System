@@ -75,6 +75,14 @@ namespace Inventory_Management_System.Controllers.Authontication
                 }
 
             }
+
+            List<IdentityRole>? roles = await roleManager.Roles.ToListAsync();
+
+            registerViewModel.Roles = roles.Select(role => new SelectListItem
+            {
+                Value = role.Name,
+                Text = role.Name
+            }).ToList();
             return View("Register", registerViewModel);
         }
 

@@ -9,6 +9,8 @@
         public List<Product> GetByIds(List<int> ids);
         public List<Product> GetAllAvailable();
 
+        public int GetProductCount();
+        public int GetItemsCount();
     }
 
 }
