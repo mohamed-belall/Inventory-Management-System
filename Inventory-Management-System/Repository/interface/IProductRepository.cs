@@ -8,7 +8,7 @@
         public List<Product> GetFilteredByStatus(string staus, int? id);
         public List<Product> GetByIds(List<int> ids);
         public List<Product> GetAllAvailable();
-
+        public List<int>? GetLowQuantitesProducts();
         public int GetProductCount();
         public int GetItemsCount();
     }

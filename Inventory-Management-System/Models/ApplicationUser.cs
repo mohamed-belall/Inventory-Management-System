@@ -5,6 +5,6 @@ namespace Inventory_Management_System.Models
 {
     public class ApplicationUser : IdentityUser
     {
-
+        public int? employee_id;
     }
 }

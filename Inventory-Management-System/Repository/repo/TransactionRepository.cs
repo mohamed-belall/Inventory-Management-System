@@ -1,5 +1,6 @@
 ﻿
 using Microsoft.EntityFrameworkCore;
+using System.Globalization;
 
 namespace Inventory_Management_System.Repository.repo
 {
@@ -27,7 +28,43 @@ namespace Inventory_Management_System.Repository.repo
         {
             return applicationDbContext.Transactions.ToList();
         }
+        public List<SalesHistory> GetHistorySalesDictionary()
+        {
+            return applicationDbContext.Transactions
+                .GroupBy(t => new
+                {
+                    Date = t.Date.Date,   // Group by the date part
+                    Hour = t.Date.Hour,   // Group by the hour part
+                    Minute = t.Date.Minute // Group by the minute part
+                })
+                .Select(g => new
+                {
+                    Date = g.Key.Date,
+                    Hour = g.Key.Hour,
+                    Minute = g.Key.Minute,
+                    Sales = g.Sum(t => t.TotalPrice) // Sum of sales for each minute
+                })
+                .AsEnumerable() // Switch to in-memory operations for further processing
+                .Select(e => new SalesHistory
+                {
+                    // Format to include seconds (":00" at the end) because you want "HH:mm:ss"
+                    date = $"{e.Date:yyyy-MM-dd} {e.Hour:D2}:{e.Minute:D2}:00",
+                    Sales = (int)e.Sales
+                })
+                .OrderBy(s => s.date) // This uses the formatted string directly
+                .ToList();
+        }
 
+
+
+        public int GetTrabsactionsCount()
+        {
+            return applicationDbContext.Transactions.Count();
+        }
+        public double GetTotalSells()
+        {
+            return applicationDbContext.Transactions.Sum(t=>t.TotalPrice);
+        }
         public Transaction GetById(int id)
         {
             return applicationDbContext.Transactions.FirstOrDefault(t => t.ID == id);

@@ -64,7 +64,6 @@ namespace Inventory_Management_System.Controllers.Authontication
                 {
 
                     await userManager.AddToRoleAsync(appUser, registerViewModel.Role);
-
                     // Create Cookie
                     await signInManager.SignInAsync(appUser, false);
                     return RedirectToAction("Login", "Account");
