@@ -3,7 +3,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace Inventory_Management_System.ViewModel
 {
-    public class RegisterViewModel
+    public class EditViewModel
     {
         public string? Id { get; set; }
 
@@ -19,17 +19,10 @@ namespace Inventory_Management_System.ViewModel
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
-        [DataType(DataType.Password)]
-        public string Password { get; set; }
-
-        [Compare("Password")]
-        [Display(Name = "Confirm Password")]
-        [DataType(DataType.Password)]
-        public string ConfirmPassword { get; set; }
-
         public string Role { get; set; }
         public List<SelectListItem>? Roles { get; set; }
 
-
+        // Add a property for EmployeeId to use for editing existing employees
+        public int EmployeeId { get; set; }
     }
 }

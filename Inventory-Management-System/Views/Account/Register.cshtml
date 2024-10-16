@@ -12,12 +12,30 @@
 
             <!-- Form Start -->
             <form asp-action="SaveRegister" method="post">
-                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+                <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
 
                 <div class="form-group">
-                    <label asp-for="UserName" class="control-label">Username</label>
-                    <input asp-for="UserName" class="form-control" placeholder="Enter your username" style="border-radius: 10px;" />
-                    <span asp-validation-for="UserName" class="text-danger"></span>
+                    <label asp-for="FName" class="control-label">First Name</label>
+                    <input asp-for="FName" class="form-control" placeholder="Enter First Name" style="border-radius: 10px;" />
+                    <span asp-validation-for="FName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="LName" class="control-label">Last Name</label>
+                    <input asp-for="LName" class="form-control" placeholder="Enter Last Name" style="border-radius: 10px;" />
+                    <span asp-validation-for="LName" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Phone" class="control-label">Phone</label>
+                    <input asp-for="Phone" class="form-control" placeholder="Enter Phone Number" style="border-radius: 10px;" />
+                    <span asp-validation-for="Phone" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label">Email</label>
+                    <input asp-for="Email" class="form-control" placeholder="Enter your Email" style="border-radius: 10px;" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">

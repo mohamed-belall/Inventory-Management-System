@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Inventory_Management_System.Repository;
+using Inventory_Management_System.Repository.repo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
@@ -11,13 +13,20 @@ namespace Inventory_Management_System.Controllers.Authontication
         private readonly UserManager<ApplicationUser> userManager;
         private readonly SignInManager<ApplicationUser> signInManager;
         private readonly RoleManager<IdentityRole> roleManager;
+        private readonly IEmployeeRepository employeeRepository;
 
-        public AccountController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, RoleManager<IdentityRole> roleManager)
+        public AccountController(UserManager<ApplicationUser> userManager,
+                                SignInManager<ApplicationUser> signInManager,
+                                RoleManager<IdentityRole> roleManager ,
+                                IEmployeeRepository employeeRepository)
+
         {
             this.userManager = userManager;
             this.signInManager = signInManager;
             this.roleManager = roleManager;
+            this.employeeRepository = employeeRepository;
         }
+        /**************************** Register ****************************/
         public async Task<IActionResult> Register()
         {
             // Fetch roles from the database
@@ -54,7 +63,8 @@ namespace Inventory_Management_System.Controllers.Authontication
                 // Mapping
                 ApplicationUser appUser = new ApplicationUser()
                 {
-                    UserName = registerViewModel.UserName,
+                    UserName = registerViewModel.FName +' '+ registerViewModel.LName,
+                    Email = registerViewModel.Email,
                     PasswordHash = registerViewModel.Password,
                 };
 
@@ -64,10 +74,34 @@ namespace Inventory_Management_System.Controllers.Authontication
                 {
 
                     await userManager.AddToRoleAsync(appUser, registerViewModel.Role);
+                    
+                    // copy data from identity user to emp
+                    Employee NewEmployee = new Employee
+                    {
+                        FName = registerViewModel.FName,
+                        LName = registerViewModel.LName,
+                        Email = registerViewModel.Email,
+                        Phone = registerViewModel.Phone,
+                        Role = registerViewModel.Role,
+                        CreatedDate = DateTime.Now
+                    };
+                    
+                    employeeRepository.Add(NewEmployee);
+                    employeeRepository.Save();
+
 
                     // Create Cookie
                     await signInManager.SignInAsync(appUser, false);
-                    return RedirectToAction("Login", "Account");
+
+                    var currentUser = await userManager.GetUserAsync(User);
+                    if (currentUser != null)
+                    {
+                        currentUser.Employee_id = employeeRepository.GetLastCreatedEmp();
+                    }
+                    result = await userManager.UpdateAsync(currentUser);
+
+
+                    return RedirectToAction("Index", "Employee");
                 }
                 foreach (var error in result.Errors)
                 {
@@ -86,6 +120,100 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Register", registerViewModel);
         }
 
+        /**************************** Edit ****************************/
+        [HttpGet]
+        public async Task<IActionResult> Edit(int id)
+        {
+            // Fetch the employee data by ID from the repository
+            var employee = employeeRepository.GetById(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            // Fetch roles from the database
+            var roles = await roleManager.Roles.ToListAsync();
+
+            // Create the ViewModel and populate the Roles and employee data
+            var model = new EditViewModel
+            {
+                EmployeeId = employee.ID,
+                FName = employee.FName,
+                LName = employee.LName,
+                Phone = employee.Phone,
+                Email = employee.Email,
+                Role = employee.Role,
+                Roles = roles.Select(role => new SelectListItem
+                {
+                    Value = role.Name,
+                    Text = role.Name
+                }).ToList()
+            };
+
+            return View("Edit", model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> SaveEdit(EditViewModel editViewModel)
+        {
+            if (ModelState.IsValid)
+            {
+                // Fetch the existing employee and application user
+                var employee = employeeRepository.GetById(editViewModel.EmployeeId);
+                var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID );
+
+                if (employee == null || appUser == null)
+                {
+                    return NotFound();
+                }
+
+                // Update employee data
+                employee.FName = editViewModel.FName;
+                employee.LName = editViewModel.LName;
+                employee.Phone = editViewModel.Phone;
+                employee.Email = editViewModel.Email;
+                employee.Role = editViewModel.Role;
+                employeeRepository.Update(employee);
+                employeeRepository.Save();
+
+                // Update user data
+                appUser.UserName = editViewModel.FName + editViewModel.LName;
+                appUser.Email = editViewModel.Email;
+
+                // Check if role needs to be updated
+                var currentRoles = await userManager.GetRolesAsync(appUser);
+                if (!currentRoles.Contains(editViewModel.Role))
+                {
+                    await userManager.RemoveFromRolesAsync(appUser, currentRoles);
+                    await userManager.AddToRoleAsync(appUser, editViewModel.Role);
+                }
+
+                var result = await userManager.UpdateAsync(appUser);
+
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "Employee");
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            // Repopulate roles for the view model
+            var roles = await roleManager.Roles.ToListAsync();
+            editViewModel.Roles = roles.Select(role => new SelectListItem
+            {
+                Value = role.Name,
+                Text = role.Name
+            }).ToList();
+
+            return View("Edit", editViewModel);
+        }
+
+        /**************************** Log in ****************************/
         public IActionResult Login()
         {
             return View("Login");
@@ -115,6 +243,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Login", loginUserViewModel);
         }
 
+        /**************************** Verify Email ****************************/
         public IActionResult VerifyEmail()
         {
             return View();
@@ -187,6 +316,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             }
         }
 
+        /**************************** Sign Out ****************************/
         public async Task<IActionResult> SignOut()
         {
             await signInManager.SignOutAsync();
