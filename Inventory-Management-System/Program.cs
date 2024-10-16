@@ -1,4 +1,5 @@
 
+using Inventory_Management_System.Filters;
 using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Identity;
@@ -13,7 +14,10 @@ namespace Inventory_Management_System
             var builder = WebApplication.CreateBuilder(args);
 
             // Add services to the container.
-            builder.Services.AddControllersWithViews();
+            builder.Services.AddControllersWithViews(options =>
+            {
+                options.Filters.Add<StockQuantityFilter>();
+            });
 
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IAlertRepository, AlertRepository>();
@@ -23,6 +27,9 @@ namespace Inventory_Management_System
             builder.Services.AddScoped<ISupplierRepository, SupplierRepository>();
             builder.Services.AddScoped<IEmployeeSupplierRepository, EmployeeSupplierRepository>();
             builder.Services.AddScoped<IProductTransactionRepository, ProductTransactionRepository>();
+            builder.Services.AddScoped<AlertController>();
+            builder.Services.AddScoped<StockQuantityFilter>();
+
 
             // Add services of Application user and its role
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>

@@ -100,7 +100,6 @@ namespace Inventory_Management_System.Controllers
 
             productWithCategories.categories = categoryRepository.GetAll();
             productWithCategories.suppliers = supplierRepository.GetAll();
-            
             return View(productWithCategories);
         }
 
