@@ -35,9 +35,9 @@
 <body>
 
     <!-- Header -->
-    <header class="header">
+    <header class="header" style="background-color: #0B0F26;">
         <div class="logo-header">
-            <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px;"></i>
+            <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px; "></i>
             <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
         </div>
         <div class="profile">
@@ -56,7 +56,7 @@
     </header>
 
     <!-- Sidebar container -->
-    <div class="sidebar collapsed" id="sidebar">
+    <div class="sidebar collapsed" id="sidebar" style="background-color: #0B0F26;">
         <!-- Logo and Title -->
         <div class="logo-content">
             <div class="logo">
@@ -69,179 +69,182 @@
          @if (User.Identity.IsAuthenticated)
  {
      <!-- Navigation links with icons -->
-     <ul class="nav-links">
-         <li>
-             <a href="/home/index">
-                 <i class="fas fa-home"></i>
-                 <span class="link-name">Home</span>
-             </a>
-         </li>
-         <li>
-             <a href="/Employee/Index">
-                 <i class="fas fa-user-graduate"></i>
-                 <span class="link-name">User</span>
-             </a>
-         </li>
-     <li>
-         <a href="/EmployeeSupplier/Index">
-             <i class="fas fa-user-graduate"></i>
-             <span class="link-name">Reciept</span>
-         </a>
-     </li>
+            <ul class="nav-links">
+                <li>
+                    <a href="/home/index">
+                        <i class="fas fa-home"></i> <!-- Home Icon -->
+                        <span class="link-name">Home</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Employee/Index">
+                        <i class="fas fa-users"></i> <!-- Users Icon -->
+                        <span class="link-name">User</span>
+                    </a>
+                </li>
+                <li style="margin-left: 5px;">
+                    <a href="/EmployeeSupplier/Index">
+                        <i class="fas fa-file-invoice"></i> 
+                        <span class="link-name">Receipt</span>
+                    </a>
+                </li>
 
-         <li>
-             <a href="/Product/Index">
-                 <i class="fas fa-cube"></i>
-                 <span class="link-name">Product</span>
-             </a>
-         </li>
-         <li>
-             <a href="/Supplier/Index">
-                 <i class="fas fa-truck"></i>
-                 <span class="link-name">Supplier</span>
-             </a>
-         </li>
-         <li>
-             <a href="/Transaction/Index">
-                 <i class="fas fa-exchange-alt"></i>
-                 <span class="link-name">Transaction</span>
-             </a>
-         </li>
-         <li>
-             <a href="/Category/Index">
-                 <i class="fas fa-th-list"></i>
-                 <span class="link-name">Category</span>
-             </a>
-         </li>
-         <li>
-             <a href="/Alert/Index">
-                 <i class="fas fa-bell"></i>
-                 <span class="link-name">Alert</span>
-             </a>
-         </li>
-         @if (User.IsInRole("Admin"))
-         {
-             <li>
-                 <a href="/Account/Register">
-                     <i class="fa-solid fa-user-group"></i>
-                     <span class="link-name">Add Member</span>
-                 </a>
-             </li>
-             <li>
-                 <a href="/Role/AddRole">
-                     <i class="fa-regular fa-user"></i>
-                     <span class="link-name">Add Role</span>
-                 </a>
-             </li>
-         }
-     </ul>
+                <li style="margin-left: 2px;">
+                    <a href="/Product/Index">
+                        <i class="fas fa-box"></i> <!-- Box Icon -->
+                        <span class="link-name">Product</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Supplier/Index">
+                        <i class="fas fa-people-carry"></i> <!-- Carry Icon -->
+                        <span class="link-name">Supplier</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Transaction/Index">
+                        <i class="fas fa-exchange-alt"></i> <!-- Exchange Icon -->
+                        <span class="link-name">Transaction</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Category/Index">
+                        <i class="fas fa-tags"></i> <!-- Tags Icon -->
+                        <span class="link-name">Category</span>
+                    </a>
+                </li>
+                <li>
+                    <a href="/Alert/Index">
+                        <i class="fas fa-exclamation-triangle"></i> <!-- Warning Icon -->
+                        <span class="link-name">Alert</span>
+                    </a>
+                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <li>
+                        <a href="/Account/Register">
+                            <i class="fas fa-user-plus"></i> <!-- User Plus Icon -->
+                            <span class="link-name">Add Member</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="/Role/AddRole">
+                            <i class="fas fa-user-tag"></i> <!-- User Tag Icon -->
+                            <span class="link-name">Add Role</span>
+                        </a>
+                    </li>
+                }
+            </ul>
+
  }
 
         <!-- Log out button -->
-        <div class="logout">
+        <div class="logout" style="margin-left: 8px; font-size:15px;">
             <a href="/Account/SignOut">
-                <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt" style="margin-right: 10px;"></i>
                 <span class="link-name">Log out</span>
             </a>
         </div>
     </div>
 
     <!-- Main content area -->
-    <div class="main-content">
+    <div class="main-content" >
         <div class="container-fluid">
             @RenderBody()
         </div>
     </div>
 
-    <footer class="footer">
+    <footer class="footerr">
         <div class="container">
             <div class="footer-content">
                 <p class="footer-text">
+                   @*
                     <a href="/Home/OurTeam" target="_blank">Meet Our Team</a>
+                   *@ 
+                    <a href="/Home/OurTeam" >Meet Our Team</a>
                 </p>
-              
             </div>
             <p class="footer-copy">&copy; 2024 Melio-Tech Group. All Rights Reserved.</p>
         </div>
     </footer>
 
     <style>
-        /* Reset some basic styles */
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
+        /* Basic reset for body and html */
+        html, body {
+            height: 100%; /* Full height */
+            margin: 0; /* Remove default margin */
+            display: flex; /* Enable flexbox */
+            flex-direction: column; /* Stack children vertically */
         }
 
-        /* Footer styling */
-        .footer {
-            background-color: #343a40; /* Dark background */
-            color: #ffffff; /* White text for contrast */
-            padding: 10px 0;
+        .content {
+            flex: 1; /* Take up remaining space */
+            /* Add styles for your content here */
+        }
+
+        /* Fresh Footer Styling */
+        
+        .footerr {
+            background-color: #0B0F26;
+            color: #F21667; /* Light gray text for contrast */
+            padding-top: 15px;
+            padding-bottom: 1px;
             text-align: center;
-            border-top-left-radius: 25px; /* Rounded corners */
-            border-top-right-radius: 25px;
-            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3); /* Shadow for depth */
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2); /* Softer shadow */
+            border-top: 3px solid #F21667; /* Warm accent border */
+            margin-top: auto; /* Push footer to bottom */
         }
-
        
+        @*
+        footer {
+            background-color: #0B0F26; /* Adjust as needed */
+            color: white; /* Adjust as needed */
+            text-align: center;
+            padding: 1rem 0; /* Adjust padding as needed */
+            margin-top: auto; /* Push footer to bottom */
+        }
+        *@
 
         .footer-content {
-            display: flex; /* Flex layout */
-            flex-direction: column; /* Stack items vertically */
-            align-items: center; /* Center align items */
-            margin-bottom: 10px; /* Space between sections */
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 25px; /* Spacing between elements */
+           margin-bottom: 0px;
+    margin-top: 5px;
         }
 
-        /* Styling the footer link */
+        /* Footer link styling */
         .footer-text {
-            font-size: 20px; /* Font size for the text */
-            font-family: 'Poppins', sans-serif; /* Font family */
-            margin-bottom: 10px; /* Space below text */
+            font-size: 18px;
+            font-family: 'Montserrat', sans-serif; /* Modern, geometric font */
+            font-weight: 600; /* Slightly bolder for emphasis */
         }
 
             .footer-text a {
-                color: blue; /* Green link color */
-                text-decoration: none; /* No underline */
-                padding: 8px 15px; /* Padding for link */
-                border-radius: 5px; /* Rounded button */
-                transition: background-color 0.3s ease; /* Smooth transition */
+                color: white; /* Warm orange accent color */
+                text-decoration: none;
+                padding: 12px 24px; /* More padding for a button-like appearance */
+                border: 2px solid #F21667; /* Bold border */
+                border-radius: 50px; /* Fully rounded button */
+                transition: background-color 0.3s, color 0.3s, border-color 0.3s; /* Smooth transitions */
             }
 
-                /* Hover effect for the footer link */
                 .footer-text a:hover {
-                    background-color: blue; /* Background on hover */
-                    color: white; /* Change text color */
+                    background-color: #F21667; /* Warm background on hover */
+                    color: white; /* Dark text on hover */
+                    border-color: #2a2d34; /* Border change on hover */
                 }
-
-        /* Styling for social media icons */
-        .social-icons {
-            margin-top: 10px; /* Space above icons */
-        }
-
-            .social-icons a {
-                margin: 0 10px; /* Space between icons */
-                transition: transform 0.3s ease; /* Smooth transition for hover effect */
-            }
-
-            .social-icons img {
-                width: 30px; /* Icon size */
-                height: 30px; /* Icon size */
-            }
-
-            /* Hover effect for social icons */
-            .social-icons a:hover {
-                transform: scale(1.1); /* Slight zoom effect */
-            }
 
         /* Footer copyright */
         .footer-copy {
-            font-size: 14px; /* Font size for copyright */
-            margin-top: 10px; /* Space above copyright */
+            font-size: 14px;
+            font-family: 'Montserrat', sans-serif;
+            color: #9ca3af; /* Subtle gray text */
+            margin-top: 0px;
+    margin-bottom: 0px;
         }
     </style>
-
-
 
 
   

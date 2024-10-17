@@ -15,10 +15,10 @@
                 <li class="nav-item">
                     @{
                         var isAllActive = (selectedCategoryId == null) ? "active" : "";
-                        var bgColorAll = (selectedCategoryId == null) ? "#ffb100" : "#ffe86a";
+                            var bgColorAll = (selectedCategoryId == null) ? "#F21667" : "#0f1951";
                     }
                     <a class="nav-link @isAllActive"
-                       style="background-color: @bgColorAll; color: #000; border-radius: 10px 10px 0 0;
+                       style="background-color: @bgColorAll; color: #ffff; border-radius: 10px 10px 0 0;
                               padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
                        href="@Url.Action("Index", new { id = (int?)null })">All</a>
                 </li>
@@ -26,10 +26,10 @@
                 @foreach (var item in categories)
                 {
                     var isActive = (selectedCategoryId == item.ID) ? "active" : "";
-                    var bgColor = (selectedCategoryId == item.ID) ? "#ffb100" : "#ffe86a";
+                        var bgColor = (selectedCategoryId == item.ID) ? "#F21667" : "#0f1951";
                     <li class="nav-item">
                         <a class="nav-link @isActive"
-                           style="background-color: @bgColor; color: #000; border-radius: 10px 10px 0 0;
+                           style="background-color: @bgColor; color: #ffff; border-radius: 10px 10px 0 0;
                                   padding: 8px 20px; font-size: 18px; box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);"
                            href="@Url.Action("Index", new { id = item.ID })">@item.Name</a>
                     </li>
@@ -40,7 +40,7 @@
             <div class="p-0" style="margin-right: 0; margin-left: 0;">
             <div class="card p-3 shadow-sm">
                 <div class="d-flex justify-content-between align-items-center mb-3" style="padding: 25px 13px 0px;">
-                    <h4 class="text-primary fw-bold" style="font-size: 30px;">In Stock</h4>
+                        <h4 class="text-primary fw-bold" style="font-size: 30px; color:#F21667 !important;">In Stock</h4>
                     <a href="/Product/Add" class="btn btn-primary">+ New Product</a>
                 </div>
 
@@ -206,6 +206,11 @@
 
     .mycontainer {
         width: 100%;
+    }
+
+    .btn-primary {
+        background-color: #F21667;
+        border-color: #F21667;
     }
     </style>
 
