@@ -2,6 +2,7 @@
 {
     public interface ICategoryRepository:IRepository<Category>
     {
+        public int GetAllCount();
 
     }
 }

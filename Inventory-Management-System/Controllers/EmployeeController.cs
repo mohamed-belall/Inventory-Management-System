@@ -16,25 +16,26 @@ namespace Inventory_Management_System.Controllers
             List<Employee> employees = employeeRepository.GetAll();
             return View("Index", employees);
         }
+        
+        //[HttpGet]
+        //public IActionResult Add()
+        //{
 
-        [HttpGet]
-        public IActionResult Add()
-        {
-            return View("Add");
-        }
+        //    return View("Add");
+        //}
 
-        [HttpPost]
-        public IActionResult SaveAdd(Employee employeeFromRequest)
-        {
-            if ((employeeFromRequest.FName != null) && (employeeFromRequest.LName != null) && (ModelState.IsValid))
-            {
-                employeeFromRequest.CreatedDate = DateTime.Now;
-                employeeRepository.Add(employeeFromRequest);
-                employeeRepository.Save();
-                return RedirectToAction("Index");
-            }
-            return View("Add");
-        }
+        //[HttpPost]
+        //public IActionResult SaveAdd(Employee employeeFromRequest)
+        //{
+        //    if ((employeeFromRequest.FName != null) && (employeeFromRequest.LName != null) && (ModelState.IsValid))
+        //    {
+        //        employeeFromRequest.CreatedDate = DateTime.Now;
+        //        employeeRepository.Add(employeeFromRequest);
+        //        employeeRepository.Save();
+        //        return RedirectToAction("Index");
+        //    }
+        //    return View("Add");
+        //}
 
         [HttpGet]
         public IActionResult Edit(int id)
@@ -119,7 +120,11 @@ namespace Inventory_Management_System.Controllers
             return View("Error");  // Handle the case where no IDs are passed
         }
 
-
+        int id;
+        public void getid(Employee emp)
+        {
+            id = emp.ID;
+        }
 
         [HttpGet]
         public IActionResult Search(string StringFromRequest)
@@ -130,5 +135,6 @@ namespace Inventory_Management_System.Controllers
             }
             return View("Index", employeeRepository.GetByName(StringFromRequest));
         }
+                
     }
 }

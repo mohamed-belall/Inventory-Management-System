@@ -26,11 +26,13 @@
 
         <div>
             <button class="btn btn-primary">Export to Excel</button>
-            @if (User.IsInRole("Admin"))
+            @if (User.IsInRole("admin"))
             {
                 <a asp-action="Add" asp-controller="Supplier" class="btn btn-success"><i class="fas fa-plus-circle"></i> New Supplier</a>
             }
         </div>
+
+        
     </div>
 
     <table class="table table-bordered text-center mx-auto">

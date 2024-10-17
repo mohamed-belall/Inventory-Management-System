@@ -28,7 +28,10 @@ namespace Inventory_Management_System.Repository.repo
         {
            return applicationDbContext.StartAlerts.ToList();
         }
-
+        public List<int>? GetAllAlertedProductsIds()
+        {
+            return applicationDbContext.StartAlerts.Where(a => a.IsResolved == false).Select(a=>a.ProductId).ToList();
+        }
         public List<StartAlert> GetAlertWithAllData()
         {
             return applicationDbContext.StartAlerts

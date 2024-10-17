@@ -25,7 +25,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             return applicationDbContext.Categories.ToList();
         }
-
+        public int GetAllCount()
+        {
+            return applicationDbContext.Categories.Count();
+        }
         public Category GetById(int id)
         {
             throw new NotImplementedException();

@@ -57,5 +57,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             return context.Employees.Count();
         }
+
+        public int GetLastCreatedEmp()
+        {
+            return context.Employees.OrderByDescending(e => e.ID).FirstOrDefault().ID;
+        }
     }
 }

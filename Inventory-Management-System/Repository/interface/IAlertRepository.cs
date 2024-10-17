@@ -13,5 +13,7 @@ namespace Inventory_Management_System.Repository
         public StartAlert GetByProductId(int id);
 
         public List<StartAlert> GetPendingAlert();
+        public List<int>? GetAllAlertedProductsIds();
+
     }
 }

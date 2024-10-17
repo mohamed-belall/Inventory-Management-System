@@ -4,6 +4,10 @@
     {
         public int GetLastTransactionId();
         public List<TopEmployee> GetTopEmployees();
+        public int GetTrabsactionsCount();
+        public double GetTotalSells();
+        public List<SalesHistory> GetHistorySalesDictionary();
+
 
     }
 }

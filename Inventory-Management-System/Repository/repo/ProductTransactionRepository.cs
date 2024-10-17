@@ -46,7 +46,7 @@ namespace Inventory_Management_System.Repository.repo
                     ProductName = g.FirstOrDefault().Product.Name 
                 })
                 .OrderByDescending(g => g.TotalQuantity)
-                .Take(3)
+                .Take(6)
                 .ToList();
 
             return topProducts;

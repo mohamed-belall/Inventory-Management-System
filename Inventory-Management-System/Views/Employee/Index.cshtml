@@ -160,6 +160,9 @@
                         <th>Phone</th>
                         <th>Email</th>
                         <th>Date Of Creation</th>
+                        <th>Role</th>
+                        <th>Actions</th> <!-- Add this for actions like edit -->
+
                     </tr>
                 </thead>
                 <tbody>
@@ -173,6 +176,11 @@
                             <td>@item?.Phone</td>
                             <td>@item?.Email</td>
                             <td>@item?.CreatedDate</td>
+                            <td>@item?.Role</td>
+                            <td>
+                                <!-- Edit button -->
+                                <a href="/Account/Edit/@item.ID" class="btn btn-warning btn-sm">Edit</a>
+                            </td>
                         </tr>
                     }
                 </tbody>

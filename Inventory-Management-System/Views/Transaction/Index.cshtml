@@ -9,7 +9,7 @@
     var topEmployees = ViewBag.TopEmployees as List<TopEmployee>;
 }
 
-<main role="main" class="pb-3" style="margin-left:70px">
+<div class="container mt-5">
     <div class="container p-0" style="margin-right: 0; margin-left: 0;">
         <div class="card p-3 shadow-sm">
             <div class="d-flex justify-content-between align-items-center mb-3" style="padding: 25px 13px 0px;">
@@ -270,6 +270,28 @@
             });
         });
     </script>
+
+    @if (TempData["PdfPath"] != null)
+    {
+        <script>
+            window.onload = function () {
+                const pdfPath = '@TempData["PdfPath"]';
+                // Trigger PDF download
+                const link = document.createElement('a');
+                link.href = pdfPath;
+                link.download = pdfPath.split('/').pop(); // Extract file name
+                document.body.appendChild(link);
+                link.click();
+                document.body.removeChild(link);
+
+                // Redirect after a short delay to ensure download starts
+                setTimeout(() => {
+                    window.location.href = '/';
+                }, 1000); // 1 second delay
+            };
+        </script>
+    }
+
 </main>
 
 <style>
