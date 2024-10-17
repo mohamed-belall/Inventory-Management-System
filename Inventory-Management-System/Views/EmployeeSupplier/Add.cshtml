@@ -125,14 +125,7 @@
 
                 <!-- Employee Dropdown -->
                 <div class="mb-3">
-                    <label asp-for="EmployeeID"></label>
-                    <select class="form form-control" asp-for="EmployeeID">
-                        <option value="">--Select Employee--</option>
-                        @foreach (var employee in ViewBag.Employeelist)
-                        {
-                            <option value="@employee.ID">@employee.FName @employee.LName</option>
-                        }
-                    </select>
+                    <input asp-for="EmployeeID" value="@ViewBag.EmpId" type="hidden" />
                 </div>
                 <div class="mb-3">
                     <label asp-for="TotalCost"></label>

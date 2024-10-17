@@ -1,6 +1,7 @@
 ﻿using Inventory_Management_System.Models;
 using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 
@@ -13,13 +14,21 @@ namespace Inventory_Management_System.Controllers
         private readonly ISupplierRepository supplierRepository;
         private readonly IEmployeeRepository employeeRepository;
         private readonly IAlertRepository alertRepository;
-        public EmployeeSupplierController(IEmployeeSupplierRepository employeeSupplier, IProductRepository productRepository, ISupplierRepository supplierRepository, IEmployeeRepository employeeRepository, IAlertRepository alertRepository)
+        private readonly UserManager<ApplicationUser> userManager;
+
+        public EmployeeSupplierController(IEmployeeSupplierRepository employeeSupplier,
+                                        IProductRepository productRepository,
+                                        ISupplierRepository supplierRepository,
+                                        IEmployeeRepository employeeRepository,
+                                        IAlertRepository alertRepository,
+                                        UserManager<ApplicationUser> userManager)
         {
             this.employeeSupplierRepository = employeeSupplier;
             this._productRepository = productRepository;
             this.supplierRepository = supplierRepository;
             this.employeeRepository = employeeRepository;
             this.alertRepository = alertRepository;
+            this.userManager = userManager;
         }
         public IActionResult Index()
         {
@@ -62,8 +71,10 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async  Task<IActionResult> Add()
         {
+            var myUser = await userManager.GetUserAsync(User);
+            ViewBag.EmpId = myUser.Employee_id;
             ViewData["Productlist"] = _productRepository.GetAll();
             ViewData["Employeelist"] = employeeRepository.GetAll();
             ViewData["Supplierlist"] = supplierRepository.GetAll();
