@@ -1,4 +1,5 @@
-﻿using Inventory_Management_System.Repository;
+﻿using Inventory_Management_System.Filters;
+using Inventory_Management_System.Repository;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
@@ -17,6 +18,8 @@ namespace Inventory_Management_System.Controllers
             this.categoryRepository = categoryRepository;
             this.supplierRepository = supplierRepository;
         }
+
+        [ServiceFilter(typeof(StockQuantityFilter))]
         public IActionResult Index(int? id)
         {
             List<Product> products ;
@@ -62,7 +65,7 @@ namespace Inventory_Management_System.Controllers
                 product.Name = productWithCategories.Name;
                 product.UnitPrice = productWithCategories.UnitPrice;
                 product.CreatedDate = DateTime.Now;
-                product.StockQuantity = productWithCategories.Quantity;
+                product.StockQuantity = 0;
                 product.ReorderLevel = GlobalVariables.threshold;
                 product.Description = productWithCategories.Description;
                 product.CategoryId = productWithCategories.CategoryId;
@@ -105,6 +108,7 @@ namespace Inventory_Management_System.Controllers
             return View(productWithCategories);
         }
 
+        [ServiceFilter(typeof(StockQuantityFilter))]
         public IActionResult SaveEdit(ProductWithCategoriesViewModel ProductWithCategoriesViewModel) 
         {
             if (ModelState.IsValid)

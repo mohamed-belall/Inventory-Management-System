@@ -15,10 +15,12 @@ namespace Inventory_Management_System
 
             ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             // Add services to the container.
-            builder.Services.AddControllersWithViews(options =>
-            {
-                options.Filters.Add<StockQuantityFilter>();
-            });
+            //builder.Services.AddControllersWithViews(options =>
+            //{
+            //    options.Filters.Add<StockQuantityFilter>();
+            //});
+            builder.Services.AddControllersWithViews();
+
 
             builder.Services.AddScoped<ITransactionRepository, TransactionRepository>();
             builder.Services.AddScoped<IAlertRepository, AlertRepository>();
