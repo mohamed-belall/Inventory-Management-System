@@ -25,11 +25,14 @@ namespace Inventory_Management_System.Controllers
         {
             List<EmployeeSupplier> employeeSuppliers = employeeSupplierRepository.GetAll();
             List<string> productNames = new List<string>();
-            Product product = new Product();
+            Product? product = new Product();
             foreach (var item in employeeSuppliers)
             {
                 product = _productRepository.GetById(item.ProductIdentifier);
-                productNames.Add(product.Name);
+                if (product != null)
+                {
+                    productNames.Add(product.Name);
+                }
             }
 
             ViewBag.Products1 = productNames;

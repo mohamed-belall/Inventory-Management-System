@@ -5,8 +5,10 @@
 }
 
 @model IEnumerable<DashboardCard>
+<body>
 
-<div class="container custom-container mt-4">
+
+<div class=" custom-container mt-4">
     <!-- Apply the custom class here -->
     <div class="row">
         @foreach (var card in Model)
@@ -25,7 +27,7 @@
     </div>
 </div>
 
-<section class="container-fluid mt-5 px-5">
+<div class="container-fluid mt-5 px-5">
     <h1 class="text-center mb-5" style="font-size: 3rem;">Analytics Dashboard</h1>
 
     <!-- Area Chart and Top Rating Employees Row -->
@@ -81,8 +83,9 @@
             </div>
         </div>
     </div>
-</section>
+</div>
 
+    </body>
 <script>
         // Retrieve sales history from ViewBag
         var salesHistory = @Html.Raw(Json.Serialize(ViewBag.SalesHistory)); // Ensure the sales history is serialized
@@ -283,11 +286,11 @@
         margin: 0 auto; /* Center the card */
     }
 
-        /* Hover effect */
-        .custom-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
+    /* Hover effect */
+    .custom-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+    }
 
     /* Adjust the custom card title */
     .custom-card-title {

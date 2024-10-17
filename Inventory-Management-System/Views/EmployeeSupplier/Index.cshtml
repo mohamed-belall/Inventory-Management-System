@@ -22,6 +22,8 @@
 
         .mycontainer {
             width: 100%;
+            /* min-height: 85vh; */
+            background-color: #fff;
             padding: 35px;
         }
 
@@ -84,9 +86,11 @@
         }
 
         .btn-primary {
-            background-color: #6c63ff;
-            border-color: #6c63ff;
+            background-color: #F21667;
+            border-color: #F21667;
         }
+
+        
 
         .btn-outline-primary {
             color: #6c63ff;
@@ -103,7 +107,7 @@
 
         /* Ensure that the content inside the mycontainer takes full height */
         .content {
-            height: 100%;
+           
             overflow-y: auto;
         }
     </style>
@@ -116,12 +120,12 @@
             <!-- First Row: Title and Action Buttons -->
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h2>Receipt</h2>
+                    <h2>Old Receipt</h2>
                 </div>
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
                     <a href="@Url.Action("ExportToExcel", "EmployeeSupplier")" class="btn btn-primary">Export to Excel</a>
-                    <button class="btn btn-outline-primary">Import Orders</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/NewlyCreatedReceipts'">Newly Created Reciepts</button>
                     <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Add'">New Receipt</button>
                 </div>
             </div>
