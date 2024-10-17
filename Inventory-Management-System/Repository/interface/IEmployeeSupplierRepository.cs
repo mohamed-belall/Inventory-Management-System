@@ -4,5 +4,6 @@
     {
         public void DeleteEmployeeSuppliers(List<int> employeeIds);
         public int GetOrdersCount();
+        public EmployeeSupplier GetByDate(DateTime dateTime);
     }
 }

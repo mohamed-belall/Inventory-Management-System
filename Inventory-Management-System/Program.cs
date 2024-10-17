@@ -35,9 +35,11 @@ namespace Inventory_Management_System
             // Add services of Application user and its role
             builder.Services.AddIdentity<ApplicationUser, IdentityRole>(options =>
             {
-                options.Password.RequiredLength = 6;
+                options.Password.RequiredLength = 4;
                 options.Password.RequireNonAlphanumeric = false;
                 options.Password.RequireUppercase = false;
+                options.Password.RequireLowercase = false;
+                options.Password.RequireDigit = false;
             }).AddEntityFrameworkStores<ApplicationDbContext>();
 
 
