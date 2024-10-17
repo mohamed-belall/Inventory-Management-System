@@ -206,7 +206,7 @@ namespace Inventory_Management_System.Controllers
                     worksheet.Cells[rowIndex, 7].Value = status;
 
                     // Apply color based on status
-                    if (alerts[i].IsResolved)
+                    if (!alerts[i].IsResolved)
                     {
                         worksheet.Cells[rowIndex, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                         worksheet.Cells[rowIndex, 7].Style.Fill.BackgroundColor.SetColor(Color.LightGreen);// Blue for Complete
@@ -223,11 +223,10 @@ namespace Inventory_Management_System.Controllers
                         worksheet.Cells[rowIndex, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
                     }
 
-                    // Alternate row colors
                     if (i % 2 == 0)
                     {
-                        worksheet.Cells[rowIndex, 1, rowIndex, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-                        worksheet.Cells[rowIndex, 1, rowIndex, 7].Style.Fill.BackgroundColor.SetColor(Color.LightCyan);
+                        worksheet.Cells[rowIndex, 1, rowIndex, 6].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[rowIndex, 1, rowIndex, 6].Style.Fill.BackgroundColor.SetColor(Color.LightCyan);
                     }
                 }
 

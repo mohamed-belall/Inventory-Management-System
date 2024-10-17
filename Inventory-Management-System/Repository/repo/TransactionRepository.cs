@@ -83,7 +83,7 @@ namespace Inventory_Management_System.Repository.repo
                     EmpName = (e.FirstOrDefault().employee.FName + e.FirstOrDefault().employee.LName),
                     TotalSells = (double)e.Sum(t => (decimal)t.TotalPrice)
                 })
-                .OrderByDescending(e=>e.TotalSells).Take(3).ToList();
+                .OrderByDescending(e=>e.TotalSells).Take(5).ToList();
         }
         public void Save()
         {

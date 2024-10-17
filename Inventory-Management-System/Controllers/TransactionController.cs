@@ -101,7 +101,7 @@ namespace Inventory_Management_System.Controllers
                 .Select(p => p.ProductId).ToList();
             List<Product> products = productRepository.GetByIds(productIds);
 
-            for (int i = 0; i < transactionWithProducts.ProductDetails.Count; i++)
+            for (int i = 0; i < transactionWithProducts.ProductDetails.Count; i++)//decrease quantity from db(update products)
             {
                 if (productIds[i] == products[i].ID)
                 {
@@ -124,6 +124,16 @@ namespace Inventory_Management_System.Controllers
             transactionRepository.Save();
 
             int transactionId = transactionRepository.GetLastTransactionId();
+            for (int i = 0; i < transactionWithProducts.ProductDetails.Count; i++)//add productTransaction record (many to many relation)
+            {
+                ProductTransaction productTransaction = new ProductTransaction();
+                productTransaction.ProductId = productIds[i];
+                productTransaction.TransactionId = transactionId; // realtion with the employee
+                productTransaction.Quantity = transactionWithProducts.ProductDetails[i].Quantity;
+
+                productTransactionRepository.Add(productTransaction);
+                productTransactionRepository.Save();
+            }
 
             // Step 3: Generate PDF with Transaction and Product Data
             string pdfPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "pdfs", $"Transaction_{transactionId}.pdf");
