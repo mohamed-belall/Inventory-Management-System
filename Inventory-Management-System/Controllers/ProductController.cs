@@ -1,5 +1,7 @@
 ﻿using Inventory_Management_System.Repository;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
+using System.Drawing;
 
 namespace Inventory_Management_System.Controllers
 {
@@ -133,5 +135,95 @@ namespace Inventory_Management_System.Controllers
             }
             return View("Edit",ProductWithCategoriesViewModel);
         }
-    }   
+
+        public IActionResult ExportToExcel()
+        {
+            var products = productRepository.GetAll(); // Fetch all products
+
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Products");
+
+                // Set the title with styling
+                var titleCell = worksheet.Cells[1, 1, 1, 7]; // Merge across seven columns
+                titleCell.Merge = true;
+                titleCell.Value = "Products List";
+                titleCell.Style.Font.Color.SetColor(Color.White); // Font color
+                titleCell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid; // Set fill pattern
+                titleCell.Style.Fill.BackgroundColor.SetColor(Color.Blue); // Background color
+                titleCell.Style.Font.Size = 16; // Increase font size
+                titleCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // Center text
+                titleCell.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center; // Center vertically
+                titleCell.Style.Font.Bold = true; // Bold title
+
+                // Set column headers
+                var headerRow = worksheet.Cells[2, 1, 2, 7]; // Set the range for headers
+                headerRow.Style.Font.Bold = true; // Make headers bold
+                headerRow.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                headerRow.Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Header background color
+                headerRow.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin); // Add border
+
+                // Set headers text
+                worksheet.Cells[2, 1].Value = "Product ID";
+                worksheet.Cells[2, 2].Value = "Name";
+                worksheet.Cells[2, 3].Value = "Unit Price";
+                worksheet.Cells[2, 4].Value = "Stock Quantity";
+                worksheet.Cells[2, 5].Value = "Category";
+                worksheet.Cells[2, 6].Value = "Supplier";
+                worksheet.Cells[2, 7].Value = "Level"; // Add the new column for level
+
+                // Fill product data with alternating row colors and borders
+                for (int i = 0; i < products.Count; i++)
+                {
+                    int rowIndex = i + 3; // Starting from the third row
+                    worksheet.Cells[rowIndex, 1].Value = products[i].ID;
+                    worksheet.Cells[rowIndex, 2].Value = products[i].Name;
+                    worksheet.Cells[rowIndex, 3].Value = products[i].UnitPrice;
+                    worksheet.Cells[rowIndex, 4].Value = products[i].StockQuantity;
+                    worksheet.Cells[rowIndex, 5].Value = products[i].category.Name;
+                    worksheet.Cells[rowIndex, 6].Value = products[i].supplier.Name;
+
+                    // Determine the level based on the StockQuantity and ReorderLevel
+                    string level = products[i].StockQuantity >= products[i].ReorderLevel ? "Safe" : "Low";
+                    worksheet.Cells[rowIndex, 7].Value = level;
+
+                    // Set border for each cell in the row
+                    for (int j = 1; j <= 7; j++)
+                    {
+                        worksheet.Cells[rowIndex, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                    }
+
+                    // Alternate row colors
+                    if (i % 2 == 0)
+                    {
+                        worksheet.Cells[rowIndex, 1, rowIndex, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[rowIndex, 1, rowIndex, 7].Style.Fill.BackgroundColor.SetColor(Color.LightCyan);
+                    }
+
+                    // Apply conditional formatting based on the "Level" column (column 7)
+                    if (level == "Safe")
+                    {
+                        worksheet.Cells[rowIndex, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[rowIndex, 7].Style.Fill.BackgroundColor.SetColor(Color.LightGreen); // Green for safe
+                    }
+                    else
+                    {
+                        worksheet.Cells[rowIndex, 7].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[rowIndex, 7].Style.Fill.BackgroundColor.SetColor(Color.LightSalmon); // Red for low
+                    }
+                }
+
+                // AutoFit columns
+                worksheet.Cells.AutoFitColumns();
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                stream.Position = 0;
+
+                var fileName = "Products.xlsx";
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+        }
+
+    }
 }

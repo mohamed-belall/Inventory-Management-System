@@ -38,7 +38,12 @@ namespace Inventory_Management_System.Repository.repo
 
         public EmployeeSupplier GetById(int id)
         {
-            return applicationDbContext.EmployeeSuppliers.FirstOrDefault(e => e.Id == id);
+            return applicationDbContext.EmployeeSuppliers.Include(e => e.Employee).Include(e => e.Supplier).FirstOrDefault(e => e.Id == id);
+        }
+
+        public EmployeeSupplier GetByDate(DateTime dateTime)
+        {
+            return applicationDbContext.EmployeeSuppliers.Include(e => e.Employee).Include(e => e.Supplier).FirstOrDefault(e => e.StartDate == dateTime);
         }
 
         public void Save()

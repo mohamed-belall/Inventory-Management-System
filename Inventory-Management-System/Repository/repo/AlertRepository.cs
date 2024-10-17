@@ -161,7 +161,7 @@ namespace Inventory_Management_System.Repository.repo
 
         public StartAlert GetByProductId(int id)
         {
-            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id && a.IsResolved == false);
+            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id);
         }
 
 

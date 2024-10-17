@@ -120,7 +120,7 @@
                 </div>
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
-                    <button class="btn btn-outline-primary">Export to Excel</button>
+                    <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-primary">Export to Excel</a>
                     <button class="btn btn-outline-primary">Import Orders</button>
                     <button class="btn btn-primary" onclick="window.location.href='/Account/Register'">New Employee</button>
                 </div>
@@ -189,7 +189,7 @@
     </div>
 
     <!-- Hidden form for delete action -->
-    <form id="deleteForm" method="post" asp-action="Delete" asp-controller="Employee">
+    <form id="deleteForm" method="post" asp-action="DeleteSelected" asp-controller="Employee">
         <input type="hidden" name="employeeIds" id="employeeIds" />
     </form>
 
@@ -215,17 +215,26 @@
         });
 
         // Handle the delete button click
-        $('#delete-btn').on('click', function () {
-            const selectedIds = $('.select-item:checked').map(function () {
-                return $(this).val();
-            }).get();
+$('#delete-btn').on('click', function () {
+    // Clear existing hidden inputs for employee IDs
+    $('#deleteForm').find('input[name="employeeIds"]').remove();
 
-            // Set the value of the hidden input to the selected IDs
-            $('#employeeIds').val(selectedIds.join(','));
+    // Get all selected IDs
+    const selectedIds = $('.select-item:checked').map(function () {
+        return $(this).val();
+    }).get();
 
-            // Submit the delete form
-            $('#deleteForm').submit();
-        });
+    // Append a hidden input for each selected ID
+    selectedIds.forEach(function(id) {
+        $('#deleteForm').append('<input type="hidden" name="employeeIds" value="' + id + '" />');
+    });
+
+    // Submit the form if there are selected IDs
+    if (selectedIds.length > 0) {
+        $('#deleteForm').submit();
+    }
+});
+
 
         // Initial call to ensure the delete button is hidden
         toggleDeleteButton();

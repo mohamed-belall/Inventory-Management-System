@@ -1,4 +1,4 @@
-﻿@model EmployeeWithIdListViewModel
+﻿@model EmployeeSupplierWithIdListViewModel
 
 <!DOCTYPE html>
 <html lang="en">
@@ -77,14 +77,19 @@
                 <div class="card-header">
                     <h5 class="text-danger">Item Details</h5>
                 </div>
-                @foreach (var item in Model.Employees)
+                @{
+                    int index1 = 0;
+                }
+                @foreach (var item in Model.employeeSuppliers)
                 {
                     <div class="card-body">
-                        <p><strong>ID:</strong> @item?.ID </p>
-                        <p><strong>Name:</strong> @(item?.FName) @item?.LName</p>
-                        <p><strong>Phone:</strong> @item?.Phone</p>
-                        <p><strong>Email:</strong> @item?.Email</p>
-                        <p><strong>Date Of Creation:</strong> @item?.CreatedDate</p>
+                        <p><strong>ID:</strong> @item?.Id </p>
+                        <p><strong>Employee Name:</strong> @(item?.Employee.FName) @item?Employee.LName</p>
+                        <p><strong>Supplier Name:</strong> @item?.Supplier.Name</p>
+                        <p><strong>Product Name:</strong> @Model?.productNames[index1]</p>
+                        <p><strong>Quantity:</strong> @item?.Quantity</p>
+                        <p><strong>Total Cost:</strong> @item?.TotalCost</p>
+                        <p><strong>Date Of Creation:</strong> @item?.StartDate</p>
                     </div>
                     <hr/>
                 }
@@ -92,13 +97,13 @@
 
             <!-- Action buttons -->
             <div class="mt-3">
-                <form asp-action="DeleteConfirmed" asp-controller="Employee" method="POST">
-                    @foreach (var id in Model.employeeIds)
+                <form asp-action="deleteConfirmed" asp-controller="EmployeeSupplier" method="POST">
+                    @foreach (var id in Model.employeeSupplierIds)
                     {
                         <input type="hidden" name="employeeIds" value="@id" />
                     }
                     <button type="submit" class="btn btn-danger">Confirm Delete</button>
-                    <a href="/Employee/Index" class="btn btn-secondary">Cancel</a>
+                    <a href="/EmployeeSupplier/Index" class="btn btn-secondary">Cancel</a>
                 </form>
 
             </div>
