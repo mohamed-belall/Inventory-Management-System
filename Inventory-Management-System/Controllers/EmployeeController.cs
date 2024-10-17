@@ -1,6 +1,7 @@
 ﻿using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Inventory_Management_System.ViewModel;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
@@ -10,12 +11,17 @@ namespace Inventory_Management_System.Controllers
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository employeeRepository;
-        public EmployeeController(IEmployeeRepository employeeRepository)
+        private readonly UserManager<ApplicationUser> userManager;
+
+        public EmployeeController(IEmployeeRepository employeeRepository, UserManager<ApplicationUser> userManager)
         {
             this.employeeRepository = employeeRepository;
+            this.userManager = userManager;
         }
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
+            var myUser = await userManager.GetUserAsync(User);
+            ViewBag.EmpId = myUser.Employee_id;
             List<Employee> employees = employeeRepository.GetAll();
             return View("Index", employees);
         }

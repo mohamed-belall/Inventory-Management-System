@@ -169,7 +169,14 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td><input type="checkbox" name="employeeIds" value="@item?.ID" class="select-item"></td>
+                            @if(ViewBag.EmpId != item.ID)
+                            {
+                                <td><input type="checkbox" name="employeeIds" value="@item?.ID" class="select-item"></td>
+                            }
+                            else
+                            {
+                                <td></td>
+                            }
                             <td>@item?.ID</td>
                             <td>@item?.FName</td>
                             <td>@item?.LName</td>

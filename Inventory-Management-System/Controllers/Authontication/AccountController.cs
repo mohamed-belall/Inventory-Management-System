@@ -287,7 +287,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             }
 
             employeeRepository.Save();
-            return RedirectToAction("Login", "Account");
+            return RedirectToAction("Index", "Employee");
         }
 
         /**************************** Log in ****************************/
