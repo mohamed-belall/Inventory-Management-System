@@ -1,5 +1,6 @@
 ﻿using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc.Filters;
 
 namespace Inventory_Management_System.Filters
@@ -9,12 +10,14 @@ namespace Inventory_Management_System.Filters
         private readonly IProductRepository productRepository;
         private readonly AlertController alertController;
         private readonly IAlertRepository alertRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
-        public StockQuantityFilter(IProductRepository productRepository,AlertController alertController,IAlertRepository alertRepository)
+        public StockQuantityFilter(IProductRepository productRepository,AlertController alertController,IAlertRepository alertRepository , UserManager<ApplicationUser> userManager)
         {
             this.productRepository = productRepository;
             this.alertController = alertController;
             this.alertRepository = alertRepository;
+            this._userManager = userManager;
         }
 
         public async Task OnActionExecutionAsync(ActionExecutingContext context, ActionExecutionDelegate next)
@@ -25,6 +28,7 @@ namespace Inventory_Management_System.Filters
 
             List<int>? notAlertedProducts = LowProductsIds.Except(alertedProducts).ToList();
 
+            var myUser = await _userManager.GetUserAsync(context.HttpContext.User);
             if (notAlertedProducts != null)
             {
                 foreach (int id in notAlertedProducts)
@@ -34,7 +38,9 @@ namespace Inventory_Management_System.Filters
                     alertWithEmployeesProductViewModel.AlertDate = DateTime.Now;
                     alertWithEmployeesProductViewModel.AlertQuantityLevel = GlobalVariables.threshold * GlobalVariables.AlertFactor;
                     alertWithEmployeesProductViewModel.IsResolved = false;
-                    alertWithEmployeesProductViewModel.EmployeeId = 4;
+
+                   
+                    alertWithEmployeesProductViewModel.EmployeeId = myUser.Employee_id??0; 
                     alertWithEmployeesProductViewModel.ProductId = id;
 
                     alertController.SaveAdd(alertWithEmployeesProductViewModel);

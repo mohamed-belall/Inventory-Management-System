@@ -6,6 +6,7 @@ using iTextSharp.text.pdf;
 using iTextSharp.text;
 using Microsoft.AspNetCore.Mvc;
 using iTextSharp.text.pdf.draw;
+using Microsoft.AspNetCore.Identity;
 
 namespace Inventory_Management_System.Controllers
 {
@@ -15,16 +16,20 @@ namespace Inventory_Management_System.Controllers
         private readonly IProductRepository productRepository;
         private readonly IProductTransactionRepository productTransactionRepository;
         private readonly IEmployeeRepository employeeRepository;
+        private readonly UserManager<ApplicationUser> _userManager;
 
         public TransactionController(ITransactionRepository transactionRepository,
                                     IProductRepository productRepository,
                                     IProductTransactionRepository productTransactionRepository,
-                                    IEmployeeRepository employeeRepository)
+                                    IEmployeeRepository employeeRepository,
+            UserManager<ApplicationUser> userManager
+                            )
         {
             this.transactionRepository = transactionRepository;
             this.productRepository = productRepository;
             this.productTransactionRepository = productTransactionRepository;
             this.employeeRepository = employeeRepository;
+            this._userManager = userManager;
         }
 
         [HttpGet]
@@ -33,12 +38,13 @@ namespace Inventory_Management_System.Controllers
             List<Transaction> transactions = transactionRepository.GetAll();
             ViewBag.TopSellingProducts = productTransactionRepository.GetTopSelling();
             ViewBag.TopEmployees = transactionRepository.GetTopEmployees();
+            
 
             return View("Index", transactions);
         }
 
         [HttpGet]
-        public IActionResult Add()
+        public async Task<IActionResult> Add()
         {
             List<Product> availableProducts = productRepository.GetAllAvailable();
 
@@ -46,12 +52,16 @@ namespace Inventory_Management_System.Controllers
             {
                 AvailableProducts = availableProducts
             };
+            var myUser = await _userManager.GetUserAsync(User);
+            ViewBag.EmpId = myUser.Employee_id;
             return View(transactionWithProducts);
         }
 
         [HttpPost]
-        public IActionResult ShowBill(TransactionWithProducts transactionWithProducts)
+        public async Task<IActionResult> ShowBill(TransactionWithProducts transactionWithProducts)
         {
+            var myUser = await _userManager.GetUserAsync(User);
+            ViewBag.EmpId = myUser.Employee_id;
             if (!ModelState.IsValid)
             {
                 transactionWithProducts.AvailableProducts = productRepository.GetAllAvailable();

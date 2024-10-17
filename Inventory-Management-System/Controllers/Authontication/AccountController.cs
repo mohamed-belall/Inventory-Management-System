@@ -63,7 +63,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                 // Mapping
                 ApplicationUser appUser = new ApplicationUser()
                 {
-                    UserName = registerViewModel.FName +' '+ registerViewModel.LName,
+                    UserName = registerViewModel.FName + registerViewModel.LName,
                     Email = registerViewModel.Email,
                     PasswordHash = registerViewModel.Password,
                 };
