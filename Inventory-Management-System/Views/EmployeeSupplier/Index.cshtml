@@ -130,7 +130,7 @@
                 </div>
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
-                    <button class="btn btn-outline-primary">Export to Excel</button>
+                    <a href="@Url.Action("ExportToExcel", "EmployeeSupplier")" class="btn btn-primary">Export to Excel</a>
                     <button class="btn btn-outline-primary">Import Orders</button>
                     <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Add'">New Receipt</button>
                 </div>

@@ -1,6 +1,8 @@
-﻿using Inventory_Management_System.Repository;
+﻿using Inventory_Management_System.Models;
+using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Mvc;
+using OfficeOpenXml;
 
 namespace Inventory_Management_System.Controllers
 {
@@ -188,5 +190,64 @@ namespace Inventory_Management_System.Controllers
             }
             return View("Error");  // Handle the case where no IDs are passed
         }
+
+        [HttpGet]
+        public IActionResult ExportToExcel()
+        {
+            string FullName;
+            // Fetch the data to export
+            var employeeSuppliers = employeeSupplierRepository.GetAll();
+
+            // Create a new Excel package
+            using (var package = new ExcelPackage())
+            {
+                // Create a worksheet
+                var worksheet = package.Workbook.Worksheets.Add("Employee Suppliers");
+
+                // Add headers
+                worksheet.Cells[1, 1].Value = "ID";
+                worksheet.Cells[1, 2].Value = "Employee Name";
+                worksheet.Cells[1, 3].Value = "Supplier Name";
+                worksheet.Cells[1, 4].Value = "Product Name";
+                worksheet.Cells[1, 5].Value = "Quantity";
+                worksheet.Cells[1, 6].Value = "Total Cost";
+                worksheet.Cells[1, 7].Value = "Start Date";
+
+
+                // Add data to the worksheet
+                for (int i = 0; i < employeeSuppliers.Count; i++)
+                {
+                    var employeeSupplier = employeeSuppliers[i];
+                    // Get the product details
+                    var product = _productRepository.GetById(employeeSupplier.ProductIdentifier);
+                    string productName = product != null ? product.Name : "Product Not Found";
+
+                    worksheet.Cells[i + 2, 1].Value = employeeSupplier.Id;
+                    FullName = employeeSupplier.Employee.FName + "_" + employeeSupplier.Employee.LName;
+                    worksheet.Cells[i + 2, 2].Value = FullName;
+                    worksheet.Cells[i + 2, 3].Value = employeeSupplier.Supplier.Name;
+                    worksheet.Cells[i + 2, 4].Value = productName;
+                    worksheet.Cells[i + 2, 5].Value = employeeSupplier.Quantity;
+                    worksheet.Cells[i + 2, 6].Value = employeeSupplier.TotalCost;
+                    worksheet.Cells[i + 2, 7].Value = employeeSupplier.StartDate.ToString("yyyy-MM-dd");
+                }
+
+                // Format the header
+                using (var range = worksheet.Cells[1, 1, 1, 7])
+                {
+                    range.Style.Font.Bold = true;
+                    range.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                    range.Style.Fill.BackgroundColor.SetColor(System.Drawing.Color.LightGray);
+                }
+
+                // Auto-fit columns for all cells
+                worksheet.Cells.AutoFitColumns();
+
+                // Convert to a byte array and return as a file
+                var fileContents = package.GetAsByteArray();
+                var fileName = "EmployeeSuppliers.xlsx";
+                return File(fileContents, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
+        } 
     }
 }
