@@ -53,27 +53,9 @@
         <!-- Feedback section for item deletion -->
         <div class="alert alert-success" role="alert">
             <h4 class="alert-heading">Employee deleted successfully!</h4>
-            <p>The Employee you selected has been successfully deleted from the system.</p>
+            <p>The Reciept you selected has been successfully deleted from the system.</p>
             <hr>
-            <a href="/Employee/Index" class="btn btn-outline-primary">Return to Employees</a>
-        </div>
-
-        <!-- Optionally, add a table or details view showing the item that was deleted -->
-        <div class="card mt-4">
-            <div class="card-header">
-                <h5>Deleted Employee Details</h5>
-            </div>
-            @foreach (var item in Model)
-            {
-                <div class="card-body">
-                    <p><strong>ID:</strong> @item?.ID </p>
-                    <p><strong>Name:</strong> @(item?.FName) @item?.LName</p>
-                    <p><strong>Phone:</strong> @item?.Phone</p>
-                    <p><strong>Email:</strong> @item?.Email</p>
-                    <p><strong>Date Of Creation:</strong> @item?.CreatedDate</p>
-                </div>
-                <hr />
-            }
+            <a href="/EmployeeSupplier/Index" class="btn btn-outline-primary">Return to Reciept</a>
         </div>
     </div>
 

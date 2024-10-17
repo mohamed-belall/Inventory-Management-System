@@ -1,4 +1,5 @@
-﻿using Inventory_Management_System.Repository;
+﻿using Inventory_Management_System.Models;
+using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,8 +31,30 @@ namespace Inventory_Management_System.Controllers
                 productNames.Add(product.Name);
             }
 
-            ViewBag.Products = productNames;
+            ViewBag.Products1 = productNames;
             return View("Index", employeeSuppliers);
+        }
+        
+        public IActionResult NewlyCreatedReceipts()
+        {
+            List<EmployeeSupplier> suppliers = new List<EmployeeSupplier>();
+            List<string> product_Names = new List<string>();   //save the product name of the receipt
+            EmployeeSupplier? sup = new EmployeeSupplier();
+            List<Product> products = _productRepository.GetAll();
+            foreach (var prod in products)
+            {
+                if (prod.ModifiedDate.HasValue) // Check if ModifiedDate is not null
+                {
+                    sup = employeeSupplierRepository.GetByDate(prod.ModifiedDate.Value);
+                    if (sup != null)
+                    {
+                        suppliers.Add(sup);
+                        product_Names.Add(prod.Name);
+                    }
+                }
+            }
+            ViewBag.Products0 = product_Names;
+            return View("NewlyCreatedReceipts", suppliers);
         }
 
         [HttpGet]
@@ -57,7 +80,7 @@ namespace Inventory_Management_System.Controllers
                     //update product
                     product.StockQuantity += employeeFromRequest.Quantity;
                     product.UnitPrice = (employeeFromRequest.TotalCost/employeeFromRequest.Quantity)*1.05;
-                    product.ModifiedDate = DateTime.Now;
+                    product.ModifiedDate = employeeFromRequest.StartDate;
                     _productRepository.Update(product);
                     _productRepository.Save();
 
@@ -67,7 +90,7 @@ namespace Inventory_Management_System.Controllers
                         if (startAlert != null)
                         {
                             startAlert.IsResolved = true;
-                            startAlert.ResolveDate = DateTime.Now;
+                            startAlert.ResolveDate = employeeFromRequest.StartDate;
                             alertRepository.Update(startAlert);
                             alertRepository.Save();
                         }
@@ -161,10 +184,7 @@ namespace Inventory_Management_System.Controllers
                                         product.StockQuantity -= employeeSupplier.Quantity;
                                     }
                                 }
-                                //update product
-                                product.ModifiedDate = DateTime.Now;
-                                _productRepository.Update(product);
-                                _productRepository.Save();
+
 
                                 
 
@@ -175,18 +195,25 @@ namespace Inventory_Management_System.Controllers
                                     if ((product.StockQuantity > product.ReorderLevel)||(startAlert.IsResolved == false))
                                     {
                                         startAlert.IsResolved = true;
-                                        startAlert.ResolveDate = DateTime.Now;
+                                        startAlert.ResolveDate = employeeFromRequest.StartDate;
                                         alertRepository.Update(startAlert);
                                         alertRepository.Save();
                                     }
-                                    else if ((product.StockQuantity < product.ReorderLevel) || (startAlert.IsResolved == false))
+                                    else if ((product.StockQuantity < product.ReorderLevel) || (startAlert.IsResolved == true))
                                     {
-
+                                        startAlert.IsResolved = false;
+                                        startAlert.ResolveDate = employeeFromRequest.StartDate;
+                                        alertRepository.Update(startAlert);
+                                        alertRepository.Save();
                                     }
 
                                 }
 
                             }
+                            //update product
+                            product.ModifiedDate = employeeSupplier.StartDate;
+                            _productRepository.Update(product);
+                            _productRepository.Save();
 
                         }
                         else
@@ -218,12 +245,16 @@ namespace Inventory_Management_System.Controllers
             return View("Edit", employeeFromRequest);
         }
 
+
         [HttpPost]
         public IActionResult Delete(List<int> employeeIds)
         {
             EmployeeSupplierWithIdListViewModel employeeWithId = new EmployeeSupplierWithIdListViewModel();
             employeeWithId.employeeSuppliers = new List<EmployeeSupplier>();
             employeeWithId.employeeSupplierIds = employeeIds;
+            employeeWithId.productNames = new List<string>();
+            Product product = new Product();
+
             foreach (int id in employeeIds)
             {
                 EmployeeSupplier emp = new EmployeeSupplier();
@@ -231,40 +262,72 @@ namespace Inventory_Management_System.Controllers
                 if (emp != null)
                 {
                     employeeWithId.employeeSuppliers.Add(emp);
+                    product = _productRepository.GetById(emp.ProductIdentifier);
+                    if (product != null)
+                    {
+                        employeeWithId.productNames.Add(product.Name);
+                    }
                 }
             }
             return View("Delete", employeeWithId);
         }
 
-        //[HttpPost]
-        //public IActionResult ddeleteConfirmed(int id)
-        //{
-        //    Employee employee = new Employee();
-        //    employee = employeeSupplierRepository.GetById(id);
-        //    employeeSupplierRepository.Delete(employee);
-        //    employeeSupplierRepository.Save();
-        //    return View("deleteConfirmed", employee);
-        //}
 
         [HttpPost]
         public IActionResult deleteConfirmed(List<int> employeeIds)
         {
-            List<EmployeeSupplier> employeeList = new List<EmployeeSupplier>();
-            foreach (int id in employeeIds)
-            {
-                EmployeeSupplier emp = new EmployeeSupplier();
-                emp = employeeSupplierRepository.GetById(id);
-                if (emp != null)
-                {
-                    employeeList.Add(emp);
-                }
-            }
             // Check the received IDs and perform deletion logic
             if (employeeIds != null && employeeIds.Any())
             {
                 // Example: Delete employees by their IDs from the database
                 employeeSupplierRepository.DeleteEmployeeSuppliers(employeeIds);
-                return View("deleteConfirmed", employeeList);  // Redirect back to the employee list
+                return View("deleteConfirmed");  // Redirect back to the employee list
+            }
+            return View("Error");  // Handle the case where no IDs are passed
+        }
+        
+        [HttpPost]
+        public IActionResult deleteLogicConfirmed(List<int> employeeIds)
+        {
+            EmployeeSupplier? supplier = new EmployeeSupplier();
+            Product? product = new Product();
+            StartAlert? startAlert = new StartAlert();
+            // Check the received IDs and perform deletion logic
+            if (employeeIds != null && employeeIds.Any())
+            {
+                foreach(var item in employeeIds)
+                {
+                    supplier = employeeSupplierRepository.GetById(item);
+                    if(supplier != null)
+                    {
+                        product = _productRepository.GetById(supplier.ProductIdentifier);
+                        if(product != null)
+                        {
+                            if(product.StockQuantity >= supplier.Quantity)
+                            {
+                                product.StockQuantity -= supplier.Quantity;
+                            }
+                            else
+                            {
+                                //error must be held but on consecutive delete the quantity will equal 0
+                                product.StockQuantity = 0;
+                                startAlert = alertRepository.GetByProductId(supplier.ProductIdentifier);
+                                if(startAlert != null)
+                                {
+
+                                }
+                            }
+                            _productRepository.Delete(product);
+                        }
+                        employeeSupplierRepository.Delete(supplier);
+                    }
+                }
+                _productRepository.Save();
+                employeeSupplierRepository.Save();
+
+                // Example: Delete employees by their IDs from the database
+                employeeSupplierRepository.DeleteEmployeeSuppliers(employeeIds);
+                return View("deleteConfirmed");  // Redirect back to the employee list
             }
             return View("Error");  // Handle the case where no IDs are passed
         }

@@ -121,7 +121,7 @@
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
                     <button class="btn btn-outline-primary">Export to Excel</button>
-                    <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/NewlyCreatedReceipts'">Newly Created Reciepts</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Index'">Newly Created Reciepts</button>
                     <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Add'">New Receipt</button>
                 </div>
             </div>
@@ -161,26 +161,31 @@
                         <th>Quantity</th>
                         <th>Total Cost</th>
                         <th>StartDate</th>
+                        <th>Actions</th> <!-- Add this for actions like edit -->
+
                     </tr>
                 </thead>
                 <tbody>
                     @{
-                        int index1 = 0;
+                        int index0 = 0;
                     }
                     @foreach (var item in Model)
                     {
                         <tr>
-                            <td><input type="checkbox" name="employeeIds" value="@item?.Id" class="select-item"></td>
+                            <td><input type="checkbox" name="employeeSupplierIds" value="@item?.Id" class="select-item"></td>
                             <td>@item?.Id</td>
                             <td>@item?.Employee.FName @item?.Employee.LName</td>
                             <td>@item?.Supplier.Name</td>
-                            <td>@ViewBag.Products1[index1]</td>
+                            <td>@ViewBag.Products0[index0]</td>
                             <td>@item?.Quantity</td>
                             <td>@item?.TotalCost</td>
                             <td>@item?.StartDate</td>
-                            <td></td>
+                            <td>
+                                <!-- Edit button -->
+                                <a href="/EmployeeSupplier/Edit/@item.Id" class="btn btn-warning btn-sm">Edit</a>
+                            </td>
                         </tr>
-                        index1++;
+                        index0++;
                     }
                 </tbody>
             </table>

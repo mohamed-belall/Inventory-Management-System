@@ -69,7 +69,7 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpPost]
-        public IActionResult Delete(List<int> employeeIds)
+        public IActionResult DeleteSelected(List<int> employeeIds)
         {
             EmployeeWithIdListViewModel employeeWithId = new EmployeeWithIdListViewModel();
             employeeWithId.Employees = new List<Employee>();
