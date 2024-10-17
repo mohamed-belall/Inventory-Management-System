@@ -213,6 +213,41 @@ namespace Inventory_Management_System.Controllers.Authontication
 
             return View("Edit", editViewModel);
         }
+        /**************************** Delete ****************************/
+
+        [HttpGet]
+        public async Task<IActionResult> Delete(int id)
+        {
+            // Fetch the employee data by ID from the repository
+            var employee = employeeRepository.GetById(id);
+            if (employee == null)
+            {
+                return NotFound();
+            }
+
+            // Fetch roles from the database
+            var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID);
+
+            if (appUser != null)
+            {
+                var result = await userManager.DeleteAsync(appUser);
+                if (!result.Succeeded)
+                {
+                    // Handle the errors (optional)
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error.Description);
+                    }
+                    // Return to the delete confirmation view if there were errors
+                    return View(new DeleteViewModel { EmployeeId = employee.ID, FullName = employee.FName + " " + employee.LName });
+                }
+            }
+
+            employeeRepository.Delete(employee);
+            employeeRepository.Save();
+            return RedirectToAction("Index", "Employee");
+
+        }
 
         /**************************** Log in ****************************/
         public IActionResult Login()

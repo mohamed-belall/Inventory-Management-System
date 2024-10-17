@@ -25,8 +25,8 @@
         </form>
 
         <div>
-            <button class="btn btn-primary">Export to Excel</button>
-            @if (User.IsInRole("admin"))
+            <a href="@Url.Action("ExportToExcel", "Supplier")" class="btn btn-primary">Export to Excel</a>
+            @if (User.IsInRole("Admin"))
             {
                 <a asp-action="Add" asp-controller="Supplier" class="btn btn-success"><i class="fas fa-plus-circle"></i> New Supplier</a>
             }

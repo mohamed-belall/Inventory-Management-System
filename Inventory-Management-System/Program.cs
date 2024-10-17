@@ -1,9 +1,9 @@
-
 using Inventory_Management_System.Filters;
 using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+using OfficeOpenXml;
 
 namespace Inventory_Management_System
 {
@@ -13,6 +13,7 @@ namespace Inventory_Management_System
         {
             var builder = WebApplication.CreateBuilder(args);
 
+            ExcelPackage.LicenseContext = LicenseContext.NonCommercial;
             // Add services to the container.
             builder.Services.AddControllersWithViews(options =>
             {
@@ -67,7 +68,7 @@ namespace Inventory_Management_System
 
             app.MapControllerRoute(
                 name: "default",
-                pattern: "{controller=Account}/{action=Login}/{id?}");
+                pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
         }

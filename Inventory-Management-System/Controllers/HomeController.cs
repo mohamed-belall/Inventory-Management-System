@@ -1,5 +1,6 @@
 using Inventory_Management_System.Models;
 using Inventory_Management_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -7,6 +8,7 @@ namespace Inventory_Management_System.Controllers
 {
     public class HomeController : Controller
     {
+        
         private readonly IProductRepository productRepository;
         private readonly IEmployeeSupplierRepository employeeSupplierRepository;
         private readonly IEmployeeRepository employeeRepository;
@@ -32,6 +34,7 @@ namespace Inventory_Management_System.Controllers
             this.categoryRepository = categoryRepository;
         }
 
+        [Authorize]
         public ActionResult Index()
         {
             var dashboardCards = new List<DashboardCard>
