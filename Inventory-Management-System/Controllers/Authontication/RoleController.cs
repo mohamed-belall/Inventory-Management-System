@@ -1,8 +1,10 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Inventory_Management_System.ViewModel
 {
+    [Authorize(Roles = "Admin")]
     public class RoleController : Controller
     {
         private readonly RoleManager<IdentityRole> roleManager;
@@ -11,6 +13,7 @@ namespace Inventory_Management_System.ViewModel
         {
             this.roleManager = roleManager;
         }
+
         public IActionResult AddRole()
         {
             return View("Add");

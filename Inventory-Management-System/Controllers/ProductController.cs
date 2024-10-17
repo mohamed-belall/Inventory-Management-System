@@ -1,10 +1,12 @@
 ﻿using Inventory_Management_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;

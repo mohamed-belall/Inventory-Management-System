@@ -9,9 +9,11 @@ using iTextSharp.text.pdf.draw;
 using OfficeOpenXml;
 //using System.Drawing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class TransactionController : Controller
     {
         private readonly ITransactionRepository transactionRepository;

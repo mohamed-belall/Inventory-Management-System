@@ -5,7 +5,8 @@ namespace Inventory_Management_System.ViewModel
     public class ChangePasswordViewModel
     {
         [Required(ErrorMessage = "Email is required.")]
-        [Display(Name = "User Name")]
+        [EmailAddress]
+        [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required.")]

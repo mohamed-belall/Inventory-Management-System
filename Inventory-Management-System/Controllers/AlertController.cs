@@ -1,5 +1,6 @@
 ﻿using Inventory_Management_System.Models;
 using Inventory_Management_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
@@ -7,6 +8,7 @@ using System.IO;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class AlertController : Controller
     {
         private readonly IAlertRepository _alertRepo;

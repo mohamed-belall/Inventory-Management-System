@@ -1,12 +1,14 @@
 ﻿using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Inventory_Management_System.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class EmployeeController : Controller
     {
         private readonly IEmployeeRepository employeeRepository;
@@ -144,7 +146,7 @@ namespace Inventory_Management_System.Controllers
                 var worksheet = package.Workbook.Worksheets.Add("Employees");
 
                 // Set the title with styling
-                var titleCell = worksheet.Cells[1, 1, 1, 6]; // Merge across five columns
+                var titleCell = worksheet.Cells[1, 1, 1, 7]; // Merge across five columns
                 titleCell.Merge = true;
                 titleCell.Value = "Employees List";
                 titleCell.Style.Font.Color.SetColor(Color.White); // Font color
@@ -156,7 +158,7 @@ namespace Inventory_Management_System.Controllers
                 titleCell.Style.Font.Bold = true; // Bold title
 
                 // Set column headers
-                var headerRow = worksheet.Cells[2, 1, 2, 6]; // Set the range for headers
+                var headerRow = worksheet.Cells[2, 1, 2, 7]; // Set the range for headers
                 headerRow.Style.Font.Bold = true; // Make headers bold
                 headerRow.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
                 headerRow.Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Header background color (same as supplier export)
@@ -166,9 +168,10 @@ namespace Inventory_Management_System.Controllers
                 worksheet.Cells[2, 1].Value = "Employee ID";
                 worksheet.Cells[2, 2].Value = "First Name";
                 worksheet.Cells[2, 3].Value = "Last Name";
-                worksheet.Cells[2, 4].Value = "Email";
-                worksheet.Cells[2, 5].Value = "Phone";
-                worksheet.Cells[2, 6].Value = "Role";
+                worksheet.Cells[2, 4].Value = "Salary";
+                worksheet.Cells[2, 5].Value = "Email";
+                worksheet.Cells[2, 6].Value = "Phone";
+                worksheet.Cells[2, 7].Value = "Role";
 
                 // Fill employee data with alternating row colors and borders
                 for (int i = 0; i < employees.Count; i++)
@@ -177,12 +180,13 @@ namespace Inventory_Management_System.Controllers
                     worksheet.Cells[rowIndex, 1].Value = employees[i].ID;
                     worksheet.Cells[rowIndex, 2].Value = employees[i].FName;
                     worksheet.Cells[rowIndex, 3].Value = employees[i].LName;
-                    worksheet.Cells[rowIndex, 4].Value = employees[i].Email;
-                    worksheet.Cells[rowIndex, 5].Value = employees[i].Phone;
-                    worksheet.Cells[rowIndex, 6].Value = employees[i].Role;
+                    worksheet.Cells[rowIndex, 4].Value = employees[i].Salary;
+                    worksheet.Cells[rowIndex, 5].Value = employees[i].Email;
+                    worksheet.Cells[rowIndex, 6].Value = employees[i].Phone;
+                    worksheet.Cells[rowIndex, 7].Value = employees[i].Role;
 
                     // Set border for each cell in the row
-                    for (int j = 1; j <= 6; j++)
+                    for (int j = 1; j <= 7; j++)
                     {
                         worksheet.Cells[rowIndex, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
                     }
