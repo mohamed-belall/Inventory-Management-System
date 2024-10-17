@@ -84,8 +84,8 @@
         }
 
         .btn-primary {
-            background-color: #6c63ff;
-            border-color: #6c63ff;
+            background-color: #F21667;
+            border-color: #F21667;
         }
 
         .btn-outline-primary {
@@ -109,20 +109,20 @@
     </style>
 </head>
 
-<body>
+<body >
 
-    <div class="mycontainer-fluid">
+    <div class="mycontainer-fluid" >
         <div class="mycontainer mt-4 content">
             <!-- First Row: Title and Action Buttons -->
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h2>Employee</h2>
+                    <h2 style="color:#F21667 !important;">Employee</h2>
                 </div>
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
                     <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-primary">Export to Excel</a>
                     <button class="btn btn-outline-primary">Import Orders</button>
-                    <button class="btn btn-primary">New Employee</button>
+                    <button class="btn btn-primary" onclick="window.location.href='/Account/Register'">New Employee</button>
                 </div>
             </div>
 
@@ -131,8 +131,8 @@
             <!-- Separate Search Form -->
             <div class="row mb-4">
                 <!-- Second Row: Search and Filters -->
-                <div class="col-md-6">
-                    <form action="/Employee/Search" method="get" class="search-box" id="searchForm">
+                <div class="col-md-6 " >
+                    <form action="/Employee/Search" method="get" class="search-box" id="searchForm" style="background-color:#F21667 !important;">
                         <input type="text" class="search-txt" placeholder="Search employee" id="StringFromRequest" name="StringFromRequest">
                         <button type="submit" class="search-btn">
                             <i class="fa fa-search"></i>

@@ -34,23 +34,41 @@ namespace Inventory_Management_System.Repository.repo
         {
             return _applicationDbContext.ProductTransactions.Where(p => p.ProductId == id).Select(p => p.Quantity).ToList();
         }
+        //public List<TopSellingProduct> GetTopSelling()
+        //{
+        //    List<TopSellingProduct> topProducts = _applicationDbContext.ProductTransactions
+        //        .Include(pt => pt.Product) 
+        //        .GroupBy(pt => pt.ProductId)
+        //        .Select(g => new TopSellingProduct
+        //        {
+        //            ProductId = g.Key,
+        //            TotalQuantity = g.Sum(pt => pt.Quantity),
+        //            ProductName = g.FirstOrDefault().Product.Name 
+        //        })
+        //        .OrderByDescending(g => g.TotalQuantity)
+        //        .Take(6)
+        //        .ToList();
+
+        //    return topProducts;
+        //}
         public List<TopSellingProduct> GetTopSelling()
         {
-            List<TopSellingProduct> topProducts = _applicationDbContext.ProductTransactions
-                .Include(pt => pt.Product) 
+            var topProducts = _applicationDbContext.ProductTransactions
+                .Include(pt => pt.Product)
                 .GroupBy(pt => pt.ProductId)
                 .Select(g => new TopSellingProduct
                 {
                     ProductId = g.Key,
                     TotalQuantity = g.Sum(pt => pt.Quantity),
-                    ProductName = g.FirstOrDefault().Product.Name 
+                    ProductName = g.Select(pt => pt.Product.Name).FirstOrDefault() // safer way to get the name
                 })
                 .OrderByDescending(g => g.TotalQuantity)
-                .Take(6)
+                
                 .ToList();
 
             return topProducts;
         }
+
         public void Save()
         {
             _applicationDbContext.SaveChanges();
