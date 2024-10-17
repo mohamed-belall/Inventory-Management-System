@@ -19,7 +19,7 @@ namespace Inventory_Management_System.Controllers
             List<Employee> employees = employeeRepository.GetAll();
             return View("Index", employees);
         }
-        
+
         //[HttpGet]
         //public IActionResult Add()
         //{
@@ -72,7 +72,7 @@ namespace Inventory_Management_System.Controllers
         //    return View("Edit", employeeFromRequest);
         //}
 
-        //[HttpPost]
+        [HttpPost]
         //public IActionResult DeleteSelected(List<int> employeeIds)
         //{
         //    EmployeeWithIdListViewModel employeeWithId = new EmployeeWithIdListViewModel();
@@ -100,28 +100,28 @@ namespace Inventory_Management_System.Controllers
         //    return View("deleteConfirmed", employee);
         //}
 
-        //[HttpPost]
-        //public IActionResult deleteConfirmed(List<int> employeeIds)
-        //{
-        //    List<Employee> employeeList = new List<Employee>();
-        //    foreach (int id in employeeIds)
-        //    {
-        //        Employee emp = new Employee();
-        //        emp = employeeRepository.GetById(id);
-        //        if (emp != null)
-        //        {
-        //            employeeList.Add(emp);
-        //        }
-        //    }
-        //    // Check the received IDs and perform deletion logic
-        //    if (employeeIds != null && employeeIds.Any())
-        //    {
-        //        // Example: Delete employees by their IDs from the database
-        //        employeeRepository.DeleteEmployees(employeeIds);
-        //        return View("deleteConfirmed", employeeList);  // Redirect back to the employee list
-        //    }
-        //    return View("Error");  // Handle the case where no IDs are passed
-        //}
+        [HttpPost]
+        public IActionResult deleteConfirmed(List<int> employeeIds)
+        {
+            List<Employee> employeeList = new List<Employee>();
+            foreach (int id in employeeIds)
+            {
+                Employee emp = new Employee();
+                emp = employeeRepository.GetById(id);
+                if (emp != null)
+                {
+                    employeeList.Add(emp);
+                }
+            }
+            // Check the received IDs and perform deletion logic
+            if (employeeIds != null && employeeIds.Any())
+            {
+                // Example: Delete employees by their IDs from the database
+                employeeRepository.DeleteEmployees(employeeIds);
+                return View("deleteConfirmed", employeeList);  // Redirect back to the employee list
+            }
+            return View("Error");  // Handle the case where no IDs are passed
+        }
 
         [HttpGet]
         public IActionResult Search(string StringFromRequest)

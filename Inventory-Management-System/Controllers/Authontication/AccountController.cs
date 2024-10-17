@@ -215,38 +215,79 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
         /**************************** Delete ****************************/
 
-        [HttpGet]
-        public async Task<IActionResult> Delete(int id)
+        //[HttpPost]
+        //public async Task<IActionResult> Delete(List<int> employeeIds)
+        //{
+        //    // Fetch the employee data by ID from the repository
+        //    var employee = employeeRepository.GetById(1);
+
+        //    if (employee == null)
+        //    {
+        //        return NotFound();
+        //    }
+
+        //    // Fetch roles from the database
+        //    var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID);
+
+        //    if (appUser != null)
+        //    {
+        //        var result = await userManager.DeleteAsync(appUser);
+        //        if (!result.Succeeded)
+        //        {
+        //            // Handle the errors (optional)
+        //            foreach (var error in result.Errors)
+        //            {
+        //                ModelState.AddModelError("", error.Description);
+        //            }
+        //            // Return to the delete confirmation view if there were errors
+        //            return View(new DeleteViewModel { EmployeeId = employee.ID, FullName = employee.FName + " " + employee.LName });
+        //        }
+        //    }
+
+        //    employeeRepository.Delete(employee);
+        //    employeeRepository.Save();
+        //    return RedirectToAction("Index", "Employee");
+
+        //}
+
+        [HttpPost]
+        public async Task<IActionResult> Delete(List<int> employeeIds)
         {
-            // Fetch the employee data by ID from the repository
-            var employee = employeeRepository.GetById(id);
-            if (employee == null)
+            if (employeeIds == null || employeeIds.Count == 0)
             {
-                return NotFound();
+                // Optionally return an error or redirect if no IDs were selected
+                return RedirectToAction("Index", "Employee");
             }
 
-            // Fetch roles from the database
-            var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID);
-
-            if (appUser != null)
+            foreach (var id in employeeIds)
             {
-                var result = await userManager.DeleteAsync(appUser);
-                if (!result.Succeeded)
+                // Fetch the employee data by ID from the repository
+                var employee = employeeRepository.GetById(id);
+                if (employee != null)
                 {
-                    // Handle the errors (optional)
-                    foreach (var error in result.Errors)
+                    // Fetch roles from the database
+                    var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID);
+
+                    if (appUser != null)
                     {
-                        ModelState.AddModelError("", error.Description);
+                        var result = await userManager.DeleteAsync(appUser);
+                        if (!result.Succeeded)
+                        {
+                            // Handle the errors (optional)
+                            foreach (var error in result.Errors)
+                            {
+                                ModelState.AddModelError("", error.Description);
+                            }
+                        }
                     }
-                    // Return to the delete confirmation view if there were errors
-                    return View(new DeleteViewModel { EmployeeId = employee.ID, FullName = employee.FName + " " + employee.LName });
+
+                    // Delete the employee from the repository
+                    employeeRepository.Delete(employee);
                 }
             }
 
-            employeeRepository.Delete(employee);
             employeeRepository.Save();
-            return RedirectToAction("Index", "Employee");
-
+            return RedirectToAction("Login", "Account");
         }
 
         /**************************** Log in ****************************/
