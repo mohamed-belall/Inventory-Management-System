@@ -15,7 +15,7 @@ namespace Inventory_Management_System.Models
 
 
 
-        public StartAlert startAlert { get; set; }
+        public List<StartAlert>? startAlert { get; set; }
         public int CategoryId { get; set; }
         public Category category { get; set; }
 

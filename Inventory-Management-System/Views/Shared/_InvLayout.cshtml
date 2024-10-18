@@ -34,29 +34,27 @@
 </head>
 <body>
 
-    <!-- Header -->
-    <header class="header" style="background-color: #0B0F26;">
-        <div class="logo-header">
-            <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px; "></i>
-            <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
+   <!-- Header    background: linear-gradient(to left, #0B0F26, #590021, #0b0f26);-->
+<header class="header" style="background:linear-gradient(to left, #0B0F26, #590021);">
+    <div class="logo-header">
+        <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px;"></i>
+        <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
+    </div>
+    <div class="profile">
+
+        <!-- Add this in the appropriate place in your layout file -->
+        <div id="notificationContainer">
+            @await Html.PartialAsync("_NotificationCenterPartial", new List<StartAlert>())
         </div>
-        <div class="profile">
 
+        <img src="~/images/1.png" alt="Profile" class="profile-img">
+        <span class="profile-name">@User.Identity.Name</span>
+    </div>
+</header>
 
-            <!-- Add this in the appropriate place in your layout file -->
-            <div id="notificationContainer">
-                @await Html.PartialAsync("_NotificationCenterPartial", new List<StartAlert>())
-            </div>
-
-
-
-            <img src="~/images/1.png" alt="Profile" class="profile-img">
-            <span class="profile-name">@User.Identity.Name</span>
-        </div>
-    </header>
 
     <!-- Sidebar container -->
-    <div class="sidebar collapsed" id="sidebar" style="background-color: #0B0F26;">
+    <div class="sidebar collapsed" id="sidebar" style="background:linear-gradient(to bottom, #590021, #0B0F26);">
         <!-- Logo and Title -->
         <div class="logo-content">
             <div class="logo">
