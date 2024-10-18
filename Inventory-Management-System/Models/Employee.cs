@@ -13,9 +13,6 @@ namespace Inventory_Management_System.Models
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
         public string Phone { get; set; }
-
-        public int? Salary { get; set; }
-
         public DateTime? CreatedDate { get; set; }
 
         public string Role { get; set; }
