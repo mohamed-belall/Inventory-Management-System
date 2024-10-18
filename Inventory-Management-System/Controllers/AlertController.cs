@@ -22,16 +22,23 @@ namespace Inventory_Management_System.Controllers
             this._productRepo = productRepo;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            List<StartAlert> startAlerts =  _alertRepo.GetAlertWithAllData();
+            List<StartAlert> startAlerts = _alertRepo.GetAlertWithAllData();
 
-          
+            int totalRecords = startAlerts.Count();
+
+            var paginatedAlerts = _alertRepo.GetPagedAlert(page, pageSize);
+
+            ViewBag.TotalRecords = totalRecords;
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+
             ViewBag.status = "";
 
-            return View("index" , startAlerts);
+            return View("Index", paginatedAlerts);
         }
-    
+
         public IActionResult Add()
         {
             AlertWithEmployeesProductViewModel viewModel = new AlertWithEmployeesProductViewModel()

@@ -1,5 +1,5 @@
-﻿@model List<Supplier>
-
+﻿@* @model List<Supplier> *@
+@model SupplierViewModel
 @{
     ViewData["Title"] = "GetAll";
     int index = 1;
@@ -48,7 +48,7 @@
         
     </div>
 
-    <table class="table table-bordered text-center mx-auto">
+    <table class="table table-bordered text-center mx-auto table-striped">
         <thead>
             <tr>
                 @if (User.IsInRole("Admin"))
@@ -69,8 +69,9 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var supplier in Model)
+            @for (int i = 0; i < Model.Suppliers.Count; i++)
             {
+                var supplier = Model.Suppliers[i];
                 <tr>
                     @if (User.IsInRole("Admin"))
                     {
@@ -98,6 +99,28 @@
         </tbody>
     </table>
 </div>
+
+<!-- Pagination Component -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center">
+        <li class="page-item @(Model.CurrentPage == 1 ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage - 1 })" aria-label="Previous">
+                <span aria-hidden="true">&laquo;</span>
+            </a>
+        </li>
+        @for (var i = 1; i <= Model.TotalPages; i++)
+        {
+            <li class="page-item @(i == Model.CurrentPage ? "active" : "")">
+                <a class="page-link" href="@Url.Action("Index", new { page = i })">@i</a>
+            </li>
+        }
+        <li class="page-item @(Model.CurrentPage == Model.TotalPages ? "disabled" : "")">
+            <a class="page-link" href="@Url.Action("Index", new { page = Model.CurrentPage + 1 })" aria-label="Next">
+                <span aria-hidden="true">&raquo;</span>
+            </a>
+        </li>
+    </ul>
+</nav>
 
 <!-- Delete Confirmation Modal -->
 <div class="modal fade" id="deleteModal" tabindex="-1" role="dialog" aria-labelledby="deleteModalLabel" aria-hidden="true">
@@ -139,4 +162,5 @@
         });
     });
 </script>
+
 

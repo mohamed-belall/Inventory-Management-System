@@ -61,5 +61,13 @@ namespace Inventory_Management_System.Repository.repo
             return applicationDbContext.EmployeeSuppliers.Count();
         }
 
+        public List<EmployeeSupplier> GetPagedReceipt(int page, int pageSize)
+        {
+            return applicationDbContext.EmployeeSuppliers
+                            .OrderBy(s => s.Id)
+                            .Skip((page - 1) * pageSize)
+                            .Take(pageSize)
+                            .ToList();
+        }
     }
 }

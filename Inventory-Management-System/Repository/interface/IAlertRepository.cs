@@ -14,6 +14,7 @@ namespace Inventory_Management_System.Repository
 
         public List<StartAlert> GetPendingAlert();
         public List<int>? GetAllAlertedProductsIds();
+        public List<StartAlert> GetPagedAlert(int page, int pageSize);
 
     }
 }

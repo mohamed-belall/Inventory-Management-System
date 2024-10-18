@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
+using iTextSharp.text;
 
 namespace Inventory_Management_System.Controllers
 {
@@ -32,9 +33,10 @@ namespace Inventory_Management_System.Controllers
             this.alertRepository = alertRepository;
             this.userManager = userManager;
         }
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
             List<EmployeeSupplier> employeeSuppliers = employeeSupplierRepository.GetAll();
+
             List<string> productNames = new List<string>();
             Product? product = new Product();
             foreach (var item in employeeSuppliers)
@@ -47,9 +49,18 @@ namespace Inventory_Management_System.Controllers
             }
 
             ViewBag.Products1 = productNames;
-            return View("Index", employeeSuppliers);
+
+
+            ViewBag.TotalRecords = employeeSuppliers.Count;
+            var paginatedEmployeeSuppliers = employeeSupplierRepository.GetPagedReceipt(page, pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+
+            return View("Index", paginatedEmployeeSuppliers);
         }
-        
+
+
         public IActionResult NewlyCreatedReceipts()
         {
             List<EmployeeSupplier> suppliers = new List<EmployeeSupplier>();

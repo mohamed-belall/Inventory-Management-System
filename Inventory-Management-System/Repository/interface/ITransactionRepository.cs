@@ -7,6 +7,7 @@
         public int GetTrabsactionsCount();
         public double GetTotalSells();
         public List<SalesHistory> GetHistorySalesDictionary();
+        public List<Transaction> GetPagedtransaction(int page, int pageSize);
 
 
     }

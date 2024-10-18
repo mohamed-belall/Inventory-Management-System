@@ -20,13 +20,23 @@ namespace Inventory_Management_System.Controllers
             this.employeeRepository = employeeRepository;
             this.userManager = userManager;
         }
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 10)
         {
             var myUser = await userManager.GetUserAsync(User);
             ViewBag.EmpId = myUser.Employee_id;
-            List<Employee> employees = employeeRepository.GetAll();
+
+            // Get total employee count for pagination
+            ViewBag.TotalRecords = employeeRepository.GetAll().Count();
+
+            // Get paginated employee list
+            var employees = employeeRepository.GetPaginatedEmployees(page, pageSize);
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+
             return View("Index", employees);
         }
+
 
         //[HttpGet]
         //public IActionResult Add()

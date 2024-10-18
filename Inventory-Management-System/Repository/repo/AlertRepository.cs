@@ -173,5 +173,17 @@ namespace Inventory_Management_System.Repository.repo
                 .Include(a => a.product)
                 .Where(a => a.IsResolved == false).ToList();
         }
+
+        public List<StartAlert> GetPagedAlert(int page, int pageSize)
+        {
+            return applicationDbContext.StartAlerts
+                            .AsNoTracking()
+                            .Include(a => a.product)
+                            .Include(a => a.employee)
+                            .OrderBy(s => s.ID)
+                            .Skip((page - 1) * pageSize)
+                            .Take(pageSize)
+                            .ToList();
+        }
     }
 }

@@ -4,5 +4,6 @@
     {
         List<Supplier> SearchByName(string name);
         public int GetSupplierCount();
+        public List<Supplier> GetPagedSuppliers(int page, int pageSize);
     }
 }

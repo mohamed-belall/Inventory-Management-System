@@ -20,11 +20,21 @@ namespace Inventory_Management_System.Controllers
             this.supplierRepository = supplierRepository;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
-            var suppliers = supplierRepository.GetAll();
-            return View("Index", suppliers);
+            var suppliers = supplierRepository.GetPagedSuppliers(page, pageSize);
+            int totalSuppliers = supplierRepository.GetSupplierCount(); // Count total suppliers for pagination
+
+            var viewModel = new SupplierViewModel
+            {
+                Suppliers = suppliers,
+                CurrentPage = page,
+                TotalPages = (int)Math.Ceiling((double)totalSuppliers / pageSize)
+            };
+
+            return View(viewModel);
         }
+
 
         public IActionResult Add()
         {

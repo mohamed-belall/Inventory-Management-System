@@ -94,5 +94,14 @@ namespace Inventory_Management_System.Repository.repo
         {
             applicationDbContext.Transactions.Update(entity);
         }
+
+        public List<Transaction> GetPagedtransaction(int page, int pageSize)
+        {
+            return applicationDbContext.Transactions
+                            .OrderBy(s => s.ID)
+                            .Skip((page - 1) * pageSize)
+                            .Take(pageSize)
+                            .ToList();
+        }
     }
 }

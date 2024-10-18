@@ -108,7 +108,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Categories");
+                    b.ToTable("Categories", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Employee", b =>
@@ -147,7 +147,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Employees");
+                    b.ToTable("Employees", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.EmployeeSupplier", b =>
@@ -182,7 +182,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasIndex("SupplierID");
 
-                    b.ToTable("EmployeeSuppliers");
+                    b.ToTable("EmployeeSuppliers", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Product", b =>
@@ -227,7 +227,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasIndex("SupplierId");
 
-                    b.ToTable("Products");
+                    b.ToTable("Products", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.ProductTransaction", b =>
@@ -245,7 +245,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasIndex("TransactionId");
 
-                    b.ToTable("ProductTransactions");
+                    b.ToTable("ProductTransactions", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.StartAlert", b =>
@@ -281,7 +281,7 @@ namespace Inventory_Management_System.Migrations
                     b.HasIndex("ProductId")
                         .IsUnique();
 
-                    b.ToTable("StartAlerts");
+                    b.ToTable("StartAlerts", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Supplier", b =>
@@ -307,7 +307,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasKey("ID");
 
-                    b.ToTable("Suppliers");
+                    b.ToTable("Suppliers", (string)null);
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Transaction", b =>
@@ -337,7 +337,7 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.ToTable("Transactions");
+                    b.ToTable("Transactions", (string)null);
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRole", b =>

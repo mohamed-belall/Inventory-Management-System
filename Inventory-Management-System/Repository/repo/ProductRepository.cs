@@ -99,5 +99,14 @@ namespace Inventory_Management_System.Repository.repo
         {
             return _applicationDbContext.Products.Sum(e => e.StockQuantity);
         }
+
+        public List<Product> GetPaginatedProducts(int pageIndex, int pageSize)
+        {
+            return _applicationDbContext.Products
+                .OrderBy(e => e.ID) // Adjust the ordering based on your needs
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
     }
 }

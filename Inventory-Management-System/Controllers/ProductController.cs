@@ -1,5 +1,7 @@
 ﻿using Inventory_Management_System.Filters;
 using Inventory_Management_System.Repository;
+using Inventory_Management_System.Repository.repo;
+using iTextSharp.text;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
@@ -22,20 +24,36 @@ namespace Inventory_Management_System.Controllers
         }
 
         [ServiceFilter(typeof(StockQuantityFilter))]
-        public IActionResult Index(int? id)
+        public IActionResult Index(int? id, int page = 1, int pageSize = 10) // Default values for page and pageSize
         {
-            List<Product> products ;
-            products = productRepository.GetFilteredByCategory(id).ToList();
+            // Get filtered products based on category ID
+            var filteredProducts = productRepository.GetFilteredByCategory(id);
+
+            // Get total product count for pagination
+            ViewBag.TotalRecords = filteredProducts.Count();
+
+            // Get paginated product list employeeRepository.GetPaginatedEmployees(page, pageSize);
+            var productsPagination = filteredProducts
+                .OrderBy(e => e.ID) // Adjust ordering based on your needs
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
 
             ViewBag.categories = categoryRepository.GetAll().ToList();
             ViewBag.selectedCategoryId = id;
-            return View(products);
+
+            // Pass the paginated products to the view
+            return View(productsPagination);
         }
+
 
         public IActionResult Search(string? name,int? id)
         {
             var products = productRepository.GetFilteredByNameWithCategory(name,id).ToList();
-
+            
             ViewBag.categories = categoryRepository.GetAll().ToList();
             ViewBag.selectedCategoryId = id;
             ViewBag.name = name;

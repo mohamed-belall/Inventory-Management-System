@@ -62,5 +62,15 @@ namespace Inventory_Management_System.Repository.repo
         {
             return context.Employees.OrderByDescending(e => e.ID).FirstOrDefault().ID;
         }
+
+        public List<Employee> GetPaginatedEmployees(int pageIndex, int pageSize)
+        {
+            return context.Employees
+                .OrderBy(e => e.ID) // Adjust the ordering based on your needs
+                .Skip((pageIndex - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
+        }
+
     }
 }

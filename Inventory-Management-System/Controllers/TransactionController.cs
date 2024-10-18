@@ -37,15 +37,23 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Index(int page = 1, int pageSize = 10)
         {
+
             List<Transaction> transactions = transactionRepository.GetAll();
+            ViewBag.TotalRecords = transactions.Count;
+
+            var paginatedTransactions = transactionRepository.GetPagedtransaction(page, pageSize);
+
             ViewBag.TopSellingProducts = productTransactionRepository.GetTopSelling();
             ViewBag.TopEmployees = transactionRepository.GetTopEmployees();
-            
 
-            return View("Index", transactions);
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+
+            return View("Index", paginatedTransactions);
         }
+
 
         [HttpGet]
         public async Task<IActionResult> Add()

@@ -6,5 +6,6 @@
         public void DeleteEmployees(List<int> employeeIds);
         public int GetEmpCount();
         public int GetLastCreatedEmp();
+        public List<Employee> GetPaginatedEmployees(int pageIndex, int pageSize);
     }
 }

@@ -1,4 +1,6 @@
 ﻿
+using Microsoft.EntityFrameworkCore;
+
 namespace Inventory_Management_System.Repository.repo
 {
     public class SupplierRepository : ISupplierRepository
@@ -47,6 +49,15 @@ namespace Inventory_Management_System.Repository.repo
         public int GetSupplierCount()
         {
             return applicationDbContext.Suppliers.Count();
+        }
+
+        public List<Supplier> GetPagedSuppliers(int page, int pageSize)
+        {
+            return applicationDbContext.Suppliers
+                            .OrderBy(s => s.Name)
+                            .Skip((page - 1) * pageSize)
+                            .Take(pageSize)
+                            .ToList();
         }
     }
 }

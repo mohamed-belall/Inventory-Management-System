@@ -11,6 +11,7 @@
         public List<int>? GetLowQuantitesProducts();
         public int GetProductCount();
         public int GetItemsCount();
+        public List<Product> GetPaginatedProducts(int pageIndex, int pageSize);
     }
 
 }
