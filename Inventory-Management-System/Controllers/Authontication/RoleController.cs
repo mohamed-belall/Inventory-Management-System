@@ -19,25 +19,32 @@ namespace Inventory_Management_System.ViewModel
             return View("Add");
         }
 
+        
         [HttpPost]
         public async Task<IActionResult> SaveRole(RoleViewModel RoleViewModel)
         {
-            if(ModelState.IsValid)
+            if (ModelState.IsValid)
             {
-                IdentityRole identityRole = new IdentityRole();
-                identityRole.Name = RoleViewModel.RoleName;
-               IdentityResult result = await roleManager.CreateAsync(identityRole);
-                if(result.Succeeded)
+                IdentityRole identityRole = new IdentityRole
                 {
-                    ViewBag.sucess = true;  
-                    return View("Add");
+                    Name = RoleViewModel.RoleName
+                };
+
+                IdentityResult result = await roleManager.CreateAsync(identityRole);
+
+                if (result.Succeeded)
+                {
+                    TempData["SuccessMessage"] = $"Role '{RoleViewModel.RoleName}' added successfully.";
+                    return View("Add"); 
                 }
-                foreach(var error in  result.Errors)
+
+                foreach (var error in result.Errors)
                 {
                     ModelState.AddModelError("", error.Description);
                 }
             }
             return View("Add", RoleViewModel);
         }
+
     }
 }
