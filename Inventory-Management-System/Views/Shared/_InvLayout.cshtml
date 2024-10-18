@@ -38,7 +38,7 @@
 <header class="header" style="background:linear-gradient(to left, #0B0F26, #590021);">
     <div class="logo-header">
         <i class="fas fa-bars" id="menu-toggle" style="font-size: 30px;"></i>
-        <span class="logo-text" style="margin-left: 30px;">Trainee Management System</span>
+        <span class="logo-text" style="margin-left: 30px;">Inventroy Management System</span>
     </div>
     <div class="profile">
 
@@ -65,7 +65,7 @@
 
         <!-- Navigation links with icons -->
          @if (User.Identity.IsAuthenticated)
- {
+            {
      <!-- Navigation links with icons -->
             <ul class="nav-links">
                 <li>
@@ -134,7 +134,7 @@
                 }
             </ul>
 
- }
+        }
 
         <!-- Log out button -->
         <div class="logout" style="margin-left: 8px; font-size:15px;">
@@ -243,12 +243,6 @@
     margin-bottom: 0px;
         }
     </style>
-
-
-  
-
-
-
 
     <script>
         const toggleButton = document.getElementById('menu-toggle');

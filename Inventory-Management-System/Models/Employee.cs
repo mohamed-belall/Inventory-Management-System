@@ -20,7 +20,7 @@ namespace Inventory_Management_System.Models
 
         public string Role { get; set; }
 
-
+        public int? Salary { get; set; }
         public List<StartAlert>?  startAlerts { get; set; }
 
         public List<Transaction>? transactions { get; set; }

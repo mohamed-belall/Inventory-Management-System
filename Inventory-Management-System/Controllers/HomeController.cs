@@ -6,6 +6,7 @@ using System.Diagnostics;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         
@@ -34,7 +35,7 @@ namespace Inventory_Management_System.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        [Authorize]
+        
         public ActionResult Index()
         {
             var dashboardCards = new List<DashboardCard>
@@ -73,7 +74,7 @@ namespace Inventory_Management_System.Controllers
         }
 
 
-
+        [Authorize]
         public IActionResult OurTeam()
         {
             return View("OurTeam");
