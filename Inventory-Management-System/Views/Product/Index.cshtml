@@ -68,22 +68,23 @@
                         <button class="btn btn-primary" type="submit">Search</button>
                     </form>
 
-                    <div class="dropdown">
-                        <button class="btn btn-light me-2 dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                            <i class="bi bi-funnel me-1"></i>Status
-                        </button>
+                        <div class="dropdown">
+                            <button class="btn btn-light me-2 dropdown-toggle" type="button" id="statusDropdown"
+                                    onclick="toggleDropdown()" aria-expanded="false">
+                                <i class="bi bi-funnel me-1"></i>Status
+                            </button>
 
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('')">All Levels</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Safe')">Safe</a></li>
-                            <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Low')">Low</a></li>
-                        </ul>
+                            <ul class="dropdown-menu" aria-labelledby="statusDropdown" id="statusDropdownMenu">
+                                <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('')">All Levels</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Safe')">Safe</a></li>
+                                <li><a class="dropdown-item" href="#" onclick="submitStatusFilter('Low')">Low</a></li>
+                            </ul>
 
-                        <form asp-action="StatusFilter" asp-controller="Product" method="get" id="filterForm" class="d-none">
-                            <input type="hidden" name="status" id="selectedStatus" />
-                            <input type="hidden" name="id" value="@ViewBag.selectedCategoryId" />
-                        </form>
-                    </div>
+                            <form asp-action="StatusFilter" asp-controller="Product" method="get" id="filterForm" class="d-none">
+                                <input type="hidden" name="status" id="selectedStatus" />
+                                <input type="hidden" name="id" value="@ViewBag.selectedCategoryId" />
+                            </form>
+                        </div>
 
                 </div>
 
@@ -160,6 +161,19 @@
 </body>
 
     <script>
+        function toggleDropdown() {
+            const dropdownMenu = document.getElementById('statusDropdownMenu');
+            const isOpen = dropdownMenu.classList.contains('show');
+
+            // Toggle the 'show' class to control visibility
+            if (isOpen) {
+                dropdownMenu.classList.remove('show');
+            } else {
+                dropdownMenu.classList.add('show');
+            }
+        }
+
+        // Function to submit the status filter form
         function submitStatusFilter(status) {
             document.getElementById('selectedStatus').value = status;
             document.getElementById('filterForm').submit();
@@ -222,5 +236,6 @@
         background-color: #F21667;
         border-color: #F21667;
     }
+
     </style>
 

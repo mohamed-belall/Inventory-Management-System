@@ -1,3 +1,4 @@
+using Inventory_Management_System.Filters;
 using Inventory_Management_System.Models;
 using Inventory_Management_System.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -35,7 +36,7 @@ namespace Inventory_Management_System.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        
+        [ServiceFilter(typeof(StockQuantityFilter))]
         public ActionResult Index()
         {
             var dashboardCards = new List<DashboardCard>
