@@ -93,7 +93,6 @@ namespace Inventory_Management_System.Controllers
 
         //list<products> , empid , quantity , total price
         [HttpPost]
-        [ServiceFilter(typeof(StockQuantityFilter))]
         public IActionResult FinalizeTransaction(TransactionWithProducts transactionWithProducts)
         {
             // Step 1: Fetch Products and Update Stock Quantities
