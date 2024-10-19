@@ -1,5 +1,7 @@
 ﻿
+using Inventory_Management_System.Models;
 using Microsoft.EntityFrameworkCore;
+using System.Collections.Generic;
 
 namespace Inventory_Management_System.Repository.repo
 {
@@ -44,6 +46,16 @@ namespace Inventory_Management_System.Repository.repo
         public EmployeeSupplier GetByDate(DateTime dateTime)
         {
             return applicationDbContext.EmployeeSuppliers.Include(e => e.Employee).Include(e => e.Supplier).FirstOrDefault(e => e.StartDate == dateTime);
+        }
+
+        public EmployeeSupplier GetByProductId(int id)
+        {
+            return applicationDbContext.EmployeeSuppliers.Include(e => e.Employee).Include(e => e.Supplier).FirstOrDefault(e => e.ProductIdentifier == id);
+        }
+
+        public List<EmployeeSupplier> GetAllByProductId(int Id)
+        {
+            return applicationDbContext.EmployeeSuppliers.Include(e => e.Employee).Include(e => e.Supplier).Where(d => d.ProductIdentifier == Id).ToList();
         }
 
         public void Save()

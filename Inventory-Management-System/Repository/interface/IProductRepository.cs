@@ -11,6 +11,7 @@
         public List<int>? GetLowQuantitesProducts();
         public int GetProductCount();
         public int GetItemsCount();
+        public Product GetByName(string name);
     }
 
 }

@@ -59,6 +59,31 @@
             border-radius: 30px;
         }
 
+        /*green button view*/
+        .btn-darkgreen {
+            background-color: #3d953d !important; /* Dark green */
+            color: white;
+            border: none;
+            padding: 7px 20px;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn-darkgreen:hover {
+                background-color: #006400 !important; /* Slightly darker on hover */
+                color: white !important; /* Keep text white on hover */
+            }
+
+            .btn-darkgreen i {
+                margin-left: 10px; /* Space between text and icon */
+                font-size: 18px;
+            }
+        /*green button view*/
+
         /* Search Icon Button */
         .search-btn {
             width: 40px;
@@ -119,9 +144,11 @@
                     <h2 style="color:#F21667 !important;">Employee</h2>
                 </div>
                 <div class="col-md-6 text-end">
-                    <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
-                    <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-primary">Export to Excel</a>
-                    <button class="btn btn-outline-primary">Import Orders</button>
+                    <button id="delete-btn" class="btn btn-danger d-none" >Delete Selected</button>
+                    <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-darkgreen">
+                        Export to Excel
+                        <i class="fas fa-file-excel"></i>
+                    </a>                    
                     <button class="btn btn-primary" onclick="window.location.href='/Account/Register'">New Employee</button>
                 </div>
             </div>
@@ -133,7 +160,7 @@
                 <!-- Second Row: Search and Filters -->
                 <div class="col-md-6 " >
                     <form action="/Employee/Search" method="get" class="search-box" id="searchForm" style="background-color:#F21667 !important;">
-                        <input type="text" class="search-txt" placeholder="Search employee" id="StringFromRequest" name="StringFromRequest">
+                        <input type="text" class="search-txt" placeholder="Employee's First Name" id="StringFromRequest" name="StringFromRequest">
                         <button type="submit" class="search-btn">
                             <i class="fa fa-search"></i>
                         </button>
