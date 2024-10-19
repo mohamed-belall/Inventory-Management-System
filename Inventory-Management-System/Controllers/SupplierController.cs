@@ -1,4 +1,5 @@
 ﻿using Inventory_Management_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
@@ -7,6 +8,7 @@ using System.IO;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class SupplierController : Controller
     {
         private readonly ApplicationDbContext applicationDbContext;
@@ -72,6 +74,7 @@ namespace Inventory_Management_System.Controllers
             return View("Edit", supplier);
         }
 
+        [Authorize(Roles = "Admin")]
         public IActionResult Delete(int id)
         {
             var supplier = supplierRepository.GetById(id);

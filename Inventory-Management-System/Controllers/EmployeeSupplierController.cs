@@ -2,12 +2,14 @@
 using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using OfficeOpenXml;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class EmployeeSupplierController : Controller
     {
         private readonly IProductRepository _productRepository;

@@ -49,6 +49,16 @@ namespace Inventory_Management_System.Data
                 .HasOne(pt => pt.Transaction)
                 .WithMany(t => t.ProductTransactions)
                 .HasForeignKey(pt => pt.TransactionId);
+
+            //// Ensure that ID is the primary key, and ProductId is a foreign key without unique constraint
+            //modelBuilder.Entity<StartAlert>()
+            //    .HasKey(sa => sa.ID); // Ensure ID is the primary key
+
+            //modelBuilder.Entity<StartAlert>()
+            //    .HasOne(sa => sa.product)
+            //    .WithMany(p => p.startAlert) // Assuming Product has a collection of StartAlerts
+            //    .HasForeignKey(sa => sa.ProductId)
+            //    .OnDelete(DeleteBehavior.Restrict); // Optional: Prevent cascade delete
         }
     }
 }

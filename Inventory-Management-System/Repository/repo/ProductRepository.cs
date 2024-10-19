@@ -17,7 +17,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             _applicationDbContext.Products.Add(product);
         }
-
+        public bool CheckExistence(string productName)
+        {
+            return _applicationDbContext.Products.Any(p => p.Name == productName);
+        }
         public void Delete(Product product)
         {
             _applicationDbContext.Products.Remove(product);

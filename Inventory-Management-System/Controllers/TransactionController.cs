@@ -7,11 +7,14 @@ using iTextSharp.text;
 using Microsoft.AspNetCore.Mvc;
 using iTextSharp.text.pdf.draw;
 using OfficeOpenXml;
-//using System.Drawing;
+using System.Drawing;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.IdentityModel.Tokens;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class TransactionController : Controller
     {
         private readonly ITransactionRepository transactionRepository;
@@ -91,7 +94,6 @@ namespace Inventory_Management_System.Controllers
 
         //list<products> , empid , quantity , total price
         [HttpPost]
-        [ServiceFilter(typeof(StockQuantityFilter))]
         public IActionResult FinalizeTransaction(TransactionWithProducts transactionWithProducts)
         {
             // Step 1: Fetch Products and Update Stock Quantities
@@ -147,7 +149,7 @@ namespace Inventory_Management_System.Controllers
                 string iconPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "heartbeat.png");
                 if (System.IO.File.Exists(iconPath))
                 {
-                    Image logo = Image.GetInstance(iconPath);
+                    iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(iconPath);
                     logo.ScaleToFit(50f, 50f);  // Adjust icon size
                     logo.SetAbsolutePosition(pdfDoc.PageSize.Width - 80f, pdfDoc.PageSize.Height - 80f);
                     pdfDoc.Add(logo);
@@ -203,7 +205,7 @@ namespace Inventory_Management_System.Controllers
                 {
                     Colspan = 3,  // Span the first three columns
                     HorizontalAlignment = Element.ALIGN_LEFT,  // Align to the left
-                    Border = Rectangle.NO_BORDER,
+                    Border = iTextSharp.text.Rectangle.NO_BORDER,
                     Padding = 8
                 };
                 table.AddCell(totalCell);
@@ -211,7 +213,7 @@ namespace Inventory_Management_System.Controllers
                 PdfPCell totalValueCell = new PdfPCell(new Phrase($"${grandTotal:F2}", FontFactory.GetFont(FontFactory.HELVETICA, 12)))
                 {
                     HorizontalAlignment = Element.ALIGN_RIGHT,  // Keep total value aligned to the right
-                    Border = Rectangle.NO_BORDER,
+                    Border = iTextSharp.text.Rectangle.NO_BORDER,
                     Padding = 8
                 };
                 table.AddCell(totalValueCell);
@@ -239,12 +241,12 @@ namespace Inventory_Management_System.Controllers
         // Helper Method to Create Table Cells
         private PdfPCell CreateCell(string text, int alignment, bool isHeader = false)
         {
-            Font font = isHeader ? FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12)
+            iTextSharp.text.Font font = isHeader ? FontFactory.GetFont(FontFactory.HELVETICA_BOLD, 12)
                                  : FontFactory.GetFont(FontFactory.HELVETICA, 10);
             return new PdfPCell(new Phrase(text, font))
             {
                 HorizontalAlignment = alignment,
-                Border = Rectangle.BOTTOM_BORDER,
+                Border = iTextSharp.text.Rectangle.BOTTOM_BORDER,
                 Padding = 8,
                 PaddingBottom = 12
             };
@@ -260,99 +262,100 @@ namespace Inventory_Management_System.Controllers
             });
         }
 
-
-        public IActionResult Delete(List<int> selectedIds)// this action for admin only to save history of transaction
+        [HttpGet]
+        public IActionResult ExportToExcel()
         {
-            foreach (var id in selectedIds)
-            {
-                Transaction transaction = transactionRepository.GetById(id);
-                transactionRepository.Delete(transaction);
-                transactionRepository.Save();
-            }
+            var transactions = transactionRepository.GetAll(); // Fetch transactions
 
-            return RedirectToAction("Index");
+            using (var package = new ExcelPackage())
+            {
+                var worksheet = package.Workbook.Worksheets.Add("Transactions");
+
+                // Set the title with styling
+                var titleCell = worksheet.Cells[1, 1, 1, 5]; // Merge across five columns
+                titleCell.Merge = true;
+                titleCell.Value = "Transactions List";
+                titleCell.Style.Font.Color.SetColor(Color.White); // Font color
+                titleCell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid; // Set fill pattern
+                titleCell.Style.Fill.BackgroundColor.SetColor(Color.Blue); // Background color
+                titleCell.Style.Font.Size = 16; // Increase font size
+                titleCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // Center text
+                titleCell.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center; // Center vertically
+                titleCell.Style.Font.Bold = true; // Bold title
+
+                // Set column headers
+                var headerRow = worksheet.Cells[2, 1, 2, 5]; // Set the range for headers
+                headerRow.Style.Font.Bold = true; // Make headers bold
+                headerRow.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                headerRow.Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Header background color
+                headerRow.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin); // Add border
+
+                // Set headers text
+                worksheet.Cells[2, 1].Value = "Transaction ID";
+                worksheet.Cells[2, 2].Value = "Employee Name";
+                worksheet.Cells[2, 3].Value = "Date";
+                worksheet.Cells[2, 4].Value = "Total Price";
+                worksheet.Cells[2, 5].Value = "Transaction Type";
+
+                // Fill transaction data with alternating row colors and borders
+                for (int i = 0; i < transactions.Count; i++)
+                {
+                    int rowIndex = i + 3; // Starting from the third row
+                    var transaction = transactions[i];
+
+                    // Fetch the employee details for the transaction
+                    Employee employee = employeeRepository.GetById(transaction.EmployeeId);
+
+                    worksheet.Cells[rowIndex, 1].Value = transaction.ID;
+                    worksheet.Cells[rowIndex, 2].Value = $"{employee.FName} {employee.LName}";
+                    worksheet.Cells[rowIndex, 3].Value = transaction.Date.ToString("yyyy-MM-dd");
+                    worksheet.Cells[rowIndex, 4].Value = transaction.TotalPrice;
+                    worksheet.Cells[rowIndex, 5].Value = transaction.Type.ToString();
+
+                    // Set border for each cell in the row
+                    for (int j = 1; j <= 5; j++)
+                    {
+                        worksheet.Cells[rowIndex, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
+                    }
+
+                    // Alternate row colors
+                    if (i % 2 == 0)
+                    {
+                        worksheet.Cells[rowIndex, 1, rowIndex, 5].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
+                        worksheet.Cells[rowIndex, 1, rowIndex, 5].Style.Fill.BackgroundColor.SetColor(Color.LightCyan);
+                    }
+                }
+
+                // AutoFit columns
+                worksheet.Cells.AutoFitColumns();
+
+                // Set the width for the first column to prevent overflow
+                worksheet.Column(1).Width = 15; // Set the width for Transaction ID
+
+                var stream = new MemoryStream();
+                package.SaveAs(stream);
+                stream.Position = 0;
+
+                var fileName = "Transactions.xlsx";
+                return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
+            }
         }
 
+        public IActionResult Delete(string selectedIds)// this action for admin only to save history of transaction
+        {
+            if (!string.IsNullOrEmpty(selectedIds))
+            {
+                var ids = selectedIds.Split(',').Select(int.Parse).ToList();
 
-        //[HttpGet]
-        //public IActionResult ExportToExcel()
-        //{
-        //    var transactions = transactionRepository.GetAll(); // Fetch transactions
-
-        //    using (var package = new ExcelPackage())
-        //    {
-        //        var worksheet = package.Workbook.Worksheets.Add("Transactions");
-
-        //        // Set the title with styling
-        //        var titleCell = worksheet.Cells[1, 1, 1, 5]; // Merge across five columns
-        //        titleCell.Merge = true;
-        //        titleCell.Value = "Transactions List";
-        //        titleCell.Style.Font.Color.SetColor(Color.White); // Font color
-        //        titleCell.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid; // Set fill pattern
-        //        titleCell.Style.Fill.BackgroundColor.SetColor(Color.Blue); // Background color
-        //        titleCell.Style.Font.Size = 16; // Increase font size
-        //        titleCell.Style.HorizontalAlignment = OfficeOpenXml.Style.ExcelHorizontalAlignment.Center; // Center text
-        //        titleCell.Style.VerticalAlignment = OfficeOpenXml.Style.ExcelVerticalAlignment.Center; // Center vertically
-        //        titleCell.Style.Font.Bold = true; // Bold title
-
-        //        // Set column headers
-        //        var headerRow = worksheet.Cells[2, 1, 2, 5]; // Set the range for headers
-        //        headerRow.Style.Font.Bold = true; // Make headers bold
-        //        headerRow.Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-        //        headerRow.Style.Fill.BackgroundColor.SetColor(Color.LightGray); // Header background color
-        //        headerRow.Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin); // Add border
-
-        //        // Set headers text
-        //        worksheet.Cells[2, 1].Value = "Transaction ID";
-        //        worksheet.Cells[2, 2].Value = "Employee Name";
-        //        worksheet.Cells[2, 3].Value = "Date";
-        //        worksheet.Cells[2, 4].Value = "Total Price";
-        //        worksheet.Cells[2, 5].Value = "Transaction Type";
-
-        //        // Fill transaction data with alternating row colors and borders
-        //        for (int i = 0; i < transactions.Count; i++)
-        //        {
-        //            int rowIndex = i + 3; // Starting from the third row
-        //            var transaction = transactions[i];
-
-        //            // Fetch the employee details for the transaction
-        //            Employee employee = employeeRepository.GetById(transaction.EmployeeId);
-
-        //            worksheet.Cells[rowIndex, 1].Value = transaction.ID; 
-        //            worksheet.Cells[rowIndex, 2].Value = $"{employee.FName} {employee.LName}";
-        //            worksheet.Cells[rowIndex, 3].Value = transaction.Date.ToString("yyyy-MM-dd"); 
-        //            worksheet.Cells[rowIndex, 4].Value = transaction.TotalPrice; 
-        //            worksheet.Cells[rowIndex, 5].Value = transaction.Type.ToString(); 
-
-        //            // Set border for each cell in the row
-        //            for (int j = 1; j <= 5; j++)
-        //            {
-        //                worksheet.Cells[rowIndex, j].Style.Border.BorderAround(OfficeOpenXml.Style.ExcelBorderStyle.Thin);
-        //            }
-
-        //            // Alternate row colors
-        //            if (i % 2 == 0)
-        //            {
-        //                worksheet.Cells[rowIndex, 1, rowIndex, 5].Style.Fill.PatternType = OfficeOpenXml.Style.ExcelFillStyle.Solid;
-        //                worksheet.Cells[rowIndex, 1, rowIndex, 5].Style.Fill.BackgroundColor.SetColor(Color.LightCyan);
-        //            }
-        //        }
-
-        //        // AutoFit columns
-        //        worksheet.Cells.AutoFitColumns();
-
-        //        // Set the width for the first column to prevent overflow
-        //        worksheet.Column(1).Width = 15; // Set the width for Transaction ID
-
-        //        var stream = new MemoryStream();
-        //        package.SaveAs(stream);
-        //        stream.Position = 0;
-
-        //        var fileName = "Transactions.xlsx";
-        //        return File(stream, "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet", fileName);
-        //    }
-        //}
-
+                foreach (int id in ids)
+                {
+                    Transaction transaction = transactionRepository.GetById(id);
+                    transactionRepository.Delete(transaction);
+                }
+                transactionRepository.Save();
+            }
+            return RedirectToAction("Index");
+        }
 
 
     }

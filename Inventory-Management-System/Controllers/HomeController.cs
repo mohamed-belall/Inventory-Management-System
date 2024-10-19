@@ -1,3 +1,4 @@
+using Inventory_Management_System.Filters;
 using Inventory_Management_System.Models;
 using Inventory_Management_System.Repository;
 using Microsoft.AspNetCore.Authorization;
@@ -6,6 +7,7 @@ using System.Diagnostics;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class HomeController : Controller
     {
         
@@ -34,7 +36,7 @@ namespace Inventory_Management_System.Controllers
             this.categoryRepository = categoryRepository;
         }
 
-        [Authorize]
+        [ServiceFilter(typeof(StockQuantityFilter))]
         public ActionResult Index()
         {
             var dashboardCards = new List<DashboardCard>
@@ -73,7 +75,7 @@ namespace Inventory_Management_System.Controllers
         }
 
 
-
+        [Authorize]
         public IActionResult OurTeam()
         {
             return View("OurTeam");

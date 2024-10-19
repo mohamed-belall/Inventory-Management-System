@@ -1,5 +1,6 @@
 ﻿using Inventory_Management_System.Repository;
 using Inventory_Management_System.Repository.repo;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -26,7 +27,10 @@ namespace Inventory_Management_System.Controllers.Authontication
             this.roleManager = roleManager;
             this.employeeRepository = employeeRepository;
         }
+
         /**************************** Register ****************************/
+        [Authorize(Roles = "Admin")]
+        [HttpGet]
         public async Task<IActionResult> Register()
         {
             // Fetch roles from the database
@@ -45,6 +49,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Register", model);
         }
 
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveRegister(RegisterViewModel registerViewModel)
@@ -121,6 +126,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Edit ****************************/
+        [Authorize(Roles = "Admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -153,7 +159,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Edit", model);
         }
 
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveEdit(EditViewModel editViewModel)
@@ -249,7 +255,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         //    return RedirectToAction("Index", "Employee");
 
         //}
-
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(List<int> employeeIds)
         {
@@ -291,6 +297,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Log in ****************************/
+        [AllowAnonymous]
         public IActionResult Login()
         {
             return View("Login");
@@ -315,23 +322,25 @@ namespace Inventory_Management_System.Controllers.Authontication
                         return RedirectToAction("Index", "Home");
                     }
                 }
-                ModelState.AddModelError("", "UserName or Password are Wrong");
             }
+            ModelState.AddModelError("", "UserName or Password are Wrong");
             return View("Login", loginUserViewModel);
         }
 
         /**************************** Verify Email ****************************/
+        [AllowAnonymous]
         public IActionResult VerifyEmail()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByNameAsync(model.Email);
+                var user = await userManager.FindByEmailAsync(model.Email);
 
                 if (user == null)
                 {
@@ -346,6 +355,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View(model);
         }
 
+        [AllowAnonymous]
         public IActionResult ChangePassword(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -356,11 +366,12 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByNameAsync(model.Email);
+                var user = await userManager.FindByEmailAsync(model.Email);
                 if (user != null)
                 {
                     var result = await userManager.RemovePasswordAsync(user);
@@ -392,6 +403,9 @@ namespace Inventory_Management_System.Controllers.Authontication
                 return View(model);
             }
         }
+
+        /**************************** Verify Email ****************************/
+
 
         /**************************** Sign Out ****************************/
         public async Task<IActionResult> SignOut()

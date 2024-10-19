@@ -4,6 +4,7 @@ using Inventory_Management_System.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 #nullable disable
@@ -11,9 +12,11 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Inventory_Management_System.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20241017192654_EmployeeSalaryAdded")]
+    partial class EmployeeSalaryAdded
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        /// <inheritdoc />
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -278,7 +281,8 @@ namespace Inventory_Management_System.Migrations
 
                     b.HasIndex("EmployeeId");
 
-                    b.HasIndex("ProductId");
+                    b.HasIndex("ProductId")
+                        .IsUnique();
 
                     b.ToTable("StartAlerts");
                 });
@@ -538,8 +542,8 @@ namespace Inventory_Management_System.Migrations
                         .IsRequired();
 
                     b.HasOne("Inventory_Management_System.Models.Product", "product")
-                        .WithMany("startAlert")
-                        .HasForeignKey("ProductId")
+                        .WithOne("startAlert")
+                        .HasForeignKey("Inventory_Management_System.Models.StartAlert", "ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -628,7 +632,8 @@ namespace Inventory_Management_System.Migrations
                 {
                     b.Navigation("ProductTransactions");
 
-                    b.Navigation("startAlert");
+                    b.Navigation("startAlert")
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Inventory_Management_System.Models.Supplier", b =>

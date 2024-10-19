@@ -5,11 +5,19 @@
 }
 
 <!-- Main Container -->
-<div class="container d-flex justify-content-center align-items-center" style="min-height: 100vh;">
+<div class="container d-flex justify-content-center align-items-center" style="min-height: 63vh;">
     <div class="card" style="max-width: 400px; width: 100%; border-radius: 16px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);">
         <div class="card-body">
             <h2 class="card-title text-center mb-4">Add Role</h2>
             <hr />
+
+            <!-- Success Message -->
+            @if (TempData["SuccessMessage"] != null)
+            {
+                <div class="alert alert-success" role="alert">
+                    @TempData["SuccessMessage"]
+                </div>
+            }
 
             <!-- Form Start -->
             <form asp-action="SaveRole" method="post">
@@ -35,5 +43,7 @@
 </div>
 
 @section Scripts {
-    @{ await Html.RenderPartialAsync("_ValidationScriptsPartial"); }
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
 }

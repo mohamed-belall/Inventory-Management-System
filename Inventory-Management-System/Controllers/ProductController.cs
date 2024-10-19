@@ -1,11 +1,13 @@
 ﻿using Inventory_Management_System.Filters;
 using Inventory_Management_System.Repository;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using OfficeOpenXml;
 using System.Drawing;
 
 namespace Inventory_Management_System.Controllers
 {
+    [Authorize]
     public class ProductController : Controller
     {
         private readonly IProductRepository productRepository;
@@ -71,24 +73,36 @@ namespace Inventory_Management_System.Controllers
                 product.CategoryId = productWithCategories.CategoryId;
                 product.SupplierId = productWithCategories.SupplierId;
 
-                productRepository.Add(product);
-                productRepository.Save();
-                return RedirectToAction("Index");
+                if (!productRepository.CheckExistence(product.Name))
+                {
+                    productRepository.Add(product);
+                    productRepository.Save();
+                    return RedirectToAction("Index");
+                }
+                ModelState.AddModelError("", "Product Name Already found");
             }
+            productWithCategories.categories = categoryRepository.GetAll();
+            productWithCategories.suppliers = supplierRepository.GetAll();
             return View("Add",productWithCategories);
         }
         [HttpPost]
-        public IActionResult Delete(List<int> selectedIds)
+        public IActionResult Delete(string selectedIds)
         {
-            
-            foreach (int id in selectedIds)
+            if (!string.IsNullOrEmpty(selectedIds))
             {
-                Product product = productRepository.GetById(id);
-                productRepository.Delete(product);
+                var ids = selectedIds.Split(',').Select(int.Parse).ToList();
+
+                foreach (int id in ids)
+                {
+                    Product product = productRepository.GetById(id);
+                    productRepository.Delete(product);
+                }
                 productRepository.Save();
             }
+
             return RedirectToAction("Index");
         }
+
         public IActionResult Edit(int id)
         {
             Product product = productRepository.GetById(id);
@@ -126,11 +140,18 @@ namespace Inventory_Management_System.Controllers
                     product.ModifiedDate = DateTime.Now;
                     product.ReorderLevel = GlobalVariables.threshold;
 
-                    productRepository.Update(product);
-                    productRepository.Save();
+                    if (!productRepository.CheckExistence(product.Name))
+                    {
+                        productRepository.Update(product);
+                        productRepository.Save();
+                        return RedirectToAction("Index");
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("", "Product Name Already found");
+                        return View("Edit", ProductWithCategoriesViewModel);
+                    }
 
-
-                    return RedirectToAction("Index");
                 }
                 else
                 {

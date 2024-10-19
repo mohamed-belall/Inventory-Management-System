@@ -51,9 +51,12 @@
     <table class="table table-bordered text-center mx-auto">
         <thead>
             <tr>
-                <th scope="col">
-                    <input type="checkbox" id="selectAll" />
-                </th>
+                @if (User.IsInRole("Admin"))
+                {
+                    <th scope="col">
+                        <input type="checkbox" id="selectAll" />
+                    </th>
+                }
                 <th scope="col">Supplier ID</th>
                 <th scope="col">Name</th>
                 <th scope="col">Address</th>
@@ -69,9 +72,12 @@
             @foreach (var supplier in Model)
             {
                 <tr>
-                    <td>
-                        <input type="checkbox" class="selectRow" />
-                    </td>
+                    @if (User.IsInRole("Admin"))
+                    {
+                        <td>
+                            <input type="checkbox" class="selectRow" />
+                        </td>
+                    }
                     <td>@index</td>
                     <td>@supplier.Name</td>
                     <td>@supplier.Address</td>
