@@ -170,6 +170,7 @@
                 <tbody>
                     @{
                         int index1 = 0;
+                        var products1 = ViewBag.Products1 as List<string>; // Assuming Products1 is a List of Product
                     }
                     @foreach (var item in Model)
                     {
@@ -178,7 +179,16 @@
                             <td>@item?.Id</td>
                             <td>@item?.Employee.FName @item?.Employee.LName</td>
                             <td>@item?.Supplier.Name</td>
-                            <td>@ViewBag.Products1[index1]</td>
+                            @{
+                                string displayValue = "--"; // Default value
+
+                                if (products1 != null && index1 >= 0 && index1 < products1.Count)
+                                {
+                                    var product = products1[index1];
+                                    displayValue = product != null ? product.ToString() : "--"; // Check for null and assign the value
+                                }
+                            }
+                            <td>@displayValue</td>
                             <td>@item?.Quantity</td>
                             <td>@item?.TotalCost</td>
                             <td>@item?.StartDate</td>

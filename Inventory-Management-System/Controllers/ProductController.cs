@@ -149,6 +149,9 @@ namespace Inventory_Management_System.Controllers
                     else
                     {
                         ModelState.AddModelError("", "Product Name Already found");
+
+                        ProductWithCategoriesViewModel.categories = categoryRepository.GetAll();
+                        ProductWithCategoriesViewModel.suppliers = supplierRepository.GetAll();
                         return View("Edit", ProductWithCategoriesViewModel);
                     }
 
@@ -158,6 +161,9 @@ namespace Inventory_Management_System.Controllers
                     ModelState.AddModelError("", "Product not found");
                 }
             }
+
+            ProductWithCategoriesViewModel.categories = categoryRepository.GetAll();
+            ProductWithCategoriesViewModel.suppliers = supplierRepository.GetAll();
             return View("Edit",ProductWithCategoriesViewModel);
         }
 
