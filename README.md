@@ -1,7 +1,9 @@
 ### *<h1 align="center">✨Inventory Management System (IMS)✨</h1>*
+The **Inventory Management System (IMS)** is a comprehensive web-based application designed to streamline and manage inventory operations efficiently. Built using the ASP.NET MVC framework, this system enables users to track products, suppliers, and stock levels, while offering features like low-stock alerts to ensure smooth inventory management. The system is intended for businesses of all sizes, allowing them to maintain an organized stock system and prevent shortages or excess.
+<hr>
+
 ![Dashboard](https://github.com/mohamed-belall/Inventory-Management-System/blob/main/ERD/Dashboard.png)
 ![Analytics Dashboard](https://github.com/mohamed-belall/Inventory-Management-System/blob/main/ERD/Dashboard_analysis.png)
-The **Inventory Management System (IMS)** is a comprehensive web-based application designed to streamline and manage inventory operations efficiently. Built using the ASP.NET MVC framework, this system enables users to track products, suppliers, and stock levels, while offering features like low-stock alerts to ensure smooth inventory management. The system is intended for businesses of all sizes, allowing them to maintain an organized stock system and prevent shortages or excess.
 
 ## 🌟*Features*
 
