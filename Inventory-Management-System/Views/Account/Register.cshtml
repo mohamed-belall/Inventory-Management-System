@@ -34,19 +34,25 @@
 
                 <div class="form-group">
                     <label asp-for="Email" class="control-label">Email</label>
-                    <input asp-for="Email" class="form-control" placeholder="Enter your Email" style="border-radius: 10px;" />
+                    <input asp-for="Email" class="form-control" placeholder="Enter Email" style="border-radius: 10px;" />
                     <span asp-validation-for="Email" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
+                    <label asp-for="Salary" class="control-label">Salary</label>
+                    <input asp-for="Salary" class="form-control" placeholder="Enter Salary" style="border-radius: 10px;" />
+                    <span asp-validation-for="Salary" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
                     <label asp-for="Password" class="control-label">Password</label>
-                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter your password" style="border-radius: 10px;" />
+                    <input asp-for="Password" type="password" class="form-control" placeholder="Enter password" style="border-radius: 10px;" />
                     <span asp-validation-for="Password" class="text-danger"></span>
                 </div>
 
                 <div class="form-group">
                     <label asp-for="ConfirmPassword" class="control-label">Confirm Password</label>
-                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Re-enter your password" style="border-radius: 10px;" />
+                    <input asp-for="ConfirmPassword" type="password" class="form-control" placeholder="Re-enter password" style="border-radius: 10px;" />
                     <span asp-validation-for="ConfirmPassword" class="text-danger"></span>
                 </div>
 

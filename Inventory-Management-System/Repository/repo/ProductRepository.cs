@@ -1,4 +1,5 @@
 ﻿
+using Inventory_Management_System.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace Inventory_Management_System.Repository.repo
@@ -101,6 +102,11 @@ namespace Inventory_Management_System.Repository.repo
         public int GetItemsCount()
         {
             return _applicationDbContext.Products.Sum(e => e.StockQuantity);
+        }
+
+        public Product GetByName(string name)
+        {
+            return _applicationDbContext.Products.FirstOrDefault(p => p.Name == name);
         }
     }
 }

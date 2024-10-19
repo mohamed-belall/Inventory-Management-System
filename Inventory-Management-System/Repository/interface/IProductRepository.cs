@@ -12,7 +12,7 @@
         public int GetProductCount();
         public int GetItemsCount();
         public bool CheckExistence(string productName);
-
+        public Product GetByName(string name);
     }
 
 }

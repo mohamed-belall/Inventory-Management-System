@@ -28,12 +28,12 @@ namespace Inventory_Management_System.Controllers
             return View("Index", employees);
         }
 
-        //[HttpGet]
-        //public IActionResult Add()
-        //{
+        [HttpGet]
+        public IActionResult Add()
+        {
 
-        //    return View("Add");
-        //}
+            return View("Add");
+        }
 
         //[HttpPost]
         //public IActionResult SaveAdd(Employee employeeFromRequest)

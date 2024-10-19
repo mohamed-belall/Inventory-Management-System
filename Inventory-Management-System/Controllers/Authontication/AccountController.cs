@@ -88,6 +88,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                         Email = registerViewModel.Email,
                         Phone = registerViewModel.Phone,
                         Role = registerViewModel.Role,
+                        Salary = registerViewModel.Salary,
                         CreatedDate = DateTime.Now
                     };
                     
@@ -96,7 +97,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
 
                     // Create Cookie
-                    await signInManager.SignInAsync(appUser, false);
+                   // await signInManager.SignInAsync(appUser, false);
 
                     var currentUser = await userManager.GetUserAsync(User);
                     if (currentUser != null)
@@ -149,6 +150,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                 Phone = employee.Phone,
                 Email = employee.Email,
                 Role = employee.Role,
+                Salary = employee.Salary,
                 Roles = roles.Select(role => new SelectListItem
                 {
                     Value = role.Name,
@@ -181,6 +183,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                 employee.Phone = editViewModel.Phone;
                 employee.Email = editViewModel.Email;
                 employee.Role = editViewModel.Role;
+                employee.Salary = editViewModel.Salary;
                 employeeRepository.Update(employee);
                 employeeRepository.Save();
 
