@@ -34,7 +34,7 @@ namespace Inventory_Management_System.ViewModel
 
                 if (result.Succeeded)
                 {
-                    TempData["SuccessMessage"] = $"Role '{RoleViewModel.RoleName}' added successfully.";
+                    TempData["SuccessMessage"] = $"The '{RoleViewModel.RoleName}' role has been added successfully!🎉";
                     return View("Add"); 
                 }
 
