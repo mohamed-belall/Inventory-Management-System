@@ -41,17 +41,21 @@
             <div class="card p-3 shadow-sm">
                     <div style="display:flex; justify-content: space-between; align-items: center;">
                         <h4 class="text-primary fw-bold" style="font-size: 30px; color:#F21667 !important;">In Stock</h4>
-                <div class="align-items-center mb-3" style="padding: 25px 13px 0px; justify-content: right; gap: 20px; display:flex;" >
-                    <form id="deleteForm" method="post" action="/Product/Delete" onsubmit="return validateSelection()">
-                        <button type="button" id="deleteButton" class="btn btn-danger" style="display: none;" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                            Delete Selected
-                        </button>
-                    </form>
-                    <a href="@Url.Action("ExportToExcel", "Product")" class="btn btn-primary">Export to Excel</a>
-                    <a href="/Product/Add" class="btn btn-primary">+ New Product</a>
-                </div>
+                        <div class="align-items-center mb-3" style="padding: 25px 13px 0px; justify-content: right; gap: 20px; display:flex;" >
+                                    <form id="deleteForm" method="post" action="/Product/Delete" onsubmit="return validateSelection()">
+                                        <input type="hidden" name="selectedIds" value="" id="selectedIdsField" />
+                                        <button type="button" id="deleteButton" class="btn btn-danger" style="display: none;"
+                                                data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                                            Delete Selected
+                                        </button>
+                                    </form>
 
-                </div>
+
+                            <a href="@Url.Action("ExportToExcel", "Product")" class="btn btn-primary">Export to Excel</a>
+                            <a href="/Product/Add" class="btn btn-primary">+ New Product</a>
+                        </div>
+
+                    </div>
 
                 <hr class="mb-4" style="background-color: #f9f9f9; height: 1px; margin-top: -2px;" />
 
@@ -88,12 +92,7 @@
 
                 </div>
 
-                <form id="deleteForm" method="post" action="/Product/Delete" onsubmit="return validateSelection()">
-@*                     <div class="d-flex justify-content-between align-items-center mb-2">
-                        <button type="button" id="deleteButton" class="btn btn-danger" style="display: none;" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                            Delete Selected
-                        </button>
-                    </div> *@
+
 
                     <div class="table-responsive">
                         <table class="table table-hover text-center">
@@ -137,7 +136,6 @@
                             </tbody>
                         </table>
                     </div>
-                </form>
 
                 <div class="modal fade" id="confirmationModal" tabindex="-1">
                     <div class="modal-dialog">
@@ -161,6 +159,12 @@
 </body>
 
     <script>
+        // Function to submit the status filter form
+        function submitStatusFilter(status) {
+            document.getElementById('selectedStatus').value = status;
+            document.getElementById('filterForm').submit();
+        }
+
         function toggleDropdown() {
             const dropdownMenu = document.getElementById('statusDropdownMenu');
             const isOpen = dropdownMenu.classList.contains('show');
@@ -173,11 +177,6 @@
             }
         }
 
-        // Function to submit the status filter form
-        function submitStatusFilter(status) {
-            document.getElementById('selectedStatus').value = status;
-            document.getElementById('filterForm').submit();
-        }
 
         function toggleSelectAll(source) {
             const checkboxes = document.querySelectorAll('.product-checkbox');
@@ -197,16 +196,30 @@
         }
 
         function validateSelection() {
-            if (!document.querySelector('.product-checkbox:checked')) {
+            const selectedIds = Array.from(document.querySelectorAll('.product-checkbox:checked'))
+                .map(checkbox => checkbox.value);
+
+            if (selectedIds.length === 0) {
                 alert("Please select at least one product to delete.");
                 return false;
             }
+
+            // Set the selected IDs in the hidden input field
+            document.getElementById('selectedIds').value = selectedIds.join(',');
             return true;
         }
 
         document.getElementById('confirmDelete').addEventListener('click', () => {
+            const selectedIds = Array.from(document.querySelectorAll('.product-checkbox:checked'))
+                .map(checkbox => checkbox.value);
+
+            // Set the selected IDs in the hidden input field as a comma-separated string.
+            document.getElementById('selectedIdsField').value = selectedIds.join(',');
+
+            // Submit the form.
             document.getElementById('deleteForm').submit();
         });
+
     </script>
 
     <style>
@@ -238,4 +251,3 @@
     }
 
     </style>
-

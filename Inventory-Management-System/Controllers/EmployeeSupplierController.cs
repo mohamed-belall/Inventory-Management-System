@@ -4,6 +4,7 @@ using Inventory_Management_System.Repository.repo;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 using OfficeOpenXml;
 
 namespace Inventory_Management_System.Controllers
@@ -77,9 +78,8 @@ namespace Inventory_Management_System.Controllers
         {
             var myUser = await userManager.GetUserAsync(User);
             ViewBag.EmpId = myUser.Employee_id;
-            ViewData["Productlist"] = _productRepository.GetAll();
-            ViewData["Employeelist"] = employeeRepository.GetAll();
-            ViewData["Supplierlist"] = supplierRepository.GetAll();
+            ViewBag.Productlist = new SelectList(_productRepository.GetAll(), "ID", "Name");
+            ViewBag.Supplierlist = new SelectList(supplierRepository.GetAll(), "ID", "Name");
             return View("Add");
         }
 
@@ -98,12 +98,13 @@ namespace Inventory_Management_System.Controllers
                     product.StockQuantity += employeeFromRequest.Quantity;
                     product.UnitPrice = (employeeFromRequest.TotalCost/employeeFromRequest.Quantity)*1.05;
                     product.ModifiedDate = employeeFromRequest.StartDate;
+                    product.SupplierId = employeeFromRequest.SupplierID;
                     _productRepository.Update(product);
                     _productRepository.Save();
 
                     if (product.StockQuantity > product.ReorderLevel)
                     {
-                        StartAlert? startAlert = alertRepository.GetByProductId(employeeFromRequest.ProductIdentifier);
+                        StartAlert? startAlert = alertRepository.GetFalseByProductId(employeeFromRequest.ProductIdentifier);
                         if (startAlert != null)
                         {
                             startAlert.IsResolved = true;
@@ -123,10 +124,13 @@ namespace Inventory_Management_System.Controllers
         }
 
         [HttpGet]
-        public IActionResult Edit(int id)
+        public async Task<IActionResult> Edit(int id)
         {
             if (id != null)
             {
+                var myUser = await userManager.GetUserAsync(User);
+                ViewBag.EmpId = myUser.Employee_id;
+
                 EmployeeSupplier employeeSupplier = employeeSupplierRepository.GetById(id);
                 EmployeeSupplierWithSupplierList EmpSupViewModel = new EmployeeSupplierWithSupplierList();
                 
@@ -138,7 +142,7 @@ namespace Inventory_Management_System.Controllers
                 EmpSupViewModel.ProductIdentifier = employeeSupplier.ProductIdentifier;
                 
 
-                EmpSupViewModel.Employees = employeeRepository.GetAll(); ;
+                EmpSupViewModel.Employees = employeeRepository.GetAll();
                 EmpSupViewModel.Suppliers = supplierRepository.GetAll();
                 EmpSupViewModel.Products = _productRepository.GetAll();
 
@@ -154,91 +158,102 @@ namespace Inventory_Management_System.Controllers
         [HttpPost]
         public IActionResult SaveEdit(EmployeeSupplierWithSupplierList employeeFromRequest)
         {
+            DateTime oldDate;
             if (ModelState.IsValid)
             {
                 EmployeeSupplier? employeeSupplier = employeeSupplierRepository.GetById(employeeFromRequest.Id);
                 if (employeeSupplier != null)
                 {
-                    //date updated
+
+                    //Save old date then update it
+                    oldDate = employeeSupplier.StartDate;
                     employeeSupplier.StartDate = DateTime.Now;
 
                     //if there was a change in the product
-                    if ((employeeSupplier.Quantity != employeeFromRequest.Quantity) || (employeeSupplier.TotalCost != employeeFromRequest.TotalCost))
+                    Product? product = _productRepository.GetById(employeeFromRequest.ProductIdentifier);
+                    if (product != null)
                     {
-                        Product? product = _productRepository.GetById(employeeFromRequest.ProductIdentifier);
-                        if (product != null)
+                        //if there was a change in the unit cost
+                        if (employeeSupplier.TotalCost != employeeFromRequest.TotalCost)
                         {
-                            //if there was a change in the unit cost
-                            if (employeeSupplier.TotalCost != employeeFromRequest.TotalCost)
+                            product.UnitPrice = (employeeFromRequest.TotalCost / employeeFromRequest.Quantity) * 1.05;
+                            employeeSupplier.TotalCost = employeeFromRequest.TotalCost;
+                        }
+                        //if there was a change in the Quantity
+                        //            old                            new
+                        if (employeeSupplier.Quantity != employeeFromRequest.Quantity)
+                        {
+                            //the user increases the quantity
+                            if(employeeFromRequest.Quantity > employeeSupplier.Quantity)
                             {
-                                product.UnitPrice = (employeeFromRequest.TotalCost / employeeFromRequest.Quantity) * 1.05;
-                                employeeSupplier.TotalCost = employeeFromRequest.TotalCost;
+                                product.StockQuantity += (employeeFromRequest.Quantity - employeeSupplier.Quantity);
+                                employeeSupplier.Quantity = employeeFromRequest.Quantity;
                             }
-                            //if there was a change in the Quantity
-                            //            old                            new
-                            if (employeeSupplier.Quantity != employeeFromRequest.Quantity)
+                            //the user decreases the quantity
+                            else
                             {
-                                //the user increases the quantity
-                                if(employeeFromRequest.Quantity > employeeSupplier.Quantity)
+                                if (((employeeFromRequest.Quantity - employeeSupplier.Quantity) + product.StockQuantity) > 0)
                                 {
+                                    //the ordered quantity were large by mistake but can be retreived
                                     product.StockQuantity += (employeeFromRequest.Quantity - employeeSupplier.Quantity);
                                     employeeSupplier.Quantity = employeeFromRequest.Quantity;
                                 }
-                                //the user decreases the quantity
                                 else
                                 {
-                                    if (((employeeFromRequest.Quantity - employeeSupplier.Quantity) + product.StockQuantity) > 0)
-                                    {
-                                        //the ordered quantity were large by mistake but can be retreived
-                                        product.StockQuantity += (employeeFromRequest.Quantity - employeeSupplier.Quantity);
-                                        employeeSupplier.Quantity = employeeFromRequest.Quantity;
-                                    }
-                                    else
-                                    {
-                                        //the ordered quantity were large by mistake but they where already sold
-                                        //you can only edit the quantity to what only was left
-                                        employeeSupplier.Quantity = (employeeSupplier.Quantity - product.StockQuantity);
-                                        product.StockQuantity -= employeeSupplier.Quantity;
-                                    }
+                                    //the ordered quantity were large by mistake but they where already sold
+                                    //you can only edit the quantity to what only was left
+                                    employeeSupplier.Quantity = (employeeSupplier.Quantity - product.StockQuantity);
+                                    product.StockQuantity -= employeeSupplier.Quantity;
                                 }
+                            }
 
 
-                                
 
-                                StartAlert? startAlert = alertRepository.GetByProductId(employeeFromRequest.ProductIdentifier);
+
+
+                            //Check if quantity less than the threshold and alert
+                            //           new quantity          threshold
+                            if (product.StockQuantity > product.ReorderLevel)
+                            {
+                                StartAlert? startAlert = alertRepository.GetFalseByProductId(employeeFromRequest.ProductIdentifier);
                                 if (startAlert != null)
                                 {
-                                    //Check if quantity less than the threshold and alert
-                                    if ((product.StockQuantity > product.ReorderLevel)||(startAlert.IsResolved == false))
-                                    {
-                                        startAlert.IsResolved = true;
-                                        startAlert.ResolveDate = employeeFromRequest.StartDate;
-                                        alertRepository.Update(startAlert);
-                                        alertRepository.Save();
-                                    }
-                                    else if ((product.StockQuantity < product.ReorderLevel) || (startAlert.IsResolved == true))
-                                    {
-                                        startAlert.IsResolved = false;
-                                        startAlert.ResolveDate = employeeFromRequest.StartDate;
-                                        alertRepository.Update(startAlert);
-                                        alertRepository.Save();
-                                    }
-
+                                    startAlert.IsResolved = true;
+                                    startAlert.ResolveDate = employeeSupplier.StartDate;
+                                    alertRepository.Update(startAlert);
+                                    alertRepository.Save();
                                 }
-
                             }
-                            //update product
-                            product.ModifiedDate = employeeSupplier.StartDate;
-                            _productRepository.Update(product);
-                            _productRepository.Save();
+                            //             new quantity             threshold
+                            else
+                            {
+                                StartAlert? startAlert = alertRepository.GetByProductIdAndDate(employeeFromRequest.ProductIdentifier, oldDate);
+                                if (startAlert != null)
+                                {
+                                    startAlert.IsResolved = false;
+                                    startAlert.ResolveDate = null;
+                                    alertRepository.Update(startAlert);
+                                    alertRepository.Save();
+                                }
+                            }
+
+                            
 
                         }
-                        else
-                        {
-                            ModelState.AddModelError("", "Product not found");
-                        }
+
+                        product.SupplierId = employeeFromRequest.SupplierID;
+                        //update product
+                        product.ModifiedDate = employeeSupplier.StartDate;
+                        _productRepository.Update(product);
+                        _productRepository.Save();
 
                     }
+                    else
+                    {
+                        ModelState.AddModelError("", "Product not found");
+                    }
+
+                    
 
                     
 
@@ -322,31 +337,72 @@ namespace Inventory_Management_System.Controllers
                         {
                             if(product.StockQuantity >= supplier.Quantity)
                             {
+                                //stock quantity will be less than threshold after delete
                                 product.StockQuantity -= supplier.Quantity;
+                                startAlert = alertRepository.GetByProductIdAndDate(supplier.ProductIdentifier, supplier.StartDate);
+                                if (startAlert != null)
+                                {
+                                    if(product.StockQuantity < product.ReorderLevel)
+                                    {
+                                        startAlert.IsResolved = false;
+                                        startAlert.ResolveDate = null;
+                                        alertRepository.Update(startAlert);
+                                    }
+                                }
                             }
                             else
                             {
                                 //error must be held but on consecutive delete the quantity will equal 0
+                                //we force the user to not delete from what was already sold
                                 product.StockQuantity = 0;
-                                startAlert = alertRepository.GetByProductId(supplier.ProductIdentifier);
+                                startAlert = alertRepository.GetByProductIdAndDate(supplier.ProductIdentifier, supplier.StartDate);
                                 if(startAlert != null)
                                 {
-
+                                    startAlert.IsResolved = false;
+                                    startAlert.ResolveDate = null;
+                                    alertRepository.Update(startAlert);
                                 }
                             }
-                            _productRepository.Delete(product);
+                            _productRepository.Update(product);
                         }
                         employeeSupplierRepository.Delete(supplier);
                     }
                 }
+
+                //Save changes
+                alertRepository.Save();
                 _productRepository.Save();
                 employeeSupplierRepository.Save();
 
                 // Example: Delete employees by their IDs from the database
-                employeeSupplierRepository.DeleteEmployeeSuppliers(employeeIds);
+                //employeeSupplierRepository.DeleteEmployeeSuppliers(employeeIds);
                 return View("deleteConfirmed");  // Redirect back to the employee list
             }
             return View("Error");  // Handle the case where no IDs are passed
+        }
+
+        [HttpGet]
+        public IActionResult Search(string StringFromRequest)
+        {
+            if (StringFromRequest == null)
+            {
+                return RedirectToAction("Index");
+            }
+
+            Product product = _productRepository.GetByName(StringFromRequest);
+
+            List<EmployeeSupplier> employeeSuppliers = new List<EmployeeSupplier>();
+            employeeSuppliers = employeeSupplierRepository.GetAllByProductId(product.ID);
+
+            List<string> Names = new List<string>();
+
+            for (int i = 0; i < employeeSuppliers.Count; i++)
+            {
+                Names.Add(product.Name);
+            }
+
+            ViewBag.Products1 = Names;
+            return View("Index", employeeSuppliers);
         }
 
         [HttpGet]

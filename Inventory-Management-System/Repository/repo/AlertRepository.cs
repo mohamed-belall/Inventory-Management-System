@@ -159,9 +159,9 @@ namespace Inventory_Management_System.Repository.repo
             }
         }
 
-        public StartAlert GetByProductId(int id)
+        public StartAlert GetFalseByProductId(int id)
         {
-            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id);
+            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id && a.IsResolved == false);
         }
 
 
@@ -172,6 +172,11 @@ namespace Inventory_Management_System.Repository.repo
                 .AsNoTracking()
                 .Include(a => a.product)
                 .Where(a => a.IsResolved == false).ToList();
+        }
+
+        public StartAlert GetByProductIdAndDate(int id, DateTime date)
+        {
+            return applicationDbContext.StartAlerts.FirstOrDefault(a => a.ProductId == id && a.ResolveDate == date);
         }
     }
 }

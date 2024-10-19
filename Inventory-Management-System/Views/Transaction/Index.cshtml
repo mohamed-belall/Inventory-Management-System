@@ -13,11 +13,22 @@
 <div class="container mt-5">
     <div class="container p-0" style="margin-right: 0; margin-left: 0;">
         <div class="card p-3 shadow-sm">
-            <div class="d-flex justify-content-between align-items-center mb-3" style="padding: 25px 13px 0px;">
-                <h4 class="text-primary fw-bold" style="font-size: 30px;">Transactions</h4>
-                <a href="@Url.Action("ExportToExcel", "Transaction")" class="btn btn-primary">Export to Excel</a>
-                <a href="/Transaction/Add" class="btn btn-primary">+ New Transaction</a>
+            <div style="display: flex; justify-content: space-between; align-items: center;">
+                <h4 class="text-primary fw-bold" style="font-size: 30px; color: #F21667 !important;">Transactions</h4>
+                <div class="align-items-center mb-3" style="padding: 25px 13px 0px; justify-content: right; gap: 20px; display: flex;">
+                    <form id="deleteForm" method="post" action="/Transaction/Delete" onsubmit="return validateSelection()">
+                        <input type="hidden" name="selectedIds" value="" id="selectedIdsField" />
+                        <button type="button" id="deleteButton" class="btn btn-danger" style="display: none;"
+                                data-bs-toggle="modal" data-bs-target="#confirmationModal">
+                            Delete Selected
+                        </button>
+                    </form>
+
+                    <a href="@Url.Action("ExportToExcel", "Transaction")" class="btn btn-primary">Export to Excel</a>
+                    <a href="/Transaction/Add" class="btn btn-primary">+ New Transaction</a>
+                </div>
             </div>
+
 
             <hr class="mb-4" style="background-color: #f9f9f9; height: 1px; margin-top: -2px;" />
 
@@ -44,47 +55,38 @@
                 </div>
             </div>
 
-            <form id="deleteForm" method="post" action="/Transaction/Delete" onsubmit="return validateSelection()">
-                <div class="d-flex justify-content-between align-items-center mb-2">
-                    <button type="button" id="deleteButton" class="btn btn-danger" style="display: none;" data-bs-toggle="modal" data-bs-target="#confirmationModal">
-                        Delete Selected
-                    </button>
-                </div>
-
-                <div class="table-responsive">
-                    <table class="table table-hover text-center">
-                        <thead>
-                            <tr>
-                                <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" /></th>
-                                <th>ID</th>
-                                <th>Date</th>
-                                <th>Transaction Type</th>
-                                <th>Total Price</th>
-                                <th>Actions</th>
+            <div class="table-responsive">
+                <table class="table table-hover text-center">
+                    <thead>
+                        <tr>
+                            <th><input type="checkbox" id="selectAll" onchange="toggleSelectAll(this)" /></th>
+                            <th>ID</th>
+                            <th>Date</th>
+                            <th>Transaction Type</th>
+                            <th>Total Price</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var transaction in Model)
+                        {
+                            <tr onclick="toggleCheckbox(this)">
+                                <td><input type="checkbox" class="product-checkbox" name="selectedIds" value="@transaction.ID" onclick="event.stopPropagation();" /></td>
+                                <td>@iterator</td>
+                                <td>@transaction.Date</td>
+                                <td>@transaction.Type</td>
+                                <td>@transaction.TotalPrice.ToString("C")</td>
+                                <td>
+                                    <a href="" class="btn btn-outline-secondary btn-sm">
+                                        <i class="bi bi-pencil-square"></i>
+                                    </a>
+                                </td>
                             </tr>
-                        </thead>
-                        <tbody>
-                            @foreach (var transaction in Model)
-                            {
-                                <tr onclick="toggleCheckbox(this)">
-                                    <td><input type="checkbox" class="product-checkbox" name="selectedIds" value="@transaction.ID" onclick="event.stopPropagation();" /></td>
-                                    <td>@iterator</td>
-                                    <td>@transaction.Date</td>
-                                    <td>@transaction.Type</td>
-                                    <td>@transaction.TotalPrice.ToString("C")</td>
-                                    <td>
-                                        <a href="" class="btn btn-outline-secondary btn-sm">
-                                            <i class="bi bi-pencil-square"></i>
-                                        </a>
-                                    </td>
-                                </tr>
-                                iterator++;
-                            }
-                        </tbody>
-                    </table>
-                </div>
-               
-            </form>
+                            iterator++;
+                        }
+                    </tbody>
+                </table>
+            </div>
             @*
 
             <!-- Top Selling Products Section -->
@@ -245,35 +247,49 @@
         }
 
         function validateSelection() {
-            if (!document.querySelector('.product-checkbox:checked')) {
+            const selectedIds = Array.from(document.querySelectorAll('.product-checkbox:checked'))
+                .map(checkbox => checkbox.value);
+
+            if (selectedIds.length === 0) {
                 alert("Please select at least one product to delete.");
                 return false;
             }
+
+            // Set the selected IDs in the hidden input field.
+            document.getElementById('selectedIdsField').value = selectedIds.join(',');
             return true;
         }
 
         document.getElementById('confirmDelete').addEventListener('click', () => {
+            const selectedIds = Array.from(document.querySelectorAll('.product-checkbox:checked'))
+                .map(checkbox => checkbox.value);
+
+            // Set the selected IDs in the hidden input field.
+            document.getElementById('selectedIdsField').value = selectedIds.join(',');
+
+            // Submit the form.
             document.getElementById('deleteForm').submit();
         });
 
         $(document).ready(function () {
-            // Initialize datepicker and bind it to the input
+            // Initialize the datepicker.
             $('#datepicker-input').datepicker({
                 format: 'yyyy-mm-dd',
                 autoclose: true,
                 todayHighlight: true
             });
 
-            // Show the datepicker when the button is clicked
+            // Show the datepicker when the button is clicked.
             $('#datepicker-btn').on('click', function () {
                 $('#datepicker-input').datepicker('show');
             });
 
-            // Optional: Handle date selection (bind selected date to the input)
+            // Handle the date selection event.
             $('#datepicker-input').on('changeDate', function (e) {
-                console.log('Selected date:', e.format()); // Logs selected date
+                console.log('Selected date:', e.format()); // Logs the selected date.
             });
         });
+
     </script>
 
     @if (TempData["PdfPath"] != null)

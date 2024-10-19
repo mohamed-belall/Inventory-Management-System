@@ -47,6 +47,42 @@
             justify-content: space-between;
         }
 
+        /*green button view*/
+        .btn-darkgreen {
+            background-color: #3d953d !important; /* Dark green */
+            color: white;
+            border: none;
+            padding: 7px 20px;
+            font-size: 16px;
+            display: inline-flex;
+            align-items: center;
+            cursor: pointer;
+            border-radius: 5px;
+            text-decoration: none;
+        }
+
+            .btn-darkgreen:hover {
+                background-color: #006400 !important; /* Slightly darker on hover */
+                color: white !important; /* Keep text white on hover */
+            }
+
+            .btn-darkgreen i {
+                margin-left: 10px; /* Space between text and icon */
+                font-size: 18px;
+            }
+        /*green button view*/
+
+        .btn-primarycreated {
+            color: white !important; /* Keep text white on hover */
+            background-color: #F21667;
+            border-color: #F21667;
+        }
+
+        .btn-primarycreated:hover {
+                background-color: #0062CC;
+                border-color: #0062CC;
+        }
+
         /* Input Field */
         .search-txt {
             width: 80%;
@@ -116,12 +152,15 @@
             <!-- First Row: Title and Action Buttons -->
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h2>Receipt</h2>
+                    <h2 style="color:#F21667; !important;">Editable Receipt</h2>
                 </div>
                 <div class="col-md-6 text-end">
                     <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
-                    <button class="btn btn-outline-primary">Export to Excel</button>
-                    <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Index'">Old Receipts</button>
+                    <a href="@Url.Action("ExportToExcel", "Employee")" class="btn btn-darkgreen">
+                        Export to Excel
+                        <i class="fas fa-file-excel"></i>
+                    </a>
+                    <button class="btn btn-primarycreated" onclick="window.location.href='/EmployeeSupplier/Index'">All Receipts</button>
                     <button class="btn btn-primary" onclick="window.location.href='/EmployeeSupplier/Add'">New Receipt</button>
                 </div>
             </div>
@@ -132,8 +171,8 @@
             <div class="row mb-4">
                 <!-- Second Row: Search and Filters -->
                 <div class="col-md-6">
-                    <form action="#" method="get" class="search-box" id="searchForm">
-                        <input type="text" class="search-txt" placeholder="Search employee" id="StringFromRequest" name="StringFromRequest">
+                    <form action="/EmployeeSupplier/Search" method="get" class="search-box" id="searchForm" style="background-color:#F21667 !important;">
+                        <input type="text" class="search-txt" placeholder="Search by Products" id="StringFromRequest" name="StringFromRequest">
                         <button type="submit" class="search-btn">
                             <i class="fa fa-search"></i>
                         </button>
