@@ -404,6 +404,9 @@ namespace Inventory_Management_System.Controllers.Authontication
             }
         }
 
+        /**************************** Verify Email ****************************/
+
+
         /**************************** Sign Out ****************************/
         public async Task<IActionResult> SignOut()
         {

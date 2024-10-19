@@ -11,6 +11,8 @@
         public List<int>? GetLowQuantitesProducts();
         public int GetProductCount();
         public int GetItemsCount();
+        public bool CheckExistence(string productName);
+
     }
 
 }
