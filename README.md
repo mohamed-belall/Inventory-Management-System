@@ -88,10 +88,10 @@ The **Inventory Management System (IMS)** is a comprehensive web-based applicati
 
 ## 🧑‍💻Authors
 
-- [@Mohammed Hassan]()
-- [@Mohammed Belal]()
-- [@Mohammed Hazem]()
-- [@Mohammed Alaa]()
+- [@Mohammed Hassan](https://www.linkedin.com/in/mohammed-bder/)
+- [@Mohammed Belal](https://www.linkedin.com/in/mohamed-belall/)
+- [@Mohammed Hazem](https://www.linkedin.com/in/mohamed-hazem-1bb4b1231/)
+- [@Mohammed Alaa](https://www.linkedin.com/in/mohamed-gad-eng/)
 
 ## 📝Feedback
 
