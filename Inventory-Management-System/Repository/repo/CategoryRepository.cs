@@ -13,12 +13,12 @@ namespace Inventory_Management_System.Repository.repo
 
         public void Add(Category entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Add(entity);
         }
 
         public void Delete(Category entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Remove(entity);
         }
 
         public List<Category> GetAll()
@@ -31,17 +31,17 @@ namespace Inventory_Management_System.Repository.repo
         }
         public Category GetById(int id)
         {
-            throw new NotImplementedException();
+            return applicationDbContext.Categories.FirstOrDefault(e => e.ID == id);
         }
 
         public void Save()
         {
-            throw new NotImplementedException();
+            applicationDbContext.SaveChanges();
         }
 
         public void Update(Category entity)
         {
-            throw new NotImplementedException();
+            applicationDbContext.Update(entity);
         }
     }
 }
