@@ -14,6 +14,7 @@ namespace Inventory_Management_System.ViewModel
         public string LName { get; set; }
 
         public string Phone { get; set; }
+        public int? Salary { get; set; }
 
         [EmailAddress]
         [DataType(DataType.EmailAddress)]
