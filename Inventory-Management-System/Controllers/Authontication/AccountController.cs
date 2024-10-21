@@ -97,7 +97,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
 
                     // Create Cookie
-                   // await signInManager.SignInAsync(appUser, false);
+                    await signInManager.SignInAsync(appUser, false);
 
                     var currentUser = await userManager.GetUserAsync(User);
                     if (currentUser != null)
@@ -300,20 +300,18 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Log in ****************************/
-        [AllowAnonymous]
         public IActionResult Login()
         {
             return View("Login");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveLogin(LoginUserViewModel loginUserViewModel)
         {
             if (ModelState.IsValid)
             {
                 // check found
-                ApplicationUser appUser = await userManager.FindByNameAsync(loginUserViewModel.UserName);
+                var appUser = await userManager.FindByNameAsync(loginUserViewModel.UserName);
                 if (appUser != null)
                 {
                     // check his password
@@ -331,14 +329,12 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Verify Email ****************************/
-        [AllowAnonymous]
         public IActionResult VerifyEmail()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)
@@ -358,7 +354,6 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View(model);
         }
 
-        [AllowAnonymous]
         public IActionResult ChangePassword(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -369,7 +364,6 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -411,6 +405,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
 
         /**************************** Sign Out ****************************/
+        [Authorize]
         public async Task<IActionResult> SignOut()
         {
             await signInManager.SignOutAsync();
