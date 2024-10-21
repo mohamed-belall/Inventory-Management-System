@@ -140,7 +140,7 @@ namespace Inventory_Management_System.Controllers
                     product.ModifiedDate = DateTime.Now;
                     product.ReorderLevel = GlobalVariables.threshold;
 
-                    if (!productRepository.CheckExistence(product.Name))
+                    if (productRepository.CheckExistenceNameForEdit(product.Name))
                     {
                         productRepository.Update(product);
                         productRepository.Save();
