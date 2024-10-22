@@ -29,8 +29,8 @@ The **Inventory Management System (IMS)** is a comprehensive web-based applicati
 - **JavaScript**: For enhancing interactivity and client-side functionality.
 - **LINQ**: For querying data.
 - **ASP.NET Identity**: For user authentication and role management.
-- **EPPlus**: For exporting data to Excel files.
-
+- **EPPlus Package**: For exporting data to Excel files.
+- **iTextSharp Package**: For reading and manipulating PDF documents programmatically.
 ## 📖*Usage*
 * ## 📊Dashboard
     * **Interactive Cards**: Dynamic content with icons, values, hover effects, and "More Info" buttons.
