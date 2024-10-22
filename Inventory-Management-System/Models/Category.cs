@@ -10,6 +10,6 @@ namespace Inventory_Management_System.Models
         public string? Description { get; set; }
 
 
-        public List<Product> products { get; set; }
+        public List<Product>? products { get; set; }
     }
 }

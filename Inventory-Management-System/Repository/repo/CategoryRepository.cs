@@ -43,5 +43,32 @@ namespace Inventory_Management_System.Repository.repo
         {
             applicationDbContext.Update(entity);
         }
+
+        public void DeleteCategories(List<int> categoryIds)
+        {
+            foreach (int categoryId in categoryIds)
+            {
+                Category category = GetById(categoryId);
+                Delete(category);
+            }
+            Save();
+        }
+
+        public List<Category> GetByName(string name)
+        {
+            if (string.IsNullOrEmpty(name))
+            {
+                return applicationDbContext.Categories.ToList(); // Return all categories if no search string
+            }
+
+            // Perform case-insensitive search by converting both the Name and the search string to lowercase
+            var lowerCaseSearchString = name.ToLower();
+
+            // Use Contains for partial matching and case-insensitivity
+            return applicationDbContext.Categories
+                           .Where(c => c.Name.ToLower().Contains(lowerCaseSearchString))
+                           .ToList();
+        }
+
     }
 }
