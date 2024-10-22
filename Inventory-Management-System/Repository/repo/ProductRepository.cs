@@ -21,6 +21,10 @@ namespace Inventory_Management_System.Repository.repo
         {
             return _applicationDbContext.Products.Any(p => p.Name == productName);
         }
+        public bool CheckExistenceNameForEdit(string productName)
+        {
+            return _applicationDbContext.Products.Where(p => p.Name == productName).Count()<=1;//< for edit name with valid name /*****/ = for edit another data without change name
+        }
         public void Delete(Product product)
         {
             _applicationDbContext.Products.Remove(product);

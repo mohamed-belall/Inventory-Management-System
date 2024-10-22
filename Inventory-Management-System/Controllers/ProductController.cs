@@ -140,7 +140,7 @@ namespace Inventory_Management_System.Controllers
                     product.ModifiedDate = DateTime.Now;
                     product.ReorderLevel = GlobalVariables.threshold;
 
-                    if (!productRepository.CheckExistence(product.Name))
+                    if (productRepository.CheckExistenceNameForEdit(product.Name))
                     {
                         productRepository.Update(product);
                         productRepository.Save();
@@ -149,6 +149,9 @@ namespace Inventory_Management_System.Controllers
                     else
                     {
                         ModelState.AddModelError("", "Product Name Already found");
+
+                        ProductWithCategoriesViewModel.categories = categoryRepository.GetAll();
+                        ProductWithCategoriesViewModel.suppliers = supplierRepository.GetAll();
                         return View("Edit", ProductWithCategoriesViewModel);
                     }
 
@@ -158,6 +161,9 @@ namespace Inventory_Management_System.Controllers
                     ModelState.AddModelError("", "Product not found");
                 }
             }
+
+            ProductWithCategoriesViewModel.categories = categoryRepository.GetAll();
+            ProductWithCategoriesViewModel.suppliers = supplierRepository.GetAll();
             return View("Edit",ProductWithCategoriesViewModel);
         }
 

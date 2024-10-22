@@ -7,7 +7,6 @@
 @model IEnumerable<DashboardCard>
 <body>
 
-
 <div class=" custom-container mt-4">
     <!-- Apply the custom class here -->
     <div class="row">
@@ -19,7 +18,7 @@
                         <i class="fas @card.Icon fa-3x mb-3"></i>
                         <h5 class="custom-card-title">@card.Title</h5>
                         <h2 class="custom-card-value">@card.Value</h2>
-                        <a href="#" class="btn btn-light btn-sm mt-3">More Info <i class="fas fa-arrow-right"></i></a>
+                        <a href=@card.ActionLink class="btn btn-light btn-sm mt-3">More Info <i class="fas fa-arrow-right"></i></a>
                     </div>
                 </div>
             </div>
@@ -28,7 +27,7 @@
 </div>
 
 <div class="container-fluid mt-5 px-5">
-    <h1 class="text-center mb-5" style="font-size: 3rem;">Analytics Dashboard</h1>
+    <h1 class="text-center mb-5 text-primary" style="font-size: 3rem;">Analytics Dashboard</h1>
 
     <!-- Area Chart and Top Rating Employees Row -->
     <div class="row justify-content-center mb-5">

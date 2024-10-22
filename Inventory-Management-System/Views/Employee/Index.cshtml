@@ -141,7 +141,7 @@
             <!-- First Row: Title and Action Buttons -->
             <div class="row mb-4">
                 <div class="col-md-6">
-                    <h2 style="color:#F21667 !important;">Employee</h2>
+                    <h2 class="text-primary">Employee</h2>
                 </div>
                 <div class="col-md-6 text-end">
                     @if (User.IsInRole("Admin"))
@@ -154,7 +154,7 @@
                     </a>
                     @if(User.IsInRole("Admin"))
                     {
-                        <button class="btn btn-primary" onclick="window.location.href='/Account/Register'">New Employee</button>
+                        <button class="btn btn-primary" onclick="window.location.href='/Account/Register'"><i class="fas fa-plus-circle"></i> New Employee</button>
                     }
                 </div>
             </div>

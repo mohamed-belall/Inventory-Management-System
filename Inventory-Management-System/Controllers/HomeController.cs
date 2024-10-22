@@ -41,14 +41,14 @@ namespace Inventory_Management_System.Controllers
         {
             var dashboardCards = new List<DashboardCard>
             {
-                new DashboardCard { Title = "Total Items", Value = productRepository.GetItemsCount().ToString(), Icon = "fa-cubes", BackgroundColor = "#6a5acd" },
-                new DashboardCard { Title = "Total Categories", Value = categoryRepository.GetAllCount().ToString(), Icon = "fa-list-alt", BackgroundColor = "#00bcd4" },
-                new DashboardCard { Title = "Total Products", Value = productRepository.GetProductCount().ToString() , Icon = "fa-box-open", BackgroundColor = "#4caf50" },
-                new DashboardCard { Title = "Total Orders", Value = employeeSupplierRepository.GetOrdersCount().ToString(), Icon = "fa-handshake", BackgroundColor = "#ff9800" },
-                new DashboardCard { Title = "Paid Transactions", Value = transactionRepository.GetTrabsactionsCount().ToString() , Icon = "fa-exchange-alt", BackgroundColor = "#4caf50" },
-                new DashboardCard { Title = "Total Sales", Value = transactionRepository.GetTotalSells().ToString("C"), Icon = "fa-dollar-sign", BackgroundColor = "#2196f3" },
-                new DashboardCard { Title = "Total Supplier", Value = supplierRepository.GetSupplierCount().ToString(), Icon = "fa-store", BackgroundColor = "#f44336" },
-                new DashboardCard { Title = "Total Members", Value = employeeRepository.GetEmpCount().ToString(), Icon = "fa-users", BackgroundColor = "#00bcd4" }
+                new DashboardCard { Title = "Total Items", Value = productRepository.GetItemsCount().ToString(), Icon = "fa-cubes", BackgroundColor = "#6a5acd" , ActionLink = "/Product/Index" },
+                new DashboardCard { Title = "Total Categories", Value = categoryRepository.GetAllCount().ToString(), Icon = "fa-list-alt", BackgroundColor = "#00bcd4" , ActionLink = "/Category/Index"},
+                new DashboardCard { Title = "Total Products", Value = productRepository.GetProductCount().ToString() , Icon = "fa-box-open", BackgroundColor = "#4caf50" , ActionLink = "/Product/Index"},
+                new DashboardCard { Title = "Total Orders", Value = employeeSupplierRepository.GetOrdersCount().ToString(), Icon = "fa-handshake", BackgroundColor = "#ff9800", ActionLink = "/EmployeeSupplier/Index" },
+                new DashboardCard { Title = "Paid Transactions", Value = transactionRepository.GetTrabsactionsCount().ToString() , Icon = "fa-exchange-alt", BackgroundColor = "#4caf50", ActionLink = "/Transaction/Index" },
+                new DashboardCard { Title = "Total Sales", Value = transactionRepository.GetTotalSells().ToString("C"), Icon = "fa-dollar-sign", BackgroundColor = "#2196f3", ActionLink = "/Transaction/Index" },
+                new DashboardCard { Title = "Total Supplier", Value = supplierRepository.GetSupplierCount().ToString(), Icon = "fa-store", BackgroundColor = "#f44336", ActionLink = "/Supplier/Index" },
+                new DashboardCard { Title = "Total Members", Value = employeeRepository.GetEmpCount().ToString(), Icon = "fa-users", BackgroundColor = "#00bcd4" , ActionLink = "/Employee/Index"}
             };
 
             List<TopEmployee> topEmployees = transactionRepository.GetTopEmployees();

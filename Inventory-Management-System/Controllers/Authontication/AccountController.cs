@@ -89,6 +89,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                         Email = registerViewModel.Email,
                         Phone = registerViewModel.Phone,
                         Role = registerViewModel.Role,
+                        Salary = registerViewModel.Salary,
                         CreatedDate = DateTime.Now
                     };
                     
@@ -150,6 +151,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                 Phone = employee.Phone,
                 Email = employee.Email,
                 Role = employee.Role,
+                Salary = employee.Salary,
                 Roles = roles.Select(role => new SelectListItem
                 {
                     Value = role.Name,
@@ -182,6 +184,7 @@ namespace Inventory_Management_System.Controllers.Authontication
                 employee.Phone = editViewModel.Phone;
                 employee.Email = editViewModel.Email;
                 employee.Role = editViewModel.Role;
+                employee.Salary = editViewModel.Salary;
                 employeeRepository.Update(employee);
                 employeeRepository.Save();
 
@@ -298,20 +301,18 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Log in ****************************/
-        [AllowAnonymous]
         public IActionResult Login()
         {
             return View("Login");
         }
 
         [HttpPost]
-        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveLogin(LoginUserViewModel loginUserViewModel)
         {
             if (ModelState.IsValid)
             {
                 // check found
-                ApplicationUser appUser = await userManager.FindByNameAsync(loginUserViewModel.UserName);
+                var appUser = await userManager.FindByNameAsync(loginUserViewModel.UserName);
                 if (appUser != null)
                 {
                     // check his password
@@ -329,14 +330,12 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Verify Email ****************************/
-        [AllowAnonymous]
         public IActionResult VerifyEmail()
         {
             return View();
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> VerifyEmail(VerifyEmailViewModel model)
         {
             if (ModelState.IsValid)
@@ -356,7 +355,6 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View(model);
         }
 
-        [AllowAnonymous]
         public IActionResult ChangePassword(string username)
         {
             if (string.IsNullOrEmpty(username))
@@ -367,7 +365,6 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         [HttpPost]
-        [AllowAnonymous]
         public async Task<IActionResult> ChangePassword(ChangePasswordViewModel model)
         {
             if (ModelState.IsValid)
@@ -409,6 +406,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
 
         /**************************** Sign Out ****************************/
+        [Authorize]
         public async Task<IActionResult> SignOut()
         {
             await signInManager.SignOutAsync();

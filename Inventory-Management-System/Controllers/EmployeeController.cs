@@ -80,7 +80,7 @@ namespace Inventory_Management_System.Controllers
         //    return View("Edit", employeeFromRequest);
         //}
 
-        [HttpPost]
+        //[HttpPost]
         //public IActionResult DeleteSelected(List<int> employeeIds)
         //{
         //    EmployeeWithIdListViewModel employeeWithId = new EmployeeWithIdListViewModel();

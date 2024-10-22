@@ -3,10 +3,10 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
+<h1 class="text-primary">Edit</h1>
 
 
-<form asp-action="SaveEdit" method="post">
+<form asp-action="SaveEdit" asp-controller="Account" method="post">
 <div asp-validation-summary="ModelOnly" class="text-danger" style="color: red;"></div>
     <input type="hidden" asp-for="EmployeeId" />
 
@@ -35,10 +35,17 @@
     </div>
 
     <div class="form-group">
+        <label asp-for="Salary"></label>
+        <input asp-for="Salary" class="form-control" />
+        <span asp-validation-for="Salary" class="text-danger"></span>
+    </div>
+
+    <div class="form-group">
         <label asp-for="Role"></label>
         <select asp-for="Role" asp-items="Model.Roles" class="form-control"></select>
         <span asp-validation-for="Role" class="text-danger"></span>
     </div>
 
-    <button type="submit" class="btn btn-primary">Save</button>
+    <button type="submit" class="btn btn-primary" asp-action="SaveEdit" asp-controller="Account">Save</button>
+    <a asp-action="Index" asp-controller="Employee">Back to list</a>
 </form>
