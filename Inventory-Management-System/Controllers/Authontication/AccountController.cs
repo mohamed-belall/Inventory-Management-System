@@ -57,7 +57,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
             if (ModelState.IsValid)
             {
-                // Debugging/logging the Role value
+                
                 var selectedRole = registerViewModel.Role;
                 if (string.IsNullOrEmpty(selectedRole))
                 {
@@ -222,42 +222,7 @@ namespace Inventory_Management_System.Controllers.Authontication
 
             return View("Edit", editViewModel);
         }
-        /**************************** Delete ****************************/
 
-        //[HttpPost]
-        //public async Task<IActionResult> Delete(List<int> employeeIds)
-        //{
-        //    // Fetch the employee data by ID from the repository
-        //    var employee = employeeRepository.GetById(1);
-
-        //    if (employee == null)
-        //    {
-        //        return NotFound();
-        //    }
-
-        //    // Fetch roles from the database
-        //    var appUser = await userManager.Users.FirstOrDefaultAsync(u => u.Employee_id == employee.ID);
-
-        //    if (appUser != null)
-        //    {
-        //        var result = await userManager.DeleteAsync(appUser);
-        //        if (!result.Succeeded)
-        //        {
-        //            // Handle the errors (optional)
-        //            foreach (var error in result.Errors)
-        //            {
-        //                ModelState.AddModelError("", error.Description);
-        //            }
-        //            // Return to the delete confirmation view if there were errors
-        //            return View(new DeleteViewModel { EmployeeId = employee.ID, FullName = employee.FName + " " + employee.LName });
-        //        }
-        //    }
-
-        //    employeeRepository.Delete(employee);
-        //    employeeRepository.Save();
-        //    return RedirectToAction("Index", "Employee");
-
-        //}
         [Authorize(Roles = "Admin")]
         [HttpPost]
         public async Task<IActionResult> Delete(List<int> employeeIds)
@@ -331,7 +296,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         /**************************** Verify Email ****************************/
         public IActionResult VerifyEmail()
         {
-            return View();
+            return View("VerifyEmail");
         }
 
         [HttpPost]
@@ -351,16 +316,17 @@ namespace Inventory_Management_System.Controllers.Authontication
                     return RedirectToAction("ChangePassword", "Account", new { username = user.UserName });
                 }
             }
-            return View(model);
+            return View("VerifyEmail" , model);
         }
 
+        /**************************** Change Password ****************************/
         public IActionResult ChangePassword(string username)
         {
             if (string.IsNullOrEmpty(username))
             {
                 return RedirectToAction("VerifyEmail", "Account");
             }
-            return View(new ChangePasswordViewModel { Email = username });
+            return View("ChangePassword" , new ChangePasswordViewModel { UserName = username});
         }
 
         [HttpPost]
@@ -368,7 +334,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         {
             if (ModelState.IsValid)
             {
-                var user = await userManager.FindByEmailAsync(model.Email);
+                var user = await userManager.FindByNameAsync(model.UserName);
                 if (user != null)
                 {
                     var result = await userManager.RemovePasswordAsync(user);
@@ -401,10 +367,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             }
         }
 
-        /**************************** Verify Email ****************************/
-
-
-        /**************************** Sign Out ****************************/
+        /**************************** Logout ****************************/
         [Authorize]
         public async Task<IActionResult> SignOut()
         {
