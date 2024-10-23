@@ -118,7 +118,7 @@
                         <span class="link-name">Alert</span>
                     </a>
                 </li>
-                @if (User.IsInRole("Admin"))
+                @if (User.IsInRole("Admin") || User.IsInRole("admin"))
                 {
                     <li>
                         <a href="/Account/Register">

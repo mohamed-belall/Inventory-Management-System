@@ -29,7 +29,8 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Register ****************************/
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,admin")]
+       
         [HttpGet]
         public async Task<IActionResult> Register()
         {
@@ -49,7 +50,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Register", model);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveRegister(RegisterViewModel registerViewModel)
@@ -127,7 +128,7 @@ namespace Inventory_Management_System.Controllers.Authontication
         }
 
         /**************************** Edit ****************************/
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,admin")]
         [HttpGet]
         public async Task<IActionResult> Edit(int id)
         {
@@ -161,7 +162,7 @@ namespace Inventory_Management_System.Controllers.Authontication
             return View("Edit", model);
         }
 
-        [Authorize(Roles = "Admin")]
+        [Authorize(Roles = "Admin,admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> SaveEdit(EditViewModel editViewModel)
