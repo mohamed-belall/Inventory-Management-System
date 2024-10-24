@@ -16,7 +16,7 @@
                     <h2 class="text-primary">Employee</h2>
                 </div>
                 <div class="col-md-6 text-end">
-                    @if (User.IsInRole("Admin"))
+                    @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                     {
                         <button id="delete-btn" class="btn btn-danger d-none">Delete Selected</button>
                     }
@@ -24,7 +24,7 @@
                         Export to Excel
                         <i class="fas fa-file-excel"></i>
                     </a>
-                    @if(User.IsInRole("Admin"))
+                    @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                     {
                         <button class="btn btn-primary" onclick="window.location.href='/Account/Register'"><i class="fas fa-plus-circle"></i> New Employee</button>
                     }
@@ -58,14 +58,14 @@
             <table class="table table-hover align-middle">
                 <thead>
                     <tr>
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                         {
                             <th><input type="checkbox" id="select-all"></th>
                         }
                         <th>ID</th>
                         <th>First Name</th>
                         <th>Second Name</th>
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                         {
                             <th>Salary</th>
                         }
@@ -73,7 +73,7 @@
                         <th>Email</th>
                         <th>Date Of Creation</th>
                         <th>Role</th>
-                        @if (User.IsInRole("Admin"))
+                        @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                         {
                             <th>Actions</th> <!-- Add this for actions like edit -->
                         }
@@ -84,7 +84,8 @@
                     @foreach (var item in Model)
                     {
                         <tr>
-                            @if(ViewBag.EmpId != item.ID && User.IsInRole("Admin"))
+
+                            @if (ViewBag.EmpId != item.ID && (User.IsInRole("admin") || User.IsInRole("Admin")))
                             {
                                 <td><input type="checkbox" name="employeeIds" value="@item?.ID" class="select-item"></td>
                             }
@@ -95,7 +96,7 @@
                             <td>@item?.ID</td>
                             <td>@item?.FName</td>
                             <td>@item?.LName</td>
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                             {
                                 <td>@item?.Salary</td>
                             }
@@ -104,11 +105,11 @@
                             <td>@item?.CreatedDate</td>
                             <td>
                                 @{
-                                    var roleClass = item?.Role == "Admin" ? "badge bg-danger" : "badge bg-success";
+                                    var roleClass = (item?.Role == "admin" || item?.Role == "Admin") ? "badge bg-danger" : "badge bg-success";
                                 }
                                 <span class="@roleClass">@item?.Role</span>
                             </td>
-                            @if (User.IsInRole("Admin"))
+                            @if (User.IsInRole("admin") || User.IsInRole("Admin"))
                             {
                                 <td>
                                     <!-- Edit button -->
