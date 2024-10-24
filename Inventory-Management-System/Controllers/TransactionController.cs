@@ -27,8 +27,7 @@ namespace Inventory_Management_System.Controllers
                                     IProductRepository productRepository,
                                     IProductTransactionRepository productTransactionRepository,
                                     IEmployeeRepository employeeRepository,
-            UserManager<ApplicationUser> userManager
-                            )
+                                    UserManager<ApplicationUser> userManager)
         {
             this.transactionRepository = transactionRepository;
             this.productRepository = productRepository;
@@ -146,7 +145,7 @@ namespace Inventory_Management_System.Controllers
                 pdfDoc.Open();
 
                 // Add Icon at the Top Right
-                string iconPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "heartbeat.png");
+                string iconPath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", "electronic.jpg");
                 if (System.IO.File.Exists(iconPath))
                 {
                     iTextSharp.text.Image logo = iTextSharp.text.Image.GetInstance(iconPath);

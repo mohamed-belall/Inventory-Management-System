@@ -104,7 +104,7 @@
             <!-- X (Cancel) Button -->
             <button type="button" class="cancel-btn" onclick="window.location.href='/Category/Index'">&times;</button>
 
-            <h3>Edit Receipt</h3>
+            <h3>Edit Category</h3>
             <form asp-action="SaveEdit" asp-controller="Category" method="post">
                 <div asp-validation-summary="All" class="text-danger mb-3"></div>
                 <input type="hidden" name="id" value="@Model.ID" />
